@@ -1,0 +1,10 @@
+
+if (project.hasProperty('enableDexcount')) {
+    apply plugin:'com.getkeepsafe.dexcount'
+    dexcount {
+        format = "json"
+        includeClassCount = true
+        includeFieldCount = true
+        includeTotalMethodCount = true
+    }
+}

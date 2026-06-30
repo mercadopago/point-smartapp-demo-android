@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ProgressBar
+        android:id="@+id/progressIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonLoremImsup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/point_smartapp_demo_app_make_print_label_large_text"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/ui_075m" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonMakePrint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/point_smartapp_demo_app_make_print_label"
+        android:textStyle="bold"
+        app:cornerRadius="@dimen/ui_075m" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/filledTextField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/point_smartapp_demo_app_to_print_label"
+        android:layout_margin="@dimen/ui_2m">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/textFieldDataToPrint"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            app:boxStrokeColor="@color/primaryColor"
+            app:boxStrokeWidthFocused="@color/primaryColor" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

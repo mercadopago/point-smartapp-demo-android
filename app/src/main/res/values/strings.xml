@@ -1,0 +1,97 @@
+<resources>
+    <string name="point_smartapp_demo_app_name">Demo Launcher Integration</string>
+    <string name="point_smartapp_demo_app_lab_send_payment_action">Launch Payment</string>
+    <string name="point_smartapp_demo_app_lab_get_payment_method_action">Get Payment method</string>
+    <string name="point_smartapp_demo_app_title">Demo Launcher Integration App</string>
+    <string name="point_smartapp_demo_app_lab_payment_amount">Amount</string>
+    <string name="point_smartapp_demo_app_lab_payment_description">Description</string>
+    <string name="point_smartapp_demo_app_lab_tax">Tax</string>
+    <string name="point_smartapp_demo_app_go_to_payment">Go to payment</string>
+    <string name="point_smartapp_demo_app_payment_success">The payment has been successful</string>
+    <string name="point_smartapp_demo_app_lab_reference">Reference</string>
+    <string name="point_smartapp_demo_app_payment_error">The payment failed</string>
+    <string name="point_smartapp_demo_app_lab_error_reference">Error </string>
+    <string name="point_smartapp_demo_app_lab_back_to_home_action">Back to home</string>
+    <string name="point_smartapp_demo_app_lab_done_copy">Done</string>
+
+    <!-- Bluetooth -->
+    <string name="point_smartapp_demo_app_button_bluetooth_tools">Bluetooth Tools</string>
+    <string name="point_smartapp_demo_app_button_bluetooth_ui_settings">Bluetooth Settings MP UI</string>
+    <string name="point_smartapp_demo_app_bluetooth_title">Conexión Bluetooth</string>
+    <string name="point_smartapp_demo_app_bluetooth">Bluetooth</string>
+    <string name="point_smartapp_demo_app_bluetooth_connect_reader_message">Conecta tu lector mediante Bluetooth con lectores de códigos de barra y teclados.</string>
+    <string name="point_smartapp_demo_app_bluetooth_pair_devices_label">Paired Devices</string>
+    <string name="point_smartapp_demo_app_bluetooth_discovery_devices_label">Found Devices</string>
+    <string name="point_smartapp_demo_app_bluetooth_devices_connect">Conectado</string>
+    <string name="point_smartapp_demo_app_to_print_label">Agregar texto a imprimir</string>
+    <string name="point_smartapp_demo_app_home_print_label">printer Bluetooth</string>
+    <string name="point_smartapp_demo_app_make_print_label">Make print</string>
+    <string name="point_smartapp_demo_app_make_print_label_large_text">print large text</string>
+    <string name="point_smartapp_demo_app_clear_label">clear</string>
+    <string name="point_smartapp_demo_app_error_msg_data_empty">Data to print is required</string>
+
+
+    <!-- Refunds -->
+    <string name="point_smartapp_demo_app_button_refunds">Refunds UI</string>
+    <string name="point_smartapp_demo_app_description_refunds">Refunds can be performed using the public MP API. The Access token must have permissions over the Seller Account using the OAuth Flow</string>
+    <string name="point_smartapp_demo_app_lab_access_token">OAuth Access Token</string>
+    <string name="point_smartapp_demo_app_lab_refund_amount">Amount to be refunded</string>
+    <string name="point_smartapp_demo_app_lab_refund_payment_id">Payment id</string>
+    <string name="point_smartapp_demo_app_lab_send_refund_action">Refund</string>
+    <string name="point_smartapp_demo_app_lab_refund_result_text">Payment %1$s refunded</string>
+
+    <!-- Print   -->
+    <string name="point_smartapp_demo_app_home_printer_bitmap">Embedded printer test</string>
+    <string name="point_smartapp_demo_app_home_descption_printer_bitmap">To print a test bitmap image go to the print image button</string>
+    <string name="point_smartapp_demo_app_home_result_successful_description_printer_bitmap">%s printing</string>
+    <string name="point_smartapp_demo_app_home_result_failure_description_printer_bitmap">Printing failed for this reason: %s</string>
+    <string name="point_smartapp_demo_app_text_button_printer_bitmap">Print image</string>
+
+    <!-- custom tag -->
+    <string name="point_smartapp_demo_app_home_printer_custom_tag">Custom tag test</string>
+    <string name="point_smartapp_demo_app_text_button_printer_custom_tag">Print custom tag</string>
+    <string name="point_smartapp_demo_app_home_descption_printer_custom_tag">To print a custom tag. You can paste custom tag or DTE using scrcpy Only chile</string>
+    <string name="point_smartapp_demo_app_home_print_pdf417_in_boleta_custom_tag">If you want to print a PDF417 in Boleta check here</string>
+    <string name="point_smartapp_demo_app_home_print_payment_method_selected_custom_tag">Payment Method selected: %s</string>
+
+    <!-- Camera Scanner -->
+    <string name="point_smartapp_demo_app_cammera_scanner_main_title">Camera Scanner</string>
+    <string name="point_smartapp_demo_app_cammera_scanner_start_scan_qr_title">Start 2D Scanner (deeplink)</string>
+    <string name="point_smartapp_demo_app_cammera_scanner_new_start_scan_qr_title">Start 2D Scanner (callback)</string>
+    <string name="point_smartapp_demo_app_cammera_scanner_start_barcode_title">Start 1D Scanner (deeplink)</string>
+    <string name="point_smartapp_demo_app_cammera_scanner_new_start_barcode_title">Start 1D Scanner (callback)</string>
+    <string name="point_smartapp_demo_app_cammera_scanner_start_scan_undefined">Undefined: %s</string>
+    <string name="point_smartapp_demo_app_cammera_scanner_new_start_barcode_callback_title">Start Barcode Scanner (callback)</string>
+    <string name="point_smartapp_demo_app_cammera_scanner_new_start_qr_callback_title">Start QR Scanner (callback)</string>
+    <string-array name="point_smartapp_demo_app_camera_scanner_orientation">
+        <item>None</item>
+        <item>Landscape</item>
+        <item>Portrait</item>
+    </string-array>
+
+    <!-- Smart info -->
+    <string name="point_smartapp_demo_app_smart_info_main_title">Smart info</string>
+    <string name="point_smartapp_demo_app_serial_number_text">Serial number: %s</string>
+    <string name="point_smartapp_demo_app_brand_name_text">Brand name: %s</string>
+    <string name="point_smartapp_demo_app_model_name_text">Model name: %s</string>
+    <string name="point_smartapp_demo_app_sdk_version_text">SDK version: %s</string>
+    <string name="point_smartapp_demo_app_payment_module_version_text">Payment module version: %s</string>
+    <string name="point_smartapp_demo_app_smart_info_title">Smart info</string>
+    <string name="point_smartapp_demo_app_btn_go_back">Go back</string>
+    <string name="point_smartapp_demo_app_version_name">Version app: %s</string>
+
+    <!-- payment flow -->
+    <string name="point_smartapp_demo_app_description_is_automatic_printing">Enable automatic printing</string>
+
+    <string name="point_smartapp_demo_app_lab_hind_external_reference">Insert external reference</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status">Go to payment status</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_amount">Amount:</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_method">payment method:</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_reference">payment reference:</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_creation_date">payment creation date:</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_sn_number">SN Device: </string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_last_four_digits">last 4 digits:</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_brand_name">brand name:</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_installment">installment:</string>
+    <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_tip_amount">Tip amount:</string>
+</resources>

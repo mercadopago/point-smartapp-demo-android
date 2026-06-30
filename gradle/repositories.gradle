@@ -1,0 +1,13 @@
+repositories {
+
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+
+    // catch all repositories
+    maven {
+        name 'AndroidExtra'
+        url 'https://android.artifacts.furycloud.io/repository/extra/'
+        credentials(PasswordCredentials)
+    }
+}

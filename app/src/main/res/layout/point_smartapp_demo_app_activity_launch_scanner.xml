@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
+    tools:context=".view.camera.LaunchScannerActivity">
+
+    <ImageView
+        android:id="@+id/point_smartapp_demo_app_state_img_qr"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginEnd="8dp"
+        android:tint="@color/primaryColor"
+        app:layout_constraintBottom_toBottomOf="@+id/point_smartapp_demo_app_camera_scanner_title"
+        app:layout_constraintEnd_toStartOf="@+id/point_smartapp_demo_app_camera_scanner_title"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/point_smartapp_demo_app_camera_scanner_title"
+        app:srcCompat="@drawable/point_smartapp_demo_app_ic_qr_code"
+        tools:ignore="UseAppTint" />
+
+    <TextView
+        android:id="@+id/point_smartapp_demo_app_camera_scanner_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="@dimen/ui_10m"
+        android:text="@string/point_smartapp_demo_app_cammera_scanner_main_title"
+        android:textAlignment="center"
+        android:textStyle="bold"
+        android:textSize="@dimen/ui_title_line_height_s"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_turn_on"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="Do you want to turn on the flashlight?"
+        android:textColor="@color/primaryTextColor"
+        app:thumbTint="@color/grayDark"
+        app:trackTint="@color/grayDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/point_smartapp_demo_app_camera_scanner_title" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/title_initial_orientation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="32dp"
+        android:text="Select the screen orientation you want"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/switch_turn_on" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/point_smartapp_demo_app_camera_scanner_spinner_orientation"
+        style="@style/point_smartapp_demo_appTheme.TextInputLayoutTheme.DropDown"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/ui_2m"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="@dimen/ui_1m"
+        android:layout_marginEnd="32dp"
+        android:hint="None"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/title_initial_orientation"
+        app:startIconDrawable="@drawable/point_smartapp_demo_app_ic_receipt">
+
+        <com.google.android.material.textfield.MaterialAutoCompleteTextView
+            android:id="@+id/value_initial_orientation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="none"
+            android:textColor="@color/primaryTextColor"
+            app:simpleItemLayout="@layout/point_smartapp_demo_app_item_spinner" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/point_smartapp_demo_app_camera_qr_scanner_new_init_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="@dimen/ui_3m"
+        android:backgroundTint="@color/dark_grey"
+        android:paddingTop="@dimen/ui_3m"
+        android:paddingBottom="@dimen/ui_3m"
+        android:text="@string/point_smartapp_demo_app_cammera_scanner_new_start_qr_callback_title"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryTextColor"
+        app:cornerRadius="@dimen/ui_10m"
+        app:icon="@drawable/point_smartapp_demo_app_ic_arrow_right"
+        app:iconGravity="end"
+        app:iconTint="@color/primaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/point_smartapp_demo_app_camera_scanner_spinner_orientation" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/point_smartapp_demo_app_new_camera_barcode_scanner_init_btn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="@dimen/ui_3m"
+        android:backgroundTint="@color/dark_grey"
+        android:paddingTop="@dimen/ui_3m"
+        android:paddingBottom="@dimen/ui_3m"
+        android:text="@string/point_smartapp_demo_app_cammera_scanner_new_start_barcode_callback_title"
+        android:textAllCaps="false"
+        android:textColor="@color/primaryTextColor"
+        app:cornerRadius="@dimen/ui_10m"
+        app:icon="@drawable/point_smartapp_demo_app_ic_arrow_right"
+        app:iconGravity="end"
+        app:iconTint="@color/primaryColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/point_smartapp_demo_app_camera_qr_scanner_new_init_btn" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

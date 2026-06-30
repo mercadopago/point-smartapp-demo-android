@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.button.MaterialButton android:id="@+id/point_smartapp_demo_app_go_to_payment_button"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="@dimen/ui_6m"
+    android:layout_marginTop="@dimen/ui_3m"
+    android:paddingVertical="@dimen/ui_1_25m"
+    android:textAllCaps="false"
+    app:cornerRadius="@dimen/ui_1_25m"
+    tools:icon="@drawable/point_smartapp_demo_app_ic_payments"
+    tools:text="@string/point_smartapp_demo_app_go_to_payment" />

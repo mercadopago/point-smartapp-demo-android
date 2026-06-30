@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryLightColor">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:id="@+id/progressbarDiscoveryStarted"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewDiscoveryDevices"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+            app:layout_constraintTop_toTopOf="@+id/textViewDiscoveryDevices" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupPairDevices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="textViewPairDevices,recyclerViewPairDevices" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/groupDiscoveryDevices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:constraint_referenced_ids="textViewDiscoveryDevices,recyclerViewFoundDevices,progressbarDiscoveryStarted" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewPairDevices"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_1m"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+            app:layout_constraintStart_toStartOf="@+id/textViewPairDevices"
+            app:layout_constraintTop_toBottomOf="@+id/textViewPairDevices" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerViewFoundDevices"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_2m"
+            app:layout_constraintEnd_toEndOf="@+id/materialCardView"
+            app:layout_constraintStart_toStartOf="@+id/textViewDiscoveryDevices"
+            app:layout_constraintTop_toBottomOf="@+id/textViewDiscoveryDevices" />
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/materialCardView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/ui_2_5m"
+            android:layout_marginStart="@dimen/ui_2_5m"
+            android:layout_marginTop="@dimen/ui_2m"
+            app:cardCornerRadius="@dimen/ui_2m"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTitle">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="152dp"
+                android:background="@color/grayDark">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.45" />
+
+                <com.google.android.material.switchmaterial.SwitchMaterial
+                    android:id="@+id/bt_ignitor"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/ui_2m"
+                    app:layout_constraintBottom_toTopOf="@+id/guideline2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:id="@+id/textViewBluetoothLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/ui_2m"
+                    android:text="@string/point_smartapp_demo_app_bluetooth"
+                    android:textColor="@color/primaryTextColor"
+                    android:textSize="@dimen/ui_body_line_height_m"
+                    app:layout_constraintBottom_toBottomOf="@+id/bt_ignitor"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/bt_ignitor" />
+
+                <com.google.android.material.textview.MaterialTextView
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:background="@color/primaryColor"
+                    android:gravity="center|start"
+                    android:paddingEnd="@dimen/ui_2m"
+                    android:paddingStart="@dimen/ui_2m"
+                    android:text="@string/point_smartapp_demo_app_bluetooth_connect_reader_message"
+                    android:textColor="@color/secondaryTextColor"
+                    android:textSize="@dimen/ui_body_line_height_xs"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline2"
+                    app:layout_constraintVertical_bias="0.0" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/ui_2m"
+            android:layout_marginTop="16dp"
+            android:text="@string/point_smartapp_demo_app_bluetooth_title"
+            android:textColor="@color/primaryTextColor"
+            android:textSize="@dimen/ui_title_line_height_s"
+            app:layout_constraintStart_toEndOf="@+id/point_smartapp_demo_back_arrow"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/point_smartapp_demo_back_arrow"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginStart="16dp"
+            android:src="@drawable/point_smartapp_demo_app_white_arrow_back"
+            app:layout_constraintBottom_toBottomOf="@+id/textViewTitle"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/textViewTitle" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewPairDevices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_2m"
+            android:text="@string/point_smartapp_demo_app_bluetooth_pair_devices_label"
+            android:textColor="@color/primaryColor"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/materialCardView"
+            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/textViewDiscoveryDevices"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/ui_2m"
+            android:text="@string/point_smartapp_demo_app_bluetooth_discovery_devices_label"
+            android:textColor="@color/primaryColor"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="@+id/materialCardView"
+            app:layout_constraintTop_toBottomOf="@+id/recyclerViewPairDevices" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>
