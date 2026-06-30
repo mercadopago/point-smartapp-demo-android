@@ -1,0 +1,296 @@
+app/src/main/res/drawable/point_smartapp_demo_app_black_ic_print.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-5
+app/src/main/res/layout/point_smartapp_demo_app_item_spinner.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-8
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/actions/model/ActionModel.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-3,5-10
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,4
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/models/PaymentMethodModel.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-6
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/viewmodels/BluetoothPrinterViewModel.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,7-11
+  s_d43f29bb5796b6::t_74d8638e85b564 2-6,12-66
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/dialog/SelectionPaymentMethodDialogFragment.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,10-15
+  s_d43f29bb5796b6::t_74d8638e85b564 2-9,16-82
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/launcher/PaymentLauncherActivity.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,9-30,83,88
+  s_d43f29bb5796b6::t_74d8638e85b564 2-8,31-82,84-87,89-195
+app/src/main/res/drawable/point_smartapp_demo_app_ic_arrow_right.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-5
+app/src/main/res/layout/point_smartapp_demo_app_activity_printer_bitmap.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-64
+app/src/main/res/drawable/point_smartapp_demo_app_ic_check_white.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-5
+app/src/main/res/layout/point_smartapp_demo_app_dialog_printer_selector.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-12
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/adapter/PaymentInstallmentViewHolder.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-7
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,8-31
+app/src/main/res/drawable/point_smartapp_demo_app_white_arrow_back.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-5
+jacoco.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-105
+app/src/main/res/values/themes.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-58
+app/src/main/res/drawable/point_smartapp_demo_app_ic_receipt.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-6
+app/src/main/res/drawable/point_smartapp_demo_app_ic_home.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-6
+app/src/main/res/layout/point_smartapp_demo_app_activity_printer_custom_tag.xml
+  s_d43f29bb5796b6::t_e8b5e169180f5e 1-120
+app/src/main/res/layout/point_smartapp_demo_app_activity_printer_test.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-48
+app/src/main/res/drawable/point_smartapp_demo_app_ic_money.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-13
+settings.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-16
+CONTRIBUTING.md
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-22
+app/src/main/res/drawable/point_smartapp_demo_app_ic_search.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-5
+app/src/main/res/drawable/point_smartapp_demo_app_ic_qr_code.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-4
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/refunds/RefundsActivity.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-7,41
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,8-40,42-47
+gradle/repositories.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-13
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/data/dto/RefundResponse.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1
+.code_quality/android/checkstyle_suppressions.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-22
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/MainApplication.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-3,6-27
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,4-5
+app/src/main/res/drawable/point_smartapp_demo_app_ic_options.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-18
+app/src/main/res/values/dimens.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-40
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/camera/LaunchScannerActivity.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-6,14-43,45-122
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,7-13,44
+.code_quality/android/checkstyle_rules.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-285
+app/src/main/res/drawable/point_smartapp_demo_app_ic_info.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-13
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/result/PaymentStatusApprovedActivity.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-11
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,12-74
+README.md
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-23
+app/build.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 40
+  s_d43f29bb5796b6::t_d841c76403336e 1-39,41-119
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/info/SmartInfoActivity.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-4,11-30,35-45,47-56
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,5-10,31-34,46
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/launcher/PaymentFlowInstallmentsActivity.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-6,19-133
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,7-18
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/contracts/PrinterEvents.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2,4-12
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,3
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/adapter/PaymentMethodAdapter.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,7-38
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/printer/PrinterSelectorDialog.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,11-13
+  s_d43f29bb5796b6::t_74d8638e85b564 2-10,14-67
+app/src/main/res/color/point_smartapp_demo_app_text_input_box_stroke.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-6
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/BluetoothTestActivity.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,12-19
+  s_d43f29bb5796b6::t_74d8638e85b564 2-11,20-177
+app/src/main/res/layout/point_smartapp_demo_app_activity_payment_flow_installmets.xml
+  s_d43f29bb5796b6::t_74d8638e85b564 1-38,40-50,52-75,78-87
+  s_d43f29bb5796b6::t_17052f9b2d18a3 39,51,76-77
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/printer/PrinterBitmapActivity.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-13,38,48,67-68,77,79
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,14-37,39-47,49-66,69-76,78,80-87
+app/src/main/res/drawable/point_smartapp_demo_app_ic_done.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-13
+app/src/main/res/drawable/point_smartapp_demo_app_ic_description.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-13
+app/src/main/res/drawable/point_smartapp_demo_app_ic_error.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-15
+app/src/main/res/drawable/point_smartapp_demo_app_spinner_dropdown.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-9
+app/src/main/res/values/strings.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-97
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/adapter/BluetoothDevicesAdapter.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,7-62
+app/src/main/res/values/colors.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-16
+.github/pull_request_template.md
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-32
+app/src/main/res/layout/point_smartapp_demo_app_item_payment_method.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-42
+build.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-15
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/printer/PrinterTestActivity.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-8,14-36,38-39,41-59,61-86
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,9-13,37,40,60
+app/src/main/res/drawable/point_smartapp_demo_app_ic_bluetooth.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-5
+gradle/android-base.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-49
+app/src/main/res/layout/point_smartapp_demo_app_selection_payment_method_dialog_fragment.xml
+  s_d43f29bb5796b6::t_e8b5e169180f5e 1-33
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/viewmodels/BluetoothSettingsViewModel.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,11-148
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-10
+app/src/main/res/drawable/point_smartapp_demo_app_ic_bluetooth_connected.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-13
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/refunds/RefundsViewModel.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,7
+  s_d43f29bb5796b6::t_74d8638e85b564 2-6,8-44
+.code_quality/android/pmd_rules.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-189
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/adapter/BluetoothDeviceViewHolder.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,7-10,27,33,46
+  s_d43f29bb5796b6::t_74d8638e85b564 2-6,11-26,28-32,34-45,47-62
+.pre-commit-config.yaml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-7
+app/src/main/res/layout/point_smartapp_demo_app_activity_smart_info.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-66
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/actions/view/HomeActionViewHolder.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,9-30
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-8
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/adapter/PaymentInstallmentAdapter.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,7-31
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6
+.code_quality/android/detekt_rules.yml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-800
+app/src/main/res/layout/point_smartapp_demo_app_activity_bluetooth_test.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-162
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/data/NetworkConstants.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-8
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1
+app/src/main/res/layout/point_smartapp_demo_app_item_home_action.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-14
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/printer/PrinterCustomTagActivity.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,18-54,56-69,71-85,87-92,94-128,130,132-134,136-141,143,145-154,156-157,159-168
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-17,55,70,86,93,129,131,135,142,144,155,158
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/adapter/PaymentMethodViewHolder.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,7-8
+  s_d43f29bb5796b6::t_74d8638e85b564 2-6,9-31
+app/src/miniapp/AndroidManifest.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 2
+  s_d43f29bb5796b6::t_d841c76403336e 1,3-18
+app/src/main/res/layout/point_smartapp_demo_app_activity_payment_launcher.xml
+  s_d43f29bb5796b6::t_74d8638e85b564 1-22,24,26-28,30-47,49-51,53-63,65-70,72-74,76-82,84-93,95-112,114-121,125-136,140-157
+  s_d43f29bb5796b6::t_17052f9b2d18a3 23,25,29,48,52,64,71,75,83,94,113,122-124,137-139
+app/src/main/res/drawable/point_smartapp_demo_app_ic_payments.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-13
+app/src/main/res/layout/point_smartapp_demo_app_item_installment_amount.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-46
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/util/LaunchStartActivity.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-14
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1
+gradle.properties
+  s_d43f29bb5796b6::t_d841c76403336e 1-36,39-84
+  s_d43f29bb5796b6::t_d6292b6a0ee6a0 37
+  s_d43f29bb5796b6::t_17052f9b2d18a3 38
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/home/HomeActivity.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-12,35
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,13-34,36-55
+app/src/main/res/layout/point_smartapp_demo_app_item_devices_bluetooth.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-77
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/actions/contract/ActionsProvider.kt
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,4
+  s_d43f29bb5796b6::t_74d8638e85b564 2-3,5-8
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/actions/contract/HomeActions.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2,5-9
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,3-4
+app/src/main/res/layout/point_smartapp_demo_app_activity_launch_scanner.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-133
+app/src/main/res/layout/point_smartapp_demo_app_activity_payment_status_approved.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-291
+app/src/main/res/layout/point_smartapp_demo_app_activity_refunds.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-93
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/data/RefundsService.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2,4-16
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,3
+app/src/main/res/drawable/point_smartapp_demo_app_ic_bluetooth_available.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-14
+app/src/main/res/layout/point_smartapp_demo_app_activity_home.xml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-47
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/model/RefundsManager.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2,6-16
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,3-5
+CHANGELOG.md
+  s_d43f29bb5796b6::t_d841c76403336e 5-183
+  s_d43f29bb5796b6::t_5d5e9e34f56f99 1-4
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/ActionsProviderImpl.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-4,18-22,24-25,27-30,32-33,35-38,40-41,43-46,48-49,51-54,56-57,59-62,64-65,67-70,72-73,75-78,80-81,83-86,88-89,91-94,96-97,99-104
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,5-17,23,26,31,34,39,42,47,50,55,58,63,66,71,74,79,82,87,90,95,98
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/contracts/BluetoothSettingsEvents.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2,5-22
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,3-4
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/models/PayerCondition.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2,5-11
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,3-4
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/actions/view/HomeActionAdapter.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-5,8-23
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,6-7
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/util/ExtensionFunctions.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-32
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1
+gradle/android-app.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-9
+gradle/dexcount.gradle
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-10
+gradle/wrapper/gradle-wrapper.properties
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-5
+app/src/main/AndroidManifest.xml
+  s_d43f29bb5796b6::t_d841c76403336e 1-2,4-8,11,13-60,62-64,66-67,69-71
+  s_d43f29bb5796b6::t_17052f9b2d18a3 3,9-10,12
+  s_d43f29bb5796b6::t_42669122929dbe 61,65,68
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/util/StringUtils.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2-3
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1
+.circleci/config.yml
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1-39
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/data/NetworkDependencyProvider.kt
+  s_d43f29bb5796b6::t_74d8638e85b564 2,5-36
+  s_d43f29bb5796b6::t_17052f9b2d18a3 1,3-4
+.gitignore
+  s_d43f29bb5796b6::t_58be4055ca1715 1-96
+app/.gitignore
+  s_d43f29bb5796b6::t_a8eb9861af7370 1
+gradlew.bat
+  s_d43f29bb5796b6::t_e26d6308f54afb 1-89
+.code_quality/android/.editorconfig
+  s_d43f29bb5796b6::t_5390cbc767b17d 1-11
+app/proguard-rules.pro
+  s_d43f29bb5796b6::t_faa75808cc8e8a 1-20
+gradle/libs.versions.toml
+  s_d43f29bb5796b6::t_9bb9d5122722b2 1-19
+gradlew
+  s_d43f29bb5796b6::t_f474c2412ed213 1-234
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "f73670ea2b648c1dc162e866b5d8d0ff9ccdd57c",
+  "prompts": {},
+  "humans": {
+    "h_759628cef08a70": {
+      "author": "jobotero_meli <jonathan.botero@mercadolibre.com.co>"
+    }
+  },
+  "sessions": {
+    "s_d43f29bb5796b6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0bd584c-9e5b-4396-84dc-02b528582137",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "jobotero_meli <jonathan.botero@mercadolibre.com.co>"
+    }
+  }
+}
