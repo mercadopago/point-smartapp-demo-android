@@ -1,0 +1,112 @@
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/models/PayerCondition.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 3-4
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/printer/PrinterSelectorDialog.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 12,17,40
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 11
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/printer/PrinterTestActivity.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 10,17-18
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/camera/LaunchScannerActivity.kt
+  s_d43f29bb5796b6::t_d71f8454a1ebf2 51,54
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 13,17-18
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 7-11
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/viewmodels/BluetoothSettingsViewModel.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 6-9
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/printer/PrinterBitmapActivity.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 6-8
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 10,17,21
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/actions/view/HomeActionViewHolder.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 8,10,25
+app/src/main/AndroidManifest.xml
+  s_d43f29bb5796b6::t_ddf7ac4ebaacc4 56-57
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/home/HomeActivity.kt
+  s_d43f29bb5796b6::t_d71f8454a1ebf2 34
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 11,16-17
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/viewmodels/BluetoothPrinterViewModel.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 7-10
+app/build.gradle
+  s_d43f29bb5796b6::t_aa4062723763ad 101
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/actions/contract/HomeActions.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 3
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/MainApplication.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 4-5
+app/src/miniapp/AndroidManifest.xml
+  s_d43f29bb5796b6::t_94fb7bf8a5ac21 14
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/ActionsProviderImpl.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 5
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/contracts/PrinterEvents.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 3
+app/src/main/res/layout/point_smartapp_demo_app_activity_payment_launcher.xml
+  s_d43f29bb5796b6::t_876280004da1e6 13,104,107,115,119,121,123-124,126-127,130,135,137-139,141-142
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/adapter/PaymentInstallmentViewHolder.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 7,9,23
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 6
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/launcher/PaymentLauncherActivity.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 10-15
+  s_d43f29bb5796b6::t_bdf196d1456b67 3,5,17,24,32,43-49,53,107,110-112,116-140,155-157,160-170,182-195
+  s_d43f29bb5796b6::t_29cadadb069166 196
+app/src/main/res/layout/point_smartapp_demo_app_activity_payment_flow_installmets.xml
+  s_d43f29bb5796b6::t_876280004da1e6 46-55
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/dialog/SelectionPaymentMethodDialogFragment.kt
+  s_d43f29bb5796b6::t_d92614572cced5 13,19,36
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 10-12
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/result/PaymentStatusApprovedActivity.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 6-9
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 10,15-16
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/launcher/PaymentFlowInstallmentsActivity.kt
+  s_d43f29bb5796b6::t_bdf196d1456b67 3,8,12-13,20-21,32-36,50-51,53,55-62,65-66,81-83,85-86,89-101,106-109
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 9-11
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/adapter/PaymentInstallmentAdapter.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 6
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/refunds/RefundsActivity.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 7,11,16
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/adapter/BluetoothDevicesAdapter.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 6
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/printer/PrinterCustomTagActivity.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 6-8
+  s_d43f29bb5796b6::t_cdd0ec6f2facae 10,23-24,77,81,91
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/BluetoothTestActivity.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 14,24-25
+  s_d43f29bb5796b6::t_d71f8454a1ebf2 75
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 12-13
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/adapter/BluetoothDeviceViewHolder.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 9,12,56
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 7
+gradle.properties
+  s_d43f29bb5796b6::t_aa4062723763ad 42-43
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/bluetooth/contracts/BluetoothSettingsEvents.kt
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 3-4
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/adapter/PaymentMethodViewHolder.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 7,10,25
+app/src/main/res/layout/point_smartapp_demo_app_activity_smart_info.xml
+  s_d43f29bb5796b6::t_d71f8454a1ebf2 23,32,38,41,47,50,56,59,65
+CHANGELOG.md
+  s_d43f29bb5796b6::t_6adb7ce1ba9d21 1-31
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/info/SmartInfoActivity.kt
+  s_d43f29bb5796b6::t_dfd5d8050cecb8 9,14,19
+  s_d43f29bb5796b6::t_d71f8454a1ebf2 38-41,47
+  s_d43f29bb5796b6::t_ffd4a87a87ae50 5-7
+app/src/main/res/values/strings.xml
+  s_d43f29bb5796b6::t_fc6cd4be8229c5 5
+  s_d43f29bb5796b6::t_36137867051e48 2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.5",
+  "base_commit_sha": "5584937131fed94fadd5a2916d3fe85556e24464",
+  "prompts": {},
+  "humans": {
+    "h_759628cef08a70": {
+      "author": "jobotero_meli <jonathan.botero@mercadolibre.com.co>"
+    }
+  },
+  "sessions": {
+    "s_d43f29bb5796b6": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f0bd584c-9e5b-4396-84dc-02b528582137",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "jobotero_meli <jonathan.botero@mercadolibre.com.co>"
+    }
+  }
+}
