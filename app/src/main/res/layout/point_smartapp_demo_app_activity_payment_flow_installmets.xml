@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/primaryLightColor"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".view.payment.launcher.PaymentFlowInstallmentsActivity">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_amount"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ui_title_line_height_xl"
+        android:textStyle="bold"
+        android:textColor="@color/primaryColor"
+        android:layout_marginTop="@dimen/ui_3m"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="50.00" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_amount_total"
+        android:layout_width="wrap_content"
+        android:textColor="@color/primaryColor"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_amount"
+        tools:text="Monto total" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_list_installments"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/ui_3m"
+        android:layout_marginBottom="@dimen/ui_3m"
+        tools:listitem="@layout/point_smartapp_demo_app_item_installment_amount"
+        tools:itemCount="5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/text_amount_total" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/image_error_installment"
+        android:layout_width="@dimen/ui_6_5m"
+        android:layout_height="@dimen/ui_6_5m"
+        android:visibility="gone"
+        app:srcCompat="@drawable/point_smartapp_demo_app_ic_error"
+        android:layout_marginBottom="@dimen/ui_1_5m"
+        app:layout_constraintBottom_toTopOf="@id/text_exception"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/text_exception"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/ui_6_5m"
+        android:layout_marginEnd="@dimen/ui_6_25m"
+        android:textSize="@dimen/ui_medium_body_size"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Aquí imprime el texto de error que retorna la excepción" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_go_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/point_smartapp_demo_app_btn_go_back"
+        app:icon="@drawable/point_smartapp_demo_app_ic_arrow_right"
+        app:iconGravity="end"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/ui_1_5m"
+        android:layout_marginEnd="@dimen/ui_6_25m"
+        android:layout_marginStart="@dimen/ui_6_25m"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_exception" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

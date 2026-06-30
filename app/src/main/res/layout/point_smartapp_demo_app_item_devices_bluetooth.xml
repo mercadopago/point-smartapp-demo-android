@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/ui_1_75m"
+    android:layout_marginTop="@dimen/ui_1_75m"
+    tools:background="@color/primaryDarkColor">
+
+    <ImageView
+        android:id="@+id/imageViewBluetoothState"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/point_smartapp_demo_app_ic_bluetooth_available"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="ContentDescription" />
+
+    <ImageView
+        android:id="@+id/imageViewBluetoothOptions"
+        android:layout_width="@dimen/ui_5m"
+        android:layout_height="0dp"
+        android:paddingTop="@dimen/ui_1_5m"
+        android:paddingBottom="@dimen/ui_1_5m"
+        android:paddingStart="@dimen/ui_2_5m"
+        android:src="@drawable/point_smartapp_demo_app_ic_options"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible"
+        tools:ignore="ContentDescription" />
+
+    <TextView
+        android:id="@+id/textViewSecondaryText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center|start"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/ui_body_line_height_s"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/textViewPrimaryText"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/textViewPrimaryText"
+        tools:visibility="visible"/>
+
+    <TextView
+        android:id="@+id/textViewPrimaryText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/ui_2m"
+        android:gravity="center|start"
+        android:text="@string/point_smartapp_demo_app_bluetooth"
+        android:textColor="@color/primaryTextColor"
+        android:textSize="@dimen/ui_body_line_height_m"
+        app:layout_constraintBottom_toTopOf="@+id/textViewSecondaryText"
+        app:layout_constraintEnd_toStartOf="@+id/imageViewBluetoothOptions"
+        app:layout_constraintStart_toEndOf="@+id/imageViewBluetoothState"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/progressIndicator"
+        android:layout_width="@dimen/ui_2_5m"
+        android:layout_height="@dimen/ui_2_5m"
+        android:layout_gravity="center"
+        android:indeterminate="true"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewPrimaryText"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

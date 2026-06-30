@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
+    tools:context=".view.payment.launcher.PaymentLauncherActivity"
+    android:fillViewport="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/amountInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/ui_2m"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/ui_3m"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/point_smartapp_demo_app_lab_payment_amount"
+            app:boxStrokeErrorColor="@color/design_default_color_error"
+            app:errorTextAppearance="@style/point_smartapp_demo_appTheme.TextInputLayoutTheme.errorAppearance"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:startIconDrawable="@drawable/point_smartapp_demo_app_ic_money">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/amountEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="numberDecimal"
+                android:textColor="@color/primaryTextColor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/descriptionInputLayout"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/ui_2m"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/ui_1m"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/point_smartapp_demo_app_lab_payment_description"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/amountInputLayout"
+            app:startIconDrawable="@drawable/point_smartapp_demo_app_ic_description">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/descriptionEditText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/primaryTextColor" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/payerConditionLayout"
+            style="@style/point_smartapp_demo_appTheme.TextInputLayoutTheme.DropDown"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/ui_2m"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="@dimen/ui_1m"
+            android:layout_marginEnd="16dp"
+            android:hint="@string/point_smartapp_demo_app_lab_tax"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/descriptionInputLayout"
+            app:startIconDrawable="@drawable/point_smartapp_demo_app_ic_receipt">
+
+            <com.google.android.material.textfield.MaterialAutoCompleteTextView
+                android:id="@+id/payerCondition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:textColor="@color/primaryTextColor"
+                app:simpleItemLayout="@layout/point_smartapp_demo_app_item_spinner" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <CheckBox
+            android:id="@+id/checkbox_is_automatic_printing"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/point_smartapp_demo_app_description_is_automatic_printing"
+            android:textColor="@color/primaryTextColor"
+            android:checked="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/payerConditionLayout" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerview_payment_method"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:nestedScrollingEnabled="false"
+            app:layout_constraintEnd_toEndOf="@+id/descriptionInputLayout"
+            app:layout_constraintStart_toStartOf="@+id/descriptionInputLayout"
+            app:layout_constraintTop_toBottomOf="@+id/checkbox_is_automatic_printing"
+            tools:itemCount="4"
+            tools:listitem="@layout/point_smartapp_demo_app_item_payment_method" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/getPaymentMethodActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            style="@style/point_smartapp_demo_appTheme.ButtonTheme.ButtonPrimary"
+            android:text="@string/point_smartapp_demo_app_lab_get_payment_method_action"
+            app:icon="@drawable/point_smartapp_demo_app_ic_payments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerview_payment_method" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/sendPaymentActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="@dimen/ui_2m"
+            style="@style/point_smartapp_demo_appTheme.ButtonTheme.ButtonPrimary"
+            android:text="@string/point_smartapp_demo_app_lab_send_payment_action"
+            app:icon="@drawable/point_smartapp_demo_app_ic_arrow_right"
+            app:iconGravity="end"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/getPaymentMethodActionButton" />
+
+        <ProgressBar
+            android:id="@+id/paymentProgressBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="gone"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>

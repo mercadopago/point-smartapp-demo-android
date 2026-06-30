@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
+    tools:context=".view.refunds.RefundsActivity">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/sendRefundActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ui_2m"
+        android:paddingHorizontal="@dimen/ui_2m"
+        android:paddingVertical="@dimen/ui_1_25m"
+        android:text="@string/point_smartapp_demo_app_lab_send_refund_action"
+        app:cornerRadius="@dimen/ui_1_25m"
+        app:icon="@drawable/point_smartapp_demo_app_ic_payments"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paymentIdInputLayout" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/paymentIdInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/ui_2m"
+        android:layout_marginTop="@dimen/ui_3m"
+        android:hint="@string/point_smartapp_demo_app_lab_refund_payment_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/accessTokenInputLayout">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/paymentIdEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="numberDecimal"
+            android:textColor="@color/primaryTextColor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/accessTokenInputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/ui_2m"
+        android:layout_marginTop="@dimen/ui_3m"
+        android:hint="@string/point_smartapp_demo_app_lab_access_token"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/refundsScreenDescription"
+        app:startIconDrawable="@drawable/point_smartapp_demo_app_ic_info">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/accessTokenEditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"
+            android:textColor="@color/primaryTextColor" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/refundsScreenDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/point_smartapp_demo_app_description_refunds"
+        android:textSize="@dimen/ui_body_line_height_m"
+        android:layout_marginTop="@dimen/ui_2m"
+        android:layout_marginHorizontal="@dimen/ui_2m"
+        android:paddingHorizontal="@dimen/ui_2m"
+        android:paddingVertical="@dimen/ui_1_25m"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/refundsResult"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/ui_body_line_height_xs"
+        android:layout_marginTop="@dimen/ui_2m"
+        android:layout_marginHorizontal="@dimen/ui_2m"
+        android:paddingHorizontal="@dimen/ui_2m"
+        android:paddingVertical="@dimen/ui_1_25m"
+        app:layout_constraintTop_toBottomOf="@id/sendRefundActionButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="result" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

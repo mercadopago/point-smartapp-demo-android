@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/primaryLightColor"
+    tools:context=".view.payment.result.PaymentStatusApprovedActivity">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/search_input_payment_status_approved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ui_4m"
+        android:layout_marginTop="@dimen/ui_4m"
+        android:layout_marginEnd="@dimen/ui_4m"
+        android:hint="@string/point_smartapp_demo_app_lab_hind_external_reference"
+        app:endIconDrawable="@drawable/point_smartapp_demo_app_ic_search"
+        app:endIconTint="@color/primaryColor"
+        app:endIconMode="custom"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/search_input_payment_status_approved_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/primaryTextColor"
+            android:inputType="text" />
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card_payment_status_approved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginStart="@dimen/ui_4m"
+        android:layout_marginTop="@dimen/ui_4m"
+        android:layout_marginEnd="@dimen/ui_4m"
+        android:backgroundTint="@color/cardview_dark_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:cardCornerRadius="@dimen/ui_2m"
+        app:layout_constraintTop_toBottomOf="@id/search_input_payment_status_approved">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/ui_2_5m">
+
+            <ImageView
+                android:id="@+id/image_payment_status_approved"
+                android:layout_width="@dimen/ui_7m"
+                android:layout_height="@dimen/ui_7m"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/ui_1_5m"
+                app:tint="@color/primaryColor"
+                android:src="@drawable/point_smartapp_demo_app_ic_done"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_amount"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_amount_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@+id/text_payment_status_amount"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="100.0" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_installment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_payment_installment"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_payment_status_amount" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_installment_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/text_payment_status_installment"
+                    app:layout_constraintTop_toBottomOf="@id/text_payment_amount_result"
+                    tools:text="1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_payment_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_payment_method"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_payment_status_installment" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_payment_method_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/text_payment_status_payment_method"
+                    app:layout_constraintTop_toBottomOf="@id/text_payment_installment_result"
+                    tools:text="Credit card" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_payment_reference"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_payment_reference"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_payment_status_payment_method" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_payment_reference_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/text_payment_status_payment_reference"
+                    app:layout_constraintTop_toBottomOf="@id/text_payment_status_payment_method_result"
+                    tools:text="12345677" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_creation_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_payment_creation_date"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_payment_status_payment_reference" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_creation_date_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/text_payment_status_creation_date"
+                    app:layout_constraintTop_toBottomOf="@id/text_payment_status_payment_reference_result"
+                    tools:text="1/10/2025" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_last_four_digits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_payment_last_four_digits"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/text_payment_status_creation_date" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_last_four_digits_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/text_payment_status_last_four_digits"
+                    app:layout_constraintTop_toBottomOf="@id/text_payment_status_creation_date_result"
+                    tools:text="1234" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_brand_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_payment_brand_name"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_payment_status_last_four_digits" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_brand_name_result"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textAlignment="textEnd"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/text_payment_status_brand_name"
+                    app:layout_constraintTop_toBottomOf="@id/text_payment_status_last_four_digits_result"
+                    tools:text="brand" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_tip_amount_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:text="@string/point_smartapp_demo_app_lab_text_go_to_payment_status_payment_tip_amount"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_payment_status_brand_name" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/text_payment_status_tip_amount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/text_payment_status_brand_name_result"
+                    tools:text="100.5" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/button_payment_status_approved"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/ui_4m"
+        android:layout_marginStart="@dimen/ui_4m"
+        android:layout_marginEnd="@dimen/ui_4m"
+        style="@style/point_smartapp_demo_appTheme.ButtonTheme.ButtonPrimary"
+        android:text="@string/point_smartapp_demo_app_lab_back_to_home_action"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,119 @@
+apply plugin:'com.android.application'
+apply from: "$rootDir/gradle/android-app.gradle"
+apply from: "$rootDir/gradle/dexcount.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'jacoco'
+apply from: rootProject.file('jacoco.gradle')
+
+def keystorePropertiesFile = file("keystore.properties")
+def keystoreProperties = new Properties()
+
+android {
+    compileSdk project.compileSdkVersion.toInteger()
+
+    signingConfigs {
+        release {
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+                keyAlias keystoreProperties['releaseKeyAlias']
+                keyPassword keystoreProperties['releaseKeyPassword']
+                storeFile file(keystoreProperties['releaseKeyStore'])
+                storePassword keystoreProperties['releaseStorePassword']
+            } else {
+                logger.warn('#### Warning:release keystore not found. Default development-only debug keystore will be used ####')
+                storeFile file('debug_keystore')
+                storePassword 'android'
+                keyPassword 'android'
+                keyAlias = 'androiddebugkey'
+            }
+        }
+    }
+
+    defaultConfig {
+        minSdk project.minSdkVersion.toInteger()
+        targetSdk project.targetSdkVersion.toInteger()
+        versionCode project.versionCode.toInteger()
+        versionName project.versionName
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+    }
+
+    resourcePrefix 'point_smartapp_demo_app'
+
+    buildTypes {
+        debug {
+            // You can set different values for the same variable depending on the build type. These can be accessed by BuildConfig class
+        }
+
+        mds {
+            initWith(buildTypes.debug)
+        }
+
+        release {
+            // You can set different values for the same variable depending on the build type. These can be accessed by BuildConfig class
+        }
+    }
+
+    productFlavors {
+        flavorDimensions "integration"
+
+        miniapp {
+            applicationId project.miniAppAplicationId
+            versionNameSuffix "-miniapp"
+            signingConfig signingConfigs.release
+        }
+        mainapp {
+            applicationId project.mainAppAplicationId
+            versionNameSuffix "-mainapp"
+            signingConfig signingConfigs.release
+        }
+    }
+
+    sourceSets {
+        miniapp {
+            manifest.srcFile 'src/miniapp/AndroidManifest.xml'
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "demo-${variant.getFlavorName()}-${variant.mergedFlavor.versionName}.apk"
+        }
+    }
+
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+            unitTests.returnDefaultValues = true
+        }
+    }
+
+    packagingOptions {
+        resources.excludes.add("META-INF/*")
+    }
+
+    viewBinding {
+        enabled = true
+    }
+}
+
+dependencies {
+
+    implementation files("libs/nativesdk-7.0.0.aar")
+    // AndroidX
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    implementation "androidx.appcompat:appcompat:$appcompatVersion"
+    implementation "com.google.android.material:material:$materialDesignVersion"
+    // Kotlin
+    implementation "androidx.core:core-ktx:$ktxVersion"
+    implementation "androidx.fragment:fragment-ktx:$ktxFragmentVersion"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$ktxVersion"
+
+    // Lifecycle extension
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    // Gson
+    implementation "com.google.code.gson:gson:$gsonVersion"
+    // Network
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttpVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+}

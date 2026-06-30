@@ -1,0 +1,58 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="point_smartapp_demo_appTheme.main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/primaryLightColor</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/secondaryColor</item>
+        <item name="colorSecondaryVariant">@color/secondaryDarkColor</item>
+        <item name="colorOnSecondary">@color/secondaryLightColor</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="android:textColor">@color/primaryTextColor</item>
+
+        <item name="textInputStyle">@style/point_smartapp_demo_appTheme.TextInputLayoutTheme</item>
+    </style>
+
+    <style name="point_smartapp_demo_appTheme.TextInputLayoutTheme" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="colorControlNormal">@color/primaryColor</item>
+        <item name="colorControlActivated">@color/primaryColor</item>
+        <item name="colorControlHighlight">@color/primaryColor</item>
+        <item name="android:textColorHint">@color/primaryTextColor</item>
+        <item name="startIconTint">@color/primaryTextColor</item>
+        <item name="boxStrokeColor">@color/point_smartapp_demo_app_text_input_box_stroke</item>
+    </style>
+
+    <style name="point_smartapp_demo_appTheme.TextInputLayoutTheme.DropDown" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="colorControlNormal">@color/primaryColor</item>
+        <item name="colorControlActivated">@color/primaryColor</item>
+        <item name="colorControlHighlight">@color/primaryColor</item>
+        <item name="android:textColorHint">@color/primaryTextColor</item>
+        <item name="startIconTint">@color/primaryTextColor</item>
+        <item name="boxStrokeColor">@color/point_smartapp_demo_app_text_input_box_stroke</item>
+    </style>
+
+    <style name="point_smartapp_demo_appTheme.TextInputLayoutTheme.errorAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/design_default_color_error</item>
+    </style>
+
+    <style name="point_smartapp_demo_appTheme.ButtonTheme.ButtonPrimary" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/primaryDarkColor</item>
+        <item name="backgroundTint">@color/primaryColor</item>
+        <item name="android:padding">@dimen/ui_2m</item>
+        <item name="cornerRadius">@dimen/ui_9m</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="point_smartapp_demo_appTheme.ButtonTheme.ButtonSecondary" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/primaryTextColor</item>
+        <item name="backgroundTint">@color/dark_grey</item>
+        <item name="android:padding">@dimen/ui_2m</item>
+        <item name="cornerRadius">@dimen/ui_9m</item>
+        <item name="textAllCaps">false</item>
+        <item name="iconTint">@color/primaryTextColor</item>
+    </style>
+</resources>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools"
+    tools:ignore="ResourceName">
+    <dimen name="ui_0125m">1dp</dimen>
+    <dimen name="ui_025m">2dp</dimen>
+    <dimen name="ui_050m">4dp</dimen>
+    <dimen name="ui_075m">6dp</dimen>
+    <dimen name="ui_10m">80dp</dimen>
+    <dimen name="ui_1_25m">10dp</dimen>
+    <dimen name="ui_1_5m">12dp</dimen>
+    <dimen name="ui_1_75m">14dp</dimen>
+    <dimen name="ui_1m">8dp</dimen>
+    <dimen name="ui_2_5m">20dp</dimen>
+    <dimen name="ui_2m">16dp</dimen>
+    <dimen name="ui_3_5m">28dp</dimen>
+    <dimen name="ui_3m">24dp</dimen>
+    <dimen name="ui_4m">32dp</dimen>
+    <dimen name="ui_5m">40dp</dimen>
+    <dimen name="ui_6_25m">50dp</dimen>
+    <dimen name="ui_6_5m">52dp</dimen>
+    <dimen name="ui_6m">48dp</dimen>
+    <dimen name="ui_7m">56dp</dimen>
+    <dimen name="ui_8m">64dp</dimen>
+    <dimen name="ui_9m">72dp</dimen>
+
+    <dimen name="ui_title_size">24sp</dimen>
+    <dimen name="ui_body_size">14sp</dimen>
+    <dimen name="ui_medium_body_size">16sp</dimen>
+
+    <dimen name="ui_title_line_height_l">35sp</dimen>
+    <dimen name="ui_title_line_height_m">30sp</dimen>
+    <dimen name="ui_title_line_height_s">25sp</dimen>
+    <dimen name="ui_title_line_height_xl">40sp</dimen>
+    <dimen name="ui_title_line_height_xs">22sp</dimen>
+
+    <dimen name="ui_body_line_height_l">20sp</dimen>
+    <dimen name="ui_body_line_height_m">18sp</dimen>
+    <dimen name="ui_body_line_height_s">16sp</dimen>
+    <dimen name="ui_body_line_height_xs">13sp</dimen>
+</resources>

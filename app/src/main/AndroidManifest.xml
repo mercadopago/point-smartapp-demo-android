@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mercadopago.android.point_smartapp_demo.app">
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:name=".MainApplication"
+        android:icon="@mipmap/point_smartapp_demo_app_ic_launcher"
+        android:label="@string/point_smartapp_demo_app_name"
+        android:supportsRtl="true"
+        android:theme="@style/point_smartapp_demo_appTheme.main">
+        <activity
+            android:name=".view.camera.LaunchScannerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.payment.result.PaymentStatusApprovedActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.payment.launcher.PaymentFlowInstallmentsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.info.SmartInfoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.printer.PrinterBitmapActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.bluetooth.printer.PrinterTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.printer.PrinterCustomTagActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustNothing" />
+        <activity
+            android:name=".view.home.HomeActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.HOME" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".view.bluetooth.BluetoothTestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".view.payment.launcher.PaymentLauncherActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.refunds.RefundsActivity"
+            android:exported="false" />
+
+        <meta-data android:name="com.mercadolibre.android.sdk.PLATFORM_ID"
+            android:value="dev-main-test-app-demo" />
+
+        <meta-data
+            android:name="com.mercadolibre.android.sdk.CLIENT_ID"
+            android:value="193213529837179L" />
+        <meta-data
+            android:name="com.mercadolibre.android.sdk.OAUTH_ENABLED"
+            android:value="true" />
+    </application>
+</manifest>

@@ -1,0 +1,49 @@
+
+android {
+    compileSdkVersion project.compileSdkVersion.toInteger()
+    buildToolsVersion project.buildToolsVersion
+
+    defaultConfig {
+        minSdkVersion project.minSdkVersion.toInteger()
+        targetSdkVersion project.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        vectorDrawables.useSupportLibrary = true
+        renderscriptTargetApi project.renderscriptTargetApiVersion.toInteger()
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles 'proguard-rules.pro'
+        multiDexEnabled true
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+        }
+        debug {
+            minifyEnabled false
+            shrinkResources false
+        }
+    }
+
+    lintOptions {
+        abortOnError true
+        disable 'RtlHardcoded', 'RtlSymmetry', 'ContentDescription'
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/notice.txt'
+        exclude 'META-INF/license.txt'
+        exclude 'META-INF/dependencies.txt'
+        exclude 'META-INF/LGPL2.1'
+        exclude 'META-INF/ASL2.0'
+        exclude ("META-INF/*.kotlin_module")
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/versions/9/module-info.class'
+    }
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_margin="@dimen/ui_1m"
+    app:cardCornerRadius="@dimen/ui_1m"
+    app:cardBackgroundColor="@color/primaryDarkColor"
+    app:strokeColor="@color/primaryColor"
+    app:strokeWidth="@dimen/ui_025m"
+    app:cardElevation="@dimen/ui_050m">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageview_item_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/ui_2m"
+            android:src="@drawable/point_smartapp_demo_app_ic_check_white"
+            android:visibility="gone"
+            tools:visibility="visible" />
+
+        <TextView
+            android:id="@+id/textview_payment_method_name"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_margin="@dimen/ui_050m"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            tools:text="payment method" />
+
+    </FrameLayout>
+</com.google.android.material.card.MaterialCardView>
