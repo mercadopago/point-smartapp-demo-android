@@ -53,7 +53,8 @@
             android:exported="false" />
         <activity
             android:name=".view.payment.launcher.PaymentLauncherActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.refunds.RefundsActivity"
             android:exported="false" />

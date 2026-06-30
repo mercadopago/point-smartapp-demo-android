@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppDialogPrinterSelectorBinding
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppDialogPrinterSelectorBinding
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.adapter.BluetoothDevicesAdapter
 
 class PrinterSelectorDialog : BottomSheetDialogFragment() {
 
-    private lateinit var binding: PointMainappDemoAppDialogPrinterSelectorBinding
+    private lateinit var binding: PointSmartappDemoAppDialogPrinterSelectorBinding
 
     private var listener: PrinterSelectorCallback? = null
 
@@ -37,7 +37,7 @@ class PrinterSelectorDialog : BottomSheetDialogFragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        binding = PointMainappDemoAppDialogPrinterSelectorBinding.inflate(layoutInflater)
+        binding = PointSmartappDemoAppDialogPrinterSelectorBinding.inflate(layoutInflater)
         return binding.root
     }
 

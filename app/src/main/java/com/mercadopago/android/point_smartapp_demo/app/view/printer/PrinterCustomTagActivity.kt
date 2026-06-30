@@ -3,11 +3,11 @@ package com.mercadopago.android.point_smartapp_demo.app.view.printer
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfError
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.ActivityPrinterCustomTagBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPrinterCustomTagBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.gone
 import com.mercadopago.android.point_smartapp_demo.app.util.hideKeyboard
 import com.mercadopago.android.point_smartapp_demo.app.util.toast
@@ -20,8 +20,8 @@ class PrinterCustomTagActivity : AppCompatActivity() {
     private var lastPaymentMethodSelected: String? = null
     private var clearPaymentMethodList: Boolean = true
 
-    val binding: ActivityPrinterCustomTagBinding by lazy {
-        ActivityPrinterCustomTagBinding.inflate(layoutInflater)
+    val binding: PointSmartappDemoAppActivityPrinterCustomTagBinding by lazy {
+        PointSmartappDemoAppActivityPrinterCustomTagBinding.inflate(layoutInflater)
     }
 
 
@@ -74,11 +74,11 @@ class PrinterCustomTagActivity : AppCompatActivity() {
         }
     }
 
-    private fun ActivityPrinterCustomTagBinding.onClickGetPaymentMethodAction() {
+    private fun PointSmartappDemoAppActivityPrinterCustomTagBinding.onClickGetPaymentMethodAction() {
         getPaymentMethodAction()
     }
 
-    private fun ActivityPrinterCustomTagBinding.getPaymentMethodAction() {
+    private fun PointSmartappDemoAppActivityPrinterCustomTagBinding.getPaymentMethodAction() {
         clearPaymentMethodList = clearPaymentMethodList.not()
         if (clearPaymentMethodList) {
             clearPaymentMethodAction()
@@ -88,7 +88,7 @@ class PrinterCustomTagActivity : AppCompatActivity() {
         }
     }
 
-    private fun ActivityPrinterCustomTagBinding.clearPaymentMethodAction() {
+    private fun PointSmartappDemoAppActivityPrinterCustomTagBinding.clearPaymentMethodAction() {
         getPaymentMethodCustomTag.text =
             getString(R.string.point_smartapp_demo_app_lab_get_payment_method_action)
         lastPaymentMethodSelected = null

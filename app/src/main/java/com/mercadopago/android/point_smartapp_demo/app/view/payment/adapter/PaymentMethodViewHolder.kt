@@ -4,10 +4,10 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppItemPaymentMethodBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppItemPaymentMethodBinding
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.PaymentMethodModel
 
-class PaymentMethodViewHolder(private val binding: PointMainappDemoAppItemPaymentMethodBinding) : RecyclerView.ViewHolder(binding.root) {
+class PaymentMethodViewHolder(private val binding: PointSmartappDemoAppItemPaymentMethodBinding) : RecyclerView.ViewHolder(binding.root) {
 
     internal fun render(item: PaymentMethodModel, callback: (String) -> Unit) {
         binding.apply {
@@ -22,7 +22,7 @@ class PaymentMethodViewHolder(private val binding: PointMainappDemoAppItemPaymen
 
     internal companion object {
         fun from(parent: ViewGroup): PaymentMethodViewHolder {
-            val binding = PointMainappDemoAppItemPaymentMethodBinding.inflate(
+            val binding = PointSmartappDemoAppItemPaymentMethodBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
             return PaymentMethodViewHolder(binding)

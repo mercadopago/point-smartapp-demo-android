@@ -4,16 +4,16 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivityRefundsBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityRefundsBinding
 
 class RefundsActivity : AppCompatActivity() {
 
-    private var binding: PointMainappDemoAppActivityRefundsBinding? = null
+    private var binding: PointSmartappDemoAppActivityRefundsBinding? = null
     private val viewModel by viewModels<RefundsViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = PointMainappDemoAppActivityRefundsBinding.inflate(layoutInflater)
+        binding = PointSmartappDemoAppActivityRefundsBinding.inflate(layoutInflater)
         binding?.run { setContentView(root) }
         configRefundsButton()
         setupObservers()

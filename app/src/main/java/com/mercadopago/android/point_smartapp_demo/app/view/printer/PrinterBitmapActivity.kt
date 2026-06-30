@@ -3,22 +3,22 @@ package com.mercadopago.android.point_smartapp_demo.app.view.printer
 import android.graphics.BitmapFactory
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfError
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivityPrinterBitmapBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPrinterBitmapBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.gone
 import com.mercadopago.android.point_smartapp_demo.app.util.toast
 import com.mercadopago.android.point_smartapp_demo.app.util.visible
 
 class PrinterBitmapActivity : AppCompatActivity() {
 
-    private var binding: PointMainappDemoAppActivityPrinterBitmapBinding? = null
+    private var binding: PointSmartappDemoAppActivityPrinterBitmapBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = PointMainappDemoAppActivityPrinterBitmapBinding.inflate(layoutInflater)
+        binding = PointSmartappDemoAppActivityPrinterBitmapBinding.inflate(layoutInflater)
         setContentView(binding?.root)
         onPrintImageBitmap()
     }

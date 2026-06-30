@@ -3,10 +3,10 @@ package com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.viewmodel
 import android.annotation.SuppressLint
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.contracts.states.BluetoothDiscoveryState
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfError
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.contracts.states.BluetoothDiscoveryState
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.contracts.BluetoothSettingsEvents
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow

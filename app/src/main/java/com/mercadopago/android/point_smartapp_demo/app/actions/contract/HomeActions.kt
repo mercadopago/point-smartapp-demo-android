@@ -1,6 +1,6 @@
 package com.mercadopago.android.point_smartapp_demo.app.actions.contract
 
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
 import com.mercadopago.android.point_smartapp_demo.app.view.home.HomeActivity
 
 sealed class HomeActions {

@@ -2,21 +2,21 @@ package com.mercadopago.android.point_smartapp_demo.app.view.info
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfError
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivitySmartInfoBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivitySmartInfoBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.toast
 
 class SmartInfoActivity : AppCompatActivity() {
 
-    private var binding: PointMainappDemoAppActivitySmartInfoBinding? = null
+    private var binding: PointSmartappDemoAppActivitySmartInfoBinding? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = PointMainappDemoAppActivitySmartInfoBinding.inflate(layoutInflater)
+        binding = PointSmartappDemoAppActivitySmartInfoBinding.inflate(layoutInflater)
         binding?.run {
             setContentView(root)
             configSmartInfo()
@@ -35,16 +35,16 @@ class SmartInfoActivity : AppCompatActivity() {
                             .format(paymentModuleVersion)
 
                         binding?.run {
-                            mainappDemoAppSerialNumberText.text = serialNumber
-                            mainappDemoAppBrandNameText.text = brandName
-                            mainappDemoAppModelNameText.text = modelName
-                            mainappDemoAppPaymentModuleVersionText.text = paymentModuleVersion
+                            smartappDemoAppSerialNumberText.text = serialNumber
+                            smartappDemoAppBrandNameText.text = brandName
+                            smartappDemoAppModelNameText.text = modelName
+                            smartappDemoAppPaymentModuleVersionText.text = paymentModuleVersion
                         }
                     }
 
                     with(smartInformation.integration) {
                         val sdkVersion = getString(R.string.point_smartapp_demo_app_sdk_version_text).format(nativeSdkVersion)
-                        binding?.mainappDemoAppSdkVersionText?.text = sdkVersion
+                        binding?.smartappDemoAppSdkVersionText?.text = sdkVersion
 
                     }
                 }

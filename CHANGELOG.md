@@ -1,3 +1,34 @@
+# v7.0.0
+## Added
+- [ISPI-2848] Bump integration SDK to 7.0.0
+  - New method to get detailed payment by external reference
+## Fixed
+- Improved app stability (ANR detection improvements)
+- More flexible payment description validation
+
+# v5.2.2
+## Fixed
+- Update integration SDK 5.2.1 -> 5.2.2
+  - Fixed ANR event flooding; ANR detection disabled by default.
+
+# v5.2.1
+## Fixed
+- [ISPI-1292] Update SDK integration to 5.2.1 and don't show installments screen if no needed.
+
+# v5.1.1
+## Fixed
+- Correct detection of Main app in smart apps integration
+- Improvements on installments flow to init a payment
+
+# v5.1.0
+## Added
+- Get features and fixes designed for the PDV app to enable it with other smart apps:
+  - Adjusted description validation to be more flexible.
+  - New field to init a payment: Transaction metadata.
+
+## 5.0.4
+- Changed sub-merchant var to val to avoid payment flow & traceability inconsistencies
+
 # Unreleased
 ## Added
 - [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace

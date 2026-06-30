@@ -8,13 +8,13 @@ import com.mercadopago.android.point_smartapp_demo.app.BuildConfig
 import com.mercadopago.android.point_smartapp_demo.app.R
 import com.mercadopago.android.point_smartapp_demo.app.actions.contract.HomeActions
 import com.mercadopago.android.point_smartapp_demo.app.actions.view.HomeActionAdapter
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivityHomeBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityHomeBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.launchActivity
 
 class HomeActivity : AppCompatActivity() {
 
-    private val binding: PointMainappDemoAppActivityHomeBinding by lazy {
-        PointMainappDemoAppActivityHomeBinding.inflate(layoutInflater)
+    private val binding: PointSmartappDemoAppActivityHomeBinding by lazy {
+        PointSmartappDemoAppActivityHomeBinding.inflate(layoutInflater)
     }
 
     private val actionAdapter: HomeActionAdapter by lazy {
@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
 
     private fun getVersionName() {
         val versionName = BuildConfig.VERSION_NAME
-        binding.pointMainappDemoAppVersion.text =
+        binding.pointSmartappDemoAppVersion.text =
             getString(R.string.point_smartapp_demo_app_version_name, versionName)
     }
 

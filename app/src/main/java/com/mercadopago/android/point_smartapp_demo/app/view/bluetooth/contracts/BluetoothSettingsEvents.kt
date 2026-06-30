@@ -1,7 +1,7 @@
 package com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.contracts
 
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.contracts.states.BluetoothBondState
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.contracts.states.BluetoothBondState
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
 
 internal sealed class BluetoothSettingsEvents {
     object Init : BluetoothSettingsEvents()

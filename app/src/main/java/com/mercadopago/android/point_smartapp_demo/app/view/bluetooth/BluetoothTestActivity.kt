@@ -9,9 +9,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.coroutineScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.contracts.states.BluetoothBondState
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivityBluetoothTestBinding
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.contracts.states.BluetoothBondState
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityBluetoothTestBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.gone
 import com.mercadopago.android.point_smartapp_demo.app.util.visible
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.adapter.BluetoothDevicesAdapter
@@ -21,8 +21,8 @@ import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.viewmodels
 /** test activity bluetooth. */
 class BluetoothTestActivity : AppCompatActivity() {
 
-    private val binding: PointMainappDemoAppActivityBluetoothTestBinding by lazy {
-        PointMainappDemoAppActivityBluetoothTestBinding.inflate(layoutInflater)
+    private val binding: PointSmartappDemoAppActivityBluetoothTestBinding by lazy {
+        PointSmartappDemoAppActivityBluetoothTestBinding.inflate(layoutInflater)
     }
 
     private val viewModel by viewModels<BluetoothSettingsViewModel>()
@@ -72,7 +72,7 @@ class BluetoothTestActivity : AppCompatActivity() {
     }
 
     private fun onclickListener() {
-        binding.pointMainappDemoBackArrow.setOnClickListener {
+        binding.pointSmartappDemoBackArrow.setOnClickListener {
             onBackPressed()
         }
         binding.btIgnitor.setOnCheckedChangeListener { _, isChecked ->

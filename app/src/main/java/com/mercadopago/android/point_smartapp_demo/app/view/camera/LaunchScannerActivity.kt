@@ -4,18 +4,18 @@ import android.os.Bundle
 import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.camera.domain.ScanType
-import com.mercadopago.android.point_integration_sdk.nativesdk.camera.provider.data.ScannerFlowRequestData
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfError
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.camera.domain.ScanType
+import com.mercadolibre.android.point_integration_sdk.nativesdk.camera.provider.data.ScannerFlowRequestData
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivityLaunchScannerBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityLaunchScannerBinding
 
 class LaunchScannerActivity : AppCompatActivity() {
 
-    private val binding: PointMainappDemoAppActivityLaunchScannerBinding by lazy {
-        PointMainappDemoAppActivityLaunchScannerBinding.inflate(layoutInflater)
+    private val binding: PointSmartappDemoAppActivityLaunchScannerBinding by lazy {
+        PointSmartappDemoAppActivityLaunchScannerBinding.inflate(layoutInflater)
     }
 
     private var scannerRequestBuilder = ScannerFlowRequestData(
@@ -48,10 +48,10 @@ class LaunchScannerActivity : AppCompatActivity() {
 
     private fun setupScanButtons() {
         binding.apply {
-            pointMainappDemoAppCameraQrScannerNewInitBtn.setOnClickListener {
+            pointSmartappDemoAppCameraQrScannerNewInitBtn.setOnClickListener {
                 launchScanner(ScanType.CAMERA_SCANNER_QR)
             }
-            pointMainappDemoAppNewCameraBarcodeScannerInitBtn.setOnClickListener {
+            pointSmartappDemoAppNewCameraBarcodeScannerInitBtn.setOnClickListener {
                 launchScanner(ScanType.CAMERA_SCANNER_BARCODE)
             }
         }

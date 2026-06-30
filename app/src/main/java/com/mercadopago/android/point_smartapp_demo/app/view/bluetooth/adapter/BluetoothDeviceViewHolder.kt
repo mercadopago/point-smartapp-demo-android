@@ -4,12 +4,12 @@ import android.bluetooth.BluetoothDevice.BOND_BONDED
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppItemDevicesBluetoothBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppItemDevicesBluetoothBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.visible
 
-internal class BluetoothDeviceViewHolder(private val viewBinding: PointMainappDemoAppItemDevicesBluetoothBinding) :
+internal class BluetoothDeviceViewHolder(private val viewBinding: PointSmartappDemoAppItemDevicesBluetoothBinding) :
     RecyclerView.ViewHolder(viewBinding.root) {
 
     internal fun render(item: BluetoothDeviceModel, callback: (String) -> Unit) {
@@ -53,7 +53,7 @@ internal class BluetoothDeviceViewHolder(private val viewBinding: PointMainappDe
 
     companion object {
         internal fun from(parent: ViewGroup): BluetoothDeviceViewHolder {
-            val binding = PointMainappDemoAppItemDevicesBluetoothBinding.inflate(
+            val binding = PointSmartappDemoAppItemDevicesBluetoothBinding.inflate(
                 LayoutInflater.from(parent.context), parent, false
             )
             return BluetoothDeviceViewHolder(binding)

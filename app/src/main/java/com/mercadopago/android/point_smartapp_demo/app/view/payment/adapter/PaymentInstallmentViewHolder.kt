@@ -3,10 +3,10 @@ package com.mercadopago.android.point_smartapp_demo.app.view.payment.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.mercadopago.android.point_integration_sdk.nativesdk.payment.data.InstallmentAmount
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppItemInstallmentAmountBinding
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.InstallmentAmount
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppItemInstallmentAmountBinding
 
-internal class PaymentInstallmentViewHolder(private val binding: PointMainappDemoAppItemInstallmentAmountBinding) :
+internal class PaymentInstallmentViewHolder(private val binding: PointSmartappDemoAppItemInstallmentAmountBinding) :
     RecyclerView.ViewHolder(binding.root) {
 
     internal fun onRender(item: InstallmentAmount, callback: (InstallmentAmount) -> Unit) {
@@ -20,7 +20,7 @@ internal class PaymentInstallmentViewHolder(private val binding: PointMainappDem
 
     internal companion object {
         fun from(parent: ViewGroup): PaymentInstallmentViewHolder {
-            val binding = PointMainappDemoAppItemInstallmentAmountBinding.inflate(
+            val binding = PointSmartappDemoAppItemInstallmentAmountBinding.inflate(
                 LayoutInflater.from(parent.context),
                 parent,
                 false

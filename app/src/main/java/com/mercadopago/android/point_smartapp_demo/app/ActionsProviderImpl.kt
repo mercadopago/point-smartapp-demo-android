@@ -2,7 +2,7 @@ package com.mercadopago.android.point_smartapp_demo.app
 
 import android.content.Context
 import androidx.appcompat.content.res.AppCompatResources
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
 import com.mercadopago.android.point_smartapp_demo.app.actions.contract.ActionsProvider
 import com.mercadopago.android.point_smartapp_demo.app.actions.contract.HomeActions
 import com.mercadopago.android.point_smartapp_demo.app.actions.model.ActionModel

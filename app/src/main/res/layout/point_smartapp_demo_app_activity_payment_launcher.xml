@@ -10,7 +10,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="wrap_content" >
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/amountInputLayout"
@@ -101,16 +101,30 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview_payment_method"
             android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/getPaymentMethodActionButton"
+            android:nestedScrollingEnabled="false"
             app:layout_constraintEnd_toEndOf="@+id/descriptionInputLayout"
             app:layout_constraintStart_toStartOf="@+id/descriptionInputLayout"
             app:layout_constraintTop_toBottomOf="@+id/checkbox_is_automatic_printing"
-            app:layout_constraintVertical_bias="0.0"
             tools:itemCount="4"
             tools:listitem="@layout/point_smartapp_demo_app_item_payment_method" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/getPaymentMethodActionButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
+            style="@style/point_smartapp_demo_appTheme.ButtonTheme.ButtonPrimary"
+            android:text="@string/point_smartapp_demo_app_lab_get_payment_method_action"
+            app:icon="@drawable/point_smartapp_demo_app_ic_payments"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/recyclerview_payment_method" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/sendPaymentActionButton"
@@ -123,23 +137,9 @@
             android:text="@string/point_smartapp_demo_app_lab_send_payment_action"
             app:icon="@drawable/point_smartapp_demo_app_ic_arrow_right"
             app:iconGravity="end"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/getPaymentMethodActionButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="8dp"
-            style="@style/point_smartapp_demo_appTheme.ButtonTheme.ButtonPrimary"
-            android:text="@string/point_smartapp_demo_app_lab_get_payment_method_action"
-            app:icon="@drawable/point_smartapp_demo_app_ic_payments"
-            app:layout_constraintBottom_toTopOf="@id/sendPaymentActionButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/getPaymentMethodActionButton" />
 
         <ProgressBar
             android:id="@+id/paymentProgressBar"

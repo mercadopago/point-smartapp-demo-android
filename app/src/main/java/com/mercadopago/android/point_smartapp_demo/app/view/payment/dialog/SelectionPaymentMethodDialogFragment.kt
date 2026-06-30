@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfError
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
-import com.mercadopago.android.point_smartapp_demo.app.databinding.SelectionPaymentMethodDialogFragmentBinding
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppSelectionPaymentMethodDialogFragmentBinding
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.adapter.PaymentMethodAdapter
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.PaymentMethodModel
 
 class SelectionPaymentMethodDialogFragment : BottomSheetDialogFragment() {
 
-    lateinit var binding: SelectionPaymentMethodDialogFragmentBinding
+    lateinit var binding: PointSmartappDemoAppSelectionPaymentMethodDialogFragmentBinding
 
     private var lastPaymentMethodSelected: String? = null
 
@@ -33,7 +33,7 @@ class SelectionPaymentMethodDialogFragment : BottomSheetDialogFragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = SelectionPaymentMethodDialogFragmentBinding.inflate(inflater, container, false)
+        binding = PointSmartappDemoAppSelectionPaymentMethodDialogFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 

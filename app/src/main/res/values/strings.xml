@@ -1,8 +1,8 @@
 <resources>
-    <string name="point_smartapp_demo_app_name">Demo Launcher Integration</string>
+    <string name="point_smartapp_demo_app_name">Point SmartApp Demo</string>
     <string name="point_smartapp_demo_app_lab_send_payment_action">Launch Payment</string>
     <string name="point_smartapp_demo_app_lab_get_payment_method_action">Get Payment method</string>
-    <string name="point_smartapp_demo_app_title">Demo Launcher Integration App</string>
+    <string name="point_smartapp_demo_app_title">Point SmartApp Demo</string>
     <string name="point_smartapp_demo_app_lab_payment_amount">Amount</string>
     <string name="point_smartapp_demo_app_lab_payment_description">Description</string>
     <string name="point_smartapp_demo_app_lab_tax">Tax</string>

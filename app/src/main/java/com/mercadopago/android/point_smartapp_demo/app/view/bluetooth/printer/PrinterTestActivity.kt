@@ -7,15 +7,15 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import com.google.android.material.snackbar.Snackbar
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivityPrinterTestBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPrinterTestBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.hideKeyboard
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.contracts.PrinterEvents
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.viewmodels.BluetoothPrinterViewModel
 
 class PrinterTestActivity : AppCompatActivity(), PrinterSelectorCallback {
 
-    private val binding: PointMainappDemoAppActivityPrinterTestBinding by lazy {
-        PointMainappDemoAppActivityPrinterTestBinding.inflate(
+    private val binding: PointSmartappDemoAppActivityPrinterTestBinding by lazy {
+        PointSmartappDemoAppActivityPrinterTestBinding.inflate(
             layoutInflater
         )
     }

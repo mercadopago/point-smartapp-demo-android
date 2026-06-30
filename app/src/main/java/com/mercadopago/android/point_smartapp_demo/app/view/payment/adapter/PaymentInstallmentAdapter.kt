@@ -3,7 +3,7 @@ package com.mercadopago.android.point_smartapp_demo.app.view.payment.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.mercadopago.android.point_integration_sdk.nativesdk.payment.data.InstallmentAmount
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.InstallmentAmount
 
 internal class PaymentInstallmentAdapter(private val callback: (InstallmentAmount) -> Unit) :
     ListAdapter<InstallmentAmount, PaymentInstallmentViewHolder>(DiffCallbackInstallment()) {

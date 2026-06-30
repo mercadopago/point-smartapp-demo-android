@@ -3,17 +3,17 @@ package com.mercadopago.android.point_smartapp_demo.app.view.payment.result
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.snackbar.Snackbar
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfError
-import com.mercadopago.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
-import com.mercadopago.android.point_integration_sdk.nativesdk.payment.data.PaymentResponse
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointMainappDemoAppActivityPaymentStatusApprovedBinding
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PaymentResponse
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPaymentStatusApprovedBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.visible
 
 class PaymentStatusApprovedActivity : AppCompatActivity() {
 
-    private val binding: PointMainappDemoAppActivityPaymentStatusApprovedBinding by lazy {
-        PointMainappDemoAppActivityPaymentStatusApprovedBinding.inflate(layoutInflater)
+    private val binding: PointSmartappDemoAppActivityPaymentStatusApprovedBinding by lazy {
+        PointSmartappDemoAppActivityPaymentStatusApprovedBinding.inflate(layoutInflater)
     }
 
     private val paymentStatus = MPManager.paymentStatus

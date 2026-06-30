@@ -1,8 +1,8 @@
 package com.mercadopago.android.point_smartapp_demo.app
 
 import android.app.Application
-import com.mercadopago.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadopago.android.point_integration_sdk.nativesdk.configurable.MPConfigBuilder
+import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
+import com.mercadolibre.android.point_integration_sdk.nativesdk.configurable.MPConfigBuilder
 
 /**
  * Main Application class that extends from Application to execute the start method only once.

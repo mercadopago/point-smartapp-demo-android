@@ -1,7 +1,7 @@
 package com.mercadopago.android.point_smartapp_demo.app.view.payment.models
 
-import com.mercadopago.android.point_integration_sdk.nativesdk.payment.data.PayerCondition
-import com.mercadopago.android.point_integration_sdk.nativesdk.payment.data.Tax
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PayerCondition
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.Tax
 
 internal typealias PayerConditionString = String
 

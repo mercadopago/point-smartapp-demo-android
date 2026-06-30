@@ -3,7 +3,7 @@ package com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.adapter
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import com.mercadopago.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.entities.BluetoothDeviceModel
 
 internal class BluetoothDevicesAdapter(private val callback: (String) -> Unit) :
     ListAdapter<BluetoothDeviceModel, BluetoothDeviceViewHolder>(DiffCallback()) {
