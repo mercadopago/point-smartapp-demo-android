@@ -2,22 +2,20 @@ package com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.MaterialAutoCompleteTextView
 import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
 import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PayerCondition
-import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PaymentRequestData
-import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PaymentTransactionMetadata
-import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.domain.model.PaymentResponseData
-import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.provider.PaymentFlowCallback
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PaymentFlowRequestData
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PaymentMethod
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPaymentLauncherBinding
+import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPaymentLauncherLegacyBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.gone
 import com.mercadopago.android.point_smartapp_demo.app.util.hideKeyboard
 import com.mercadopago.android.point_smartapp_demo.app.util.toast
@@ -30,22 +28,21 @@ import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.Payme
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.toTaxes
 
 /** Main activity class */
-class PaymentLauncherActivity : AppCompatActivity() {
+class PaymentLauncherLegacyActivity : AppCompatActivity() {
 
-    lateinit var binding: PointSmartappDemoAppActivityPaymentLauncherBinding
+    lateinit var binding: PointSmartappDemoAppActivityPaymentLauncherLegacyBinding
     private val paymentFlow = MPManager.paymentFlow
     private val paymentTool = MPManager.paymentMethodsTools
-    private var lastPaymentMethodSelected: String? = null
+    private var lastPaymentMethodSelected: PaymentMethod? = null
     private var clearPaymentMethodList: Boolean = true
     private var isPrintOnTerminal: Boolean = true
     private val paymentMethodAdapter by lazy {
         PaymentMethodAdapter {
-            lastPaymentMethodSelected = it
+            lastPaymentMethodSelected = PaymentMethod.valueOf(it)
         }
     }
     private var pendingPaymentAmount: String? = null
     private var pendingPaymentDescription: String? = null
-    private var pendingExternalReference: String? = null
     private val installmentsLauncher = registerForActivityResult(
         ActivityResultContracts.StartActivityForResult()
     ) { result ->
@@ -54,12 +51,12 @@ class PaymentLauncherActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = PointSmartappDemoAppActivityPaymentLauncherBinding.inflate(layoutInflater)
+        binding = PointSmartappDemoAppActivityPaymentLauncherLegacyBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.recyclerviewPaymentMethod.apply {
             layoutManager = LinearLayoutManager(
-                this@PaymentLauncherActivity, LinearLayoutManager.VERTICAL, false
+                this@PaymentLauncherLegacyActivity, LinearLayoutManager.VERTICAL, false
             )
             adapter = paymentMethodAdapter
         }
@@ -100,57 +97,54 @@ class PaymentLauncherActivity : AppCompatActivity() {
             sendPaymentActionButton.setOnClickListener {
                 val amount = amountEditText.text?.toString()
                 val description = binding.descriptionEditText.text?.toString()
-                val externalReference = binding.externalReferenceEditText.text?.toString()
-                launchPaymentFlow(amount, description, externalReference)
+                launchPaymentFlow(amount, description)
             }
         }
     }
 
-    private fun launchPaymentFlow(amount: String?, description: String?, externalReference: String?) = when {
+    private fun launchPaymentFlow(amount: String?, description: String?) = when {
         amount.isNullOrEmpty() -> ERROR_INVALID_AMOUNT.setLayoutError()
 
-        isCreditCard() -> checkInstallmentsAndProceed(amount, description, externalReference)
+        isCreditCard() -> checkInstallmentsAndProceed(amount, description)
 
         else -> launchPaymentFlowIntent(
             amount = amount,
             description = description,
-            installments = null,
-            externalReference = externalReference
+            installments = null
         )
     }
 
-    private fun checkInstallmentsAndProceed(amount: String, description: String?, externalReference: String?) {
+    private fun checkInstallmentsAndProceed(amount: String, description: String?) {
         binding.paymentProgressBar.visible()
         MPManager.paymentInstallmentTools.getInstallmentsAmount({ mpResponse ->
             binding.paymentProgressBar.gone()
             mpResponse.doIfSuccess { installments ->
                 if (installments.isNotEmpty()) {
-                    launchInstallmentsSelection(amount, description, externalReference)
+                    launchInstallmentsSelection(amount, description)
                 } else {
-                    launchPaymentFlowIntent(amount, description, installments = null, externalReference = externalReference)
+                    launchPaymentFlowIntent(amount, description, installments = null)
                 }
             }.doIfError {
-                launchPaymentFlowIntent(amount, description, installments = null, externalReference = externalReference)
+                launchPaymentFlowIntent(amount, description, installments = null)
             }
         }, amount)
     }
 
-    private fun launchInstallmentsSelection(amount: String, description: String?, externalReference: String?) {
+    private fun launchInstallmentsSelection(amount: String, description: String?) {
         pendingPaymentAmount = amount
         pendingPaymentDescription = description
-        pendingExternalReference = externalReference
         val intent = Intent(this, PaymentFlowInstallmentsActivity::class.java).apply {
             putExtra(AMOUNT, amount)
         }
         installmentsLauncher.launch(intent)
     }
 
-    private fun isCreditCard() = lastPaymentMethodSelected == "credit_card"
+    private fun isCreditCard() = lastPaymentMethodSelected == PaymentMethod.CREDIT_CARD
 
     private fun configPaymentMethodList() {
-        paymentTool.getPaymentMethodsList { response ->
+        paymentTool.getPaymentMethods { response ->
             response.doIfSuccess { result ->
-                val paymentMethodList = result.map { PaymentMethodModel(name = it) }
+                val paymentMethodList = result.map { PaymentMethodModel(name = it.name) }
                 paymentMethodAdapter.submitList(paymentMethodList)
             }.doIfError { error ->
                 toast(error.message.orEmpty())
@@ -161,39 +155,30 @@ class PaymentLauncherActivity : AppCompatActivity() {
     private fun launchPaymentFlowIntent(
         amount: String,
         description: String?,
-        installments: Int? = null,
-        externalReference: String? = null
+        installments: Int? = null
     ) {
         binding.paymentProgressBar.visible()
-        val paymentRequestData = PaymentRequestData.builder(amount.toBigDecimal())
-            .setDescription(description)
-            .setPaymentMethod(lastPaymentMethodSelected)
-            .setInstallments(installments)
-            .setPrintOnTerminal(isPrintOnTerminal)
-            .setTaxes(binding.payerCondition.getSelectedValue()?.toTaxes())
-            .setPaymentTransactionMetadata(
-                externalReference?.takeIf { it.isNotEmpty() }?.let {
-                    PaymentTransactionMetadata(externalReference = it)
-                }
-            )
-            .build()
+        val paymentRequestData = PaymentFlowRequestData(
+            amount = amount.toDouble(),
+            description = description,
+            paymentMethod = lastPaymentMethodSelected,
+            printOnTerminal = isPrintOnTerminal,
+            taxes = binding.payerCondition.getSelectedValue()?.toTaxes()
+        ).apply {
+            installments?.let { setInstallmentsForCreditCard(it) }
+        }
 
-        paymentFlow.launchPaymentFlow(paymentRequestData, object : PaymentFlowCallback {
-            override fun onProgress() {
-                binding.paymentProgressBar.gone()
-            }
-
-            override fun onSuccess(data: PaymentResponseData) {
-                showSnackBar(MESSAGE_PAYMENT_SUCCESS.format(data.paymentReference))
-            }
-
-            override fun onError(error: SDKException) {
-                binding.paymentProgressBar.gone()
-                error.message?.let { message ->
+        paymentFlow.launchPaymentFlow(paymentRequestData) { response ->
+            binding.paymentProgressBar.gone()
+            response.doIfSuccess {
+                Log.d("PaymentLauncher", "Payment flow success with reference: $it")
+                showSnackBar(MESSAGE_PAYMENT_SUCCESS.format(it.paymentReference))
+            }.doIfError {
+                it.message?.let { message ->
                     showSnackBar(MESSAGE_PAYMENT_CANCELED.format(message), true)
                 }
             }
-        })
+        }
     }
 
     private fun handleInstallmentsResult(resultCode: Int, data: Intent?) {
@@ -203,14 +188,12 @@ class PaymentLauncherActivity : AppCompatActivity() {
                 launchPaymentFlowIntent(
                     amount = amount,
                     description = pendingPaymentDescription,
-                    installments = selectedInstallments,
-                    externalReference = pendingExternalReference
+                    installments = selectedInstallments
                 )
             }
         }
         pendingPaymentAmount = null
         pendingPaymentDescription = null
-        pendingExternalReference = null
     }
 
     private fun String?.setLayoutError() {
@@ -234,7 +217,7 @@ class PaymentLauncherActivity : AppCompatActivity() {
 
     private fun showSnackBar(message: String, isCanceled: Boolean = false) {
         Snackbar.make(
-            binding.root, message, Snackbar.ANIMATION_MODE_SLIDE
+            binding.root, message, Snackbar.LENGTH_LONG
         ).setBackgroundTint(getBackgroundColorSnackBar(isCanceled)).show()
     }
 

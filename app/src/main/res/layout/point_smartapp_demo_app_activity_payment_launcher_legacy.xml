@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/primaryLightColor"
-    tools:context=".view.payment.launcher.PaymentLauncherActivity"
+    tools:context=".view.payment.launcher.PaymentLauncherLegacyActivity"
     android:fillViewport="true">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -60,28 +60,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/externalReferenceInputLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/ui_2m"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="@dimen/ui_1m"
-            android:layout_marginEnd="16dp"
-            android:hint="@string/point_smartapp_demo_app_lab_payment_external_reference"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/descriptionInputLayout"
-            app:startIconDrawable="@drawable/point_smartapp_demo_app_ic_description">
-
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/externalReferenceEditText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textColor="@color/primaryTextColor" />
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/payerConditionLayout"
             style="@style/point_smartapp_demo_appTheme.TextInputLayoutTheme.DropDown"
             android:layout_width="0dp"
@@ -93,7 +71,7 @@
             android:hint="@string/point_smartapp_demo_app_lab_tax"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/externalReferenceInputLayout"
+            app:layout_constraintTop_toBottomOf="@id/descriptionInputLayout"
             app:startIconDrawable="@drawable/point_smartapp_demo_app_ic_receipt">
 
             <com.google.android.material.textfield.MaterialAutoCompleteTextView
