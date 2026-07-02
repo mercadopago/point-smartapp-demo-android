@@ -1,0 +1,14 @@
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/launcher/PaymentLauncherActivity.kt
+  h_e4426412f316a5 5,67
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "a6c66384d0093745c9a04246291729934fd51e38",
+  "prompts": {},
+  "humans": {
+    "h_e4426412f316a5": {
+      "author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  }
+}
