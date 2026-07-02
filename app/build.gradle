@@ -98,7 +98,7 @@ android {
 
 dependencies {
 
-    implementation files("libs/nativesdk-LOCAL-7.0.11-20260701142301.aar")
+    implementation files("libs/nativesdk-7.1.0.aar")
     // AndroidX
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "androidx.appcompat:appcompat:$appcompatVersion"
