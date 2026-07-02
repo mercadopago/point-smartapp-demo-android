@@ -2,6 +2,7 @@ package com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -63,6 +64,7 @@ class PaymentLauncherActivity : AppCompatActivity() {
             )
             adapter = paymentMethodAdapter
         }
+        binding.externalReferenceInputLayout.visibility = View.GONE
 
         configPaymentButton()
         configPayerConditionDropDown()
