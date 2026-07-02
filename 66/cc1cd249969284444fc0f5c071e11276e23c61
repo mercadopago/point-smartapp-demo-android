@@ -1,0 +1,14 @@
+app/build.gradle
+  h_e4426412f316a5 101
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "66cc1cd249969284444fc0f5c071e11276e23c61",
+  "prompts": {},
+  "humans": {
+    "h_e4426412f316a5": {
+      "author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  }
+}
