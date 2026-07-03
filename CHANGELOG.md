@@ -1,6 +1,6 @@
 # v7.1.0
 ## Added
-- [ISPI-2644] new Activity with new payment flow that use payment methods as strings
+- [ISPI-2644] New Activity with new payment flow that use payment methods as strings
 
 # v7.0.0
 ## Added

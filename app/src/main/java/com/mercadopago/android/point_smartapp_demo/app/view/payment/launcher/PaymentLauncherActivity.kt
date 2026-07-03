@@ -166,7 +166,6 @@ class PaymentLauncherActivity : AppCompatActivity() {
         installments: Int? = null,
         externalReference: String? = null
     ) {
-        binding.paymentProgressBar.visible()
         val paymentRequestData = PaymentRequestData.builder(amount.toBigDecimal())
             .setDescription(description)
             .setPaymentMethod(lastPaymentMethodSelected)
@@ -182,10 +181,11 @@ class PaymentLauncherActivity : AppCompatActivity() {
 
         paymentFlow.launchPaymentFlow(paymentRequestData, object : PaymentFlowCallback {
             override fun onProgress() {
-                binding.paymentProgressBar.gone()
+                binding.paymentProgressBar.visible()
             }
 
             override fun onSuccess(data: PaymentResponseData) {
+                binding.paymentProgressBar.gone()
                 showSnackBar(MESSAGE_PAYMENT_SUCCESS.format(data.paymentReference))
             }
 
