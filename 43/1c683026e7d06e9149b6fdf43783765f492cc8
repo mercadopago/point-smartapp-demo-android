@@ -1,0 +1,27 @@
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/launcher/PaymentLauncherActivity.kt
+  s_7a2490d936522e::t_54efa94aecd9cd 184
+  h_e4426412f316a5 188
+CHANGELOG.md
+  h_e4426412f316a5 3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "431c683026e7d06e9149b6fdf43783765f492cc8",
+  "prompts": {},
+  "humans": {
+    "h_e4426412f316a5": {
+      "author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  },
+  "sessions": {
+    "s_7a2490d936522e": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1782918623209",
+        "model": "unknown"
+      },
+      "human_author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  }
+}
