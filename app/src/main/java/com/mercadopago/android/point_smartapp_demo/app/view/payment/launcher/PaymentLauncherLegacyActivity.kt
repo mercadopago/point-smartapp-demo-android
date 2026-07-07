@@ -2,7 +2,6 @@ package com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -27,7 +26,6 @@ import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.Payer
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.PaymentMethodModel
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.toTaxes
 
-/** Main activity class */
 class PaymentLauncherLegacyActivity : AppCompatActivity() {
 
     lateinit var binding: PointSmartappDemoAppActivityPaymentLauncherLegacyBinding
@@ -171,7 +169,6 @@ class PaymentLauncherLegacyActivity : AppCompatActivity() {
         paymentFlow.launchPaymentFlow(paymentRequestData) { response ->
             binding.paymentProgressBar.gone()
             response.doIfSuccess {
-                Log.d("PaymentLauncher", "Payment flow success with reference: $it")
                 showSnackBar(MESSAGE_PAYMENT_SUCCESS.format(it.paymentReference))
             }.doIfError {
                 it.message?.let { message ->

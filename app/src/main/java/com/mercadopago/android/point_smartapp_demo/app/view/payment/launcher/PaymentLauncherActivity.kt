@@ -30,7 +30,6 @@ import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.Payer
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.PaymentMethodModel
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.toTaxes
 
-/** Main activity class */
 class PaymentLauncherActivity : AppCompatActivity() {
 
     lateinit var binding: PointSmartappDemoAppActivityPaymentLauncherBinding
@@ -103,7 +102,11 @@ class PaymentLauncherActivity : AppCompatActivity() {
                 val amount = amountEditText.text?.toString()
                 val description = binding.descriptionEditText.text?.toString()
                 val externalReference = binding.externalReferenceEditText.text?.toString()
-                launchPaymentFlow(amount, description, externalReference)
+                launchPaymentFlow(
+                    amount = amount,
+                    description = description,
+                    externalReference = externalReference,
+                )
             }
         }
     }
@@ -147,7 +150,7 @@ class PaymentLauncherActivity : AppCompatActivity() {
         installmentsLauncher.launch(intent)
     }
 
-    private fun isCreditCard() = lastPaymentMethodSelected == "credit_card"
+    private fun isCreditCard() = lastPaymentMethodSelected == CREDIT_CARD_PAYMENT_METHOD_ID
 
     private fun configPaymentMethodList() {
         paymentTool.getPaymentMethodsList { response ->
@@ -166,7 +169,9 @@ class PaymentLauncherActivity : AppCompatActivity() {
         installments: Int? = null,
         externalReference: String? = null
     ) {
-        val paymentRequestData = PaymentRequestData.builder(amount.toBigDecimal())
+        val parsedAmount = amount.toBigDecimalOrNull()
+            ?: return ERROR_INVALID_AMOUNT.setLayoutError()
+        val paymentRequestData = PaymentRequestData.builder(parsedAmount)
             .setDescription(description)
             .setPaymentMethod(lastPaymentMethodSelected)
             .setInstallments(installments)
@@ -179,23 +184,26 @@ class PaymentLauncherActivity : AppCompatActivity() {
             )
             .build()
 
-        paymentFlow.launchPaymentFlow(paymentRequestData, object : PaymentFlowCallback {
-            override fun onProgress() {
-                binding.paymentProgressBar.visible()
-            }
+        paymentFlow.launchPaymentFlow(
+            paymentRequestData = paymentRequestData,
+            callback = object : PaymentFlowCallback {
+                override fun onProgress() {
+                    binding.paymentProgressBar.visible()
+                }
 
-            override fun onSuccess(data: PaymentResponseData) {
-                binding.paymentProgressBar.gone()
-                showSnackBar(MESSAGE_PAYMENT_SUCCESS.format(data.paymentReference))
-            }
+                override fun onSuccess(data: PaymentResponseData) {
+                    binding.paymentProgressBar.gone()
+                    showSnackBar(MESSAGE_PAYMENT_SUCCESS.format(data.paymentReference))
+                }
 
-            override fun onError(error: SDKException) {
-                binding.paymentProgressBar.gone()
-                error.message?.let { message ->
-                    showSnackBar(MESSAGE_PAYMENT_CANCELED.format(message), true)
+                override fun onError(error: SDKException) {
+                    binding.paymentProgressBar.gone()
+                    error.message?.let { message ->
+                        showSnackBar(MESSAGE_PAYMENT_CANCELED.format(message), true)
+                    }
                 }
             }
-        })
+        )
     }
 
     private fun handleInstallmentsResult(resultCode: Int, data: Intent?) {
@@ -249,10 +257,11 @@ class PaymentLauncherActivity : AppCompatActivity() {
     private fun MaterialAutoCompleteTextView.getSelectedValue(): PayerConditionString? =
         text.toString().takeIf { it != NO_TAX }
 
-    companion object {
-        private const val ERROR_INVALID_AMOUNT = "Amount is null or empty"
-        private const val MESSAGE_PAYMENT_CANCELED = "Your payment was %s"
-        private const val MESSAGE_PAYMENT_SUCCESS = "Your payment reference is: %s"
-        private const val NO_TAX = "NO TAX"
+    private companion object {
+        const val ERROR_INVALID_AMOUNT = "Amount is null or empty"
+        const val MESSAGE_PAYMENT_CANCELED = "Your payment was %s"
+        const val MESSAGE_PAYMENT_SUCCESS = "Your payment reference is: %s"
+        const val NO_TAX = "NO TAX"
+        const val CREDIT_CARD_PAYMENT_METHOD_ID = "credit_card"
     }
 }
