@@ -1,0 +1,12 @@
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "58a850e01a7c027c88b1163de8ab2403f775c901",
+  "prompts": {},
+  "humans": {
+    "h_e4426412f316a5": {
+      "author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  }
+}
