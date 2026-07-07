@@ -1,0 +1,37 @@
+app/src/main/java/com/mercadopago/android/point_smartapp_demo/app/view/payment/launcher/PaymentLauncherActivity.kt
+  s_77747cac3913fd::t_253e30f1353e7e 174
+  h_e4426412f316a5 106-108
+  s_77747cac3913fd::t_5d5b74e34d028a 187-192,194-197,199-203
+  s_49d2ca3e84db33::t_47a859db2538b8 109
+  s_77747cac3913fd::t_b84f852a3af107 153
+  s_77747cac3913fd::t_d1eace36477c74 172-173
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.6",
+  "base_commit_sha": "ac3abcaf95d64d60a7c9375b0f27c8b0311dc9ce",
+  "prompts": {},
+  "humans": {
+    "h_e4426412f316a5": {
+      "author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  },
+  "sessions": {
+    "s_49d2ca3e84db33": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "f24ebeaa-8cbb-4fde-b9aa-ea524291de6a",
+        "model": "claude-sonnet-4-6"
+      },
+      "human_author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    },
+    "s_77747cac3913fd": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1783363141278",
+        "model": "unknown"
+      },
+      "human_author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  }
+}
