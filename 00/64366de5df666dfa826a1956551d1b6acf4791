@@ -1,0 +1,25 @@
+app/src/main/res/layout/point_smartapp_demo_app_activity_payment_launcher.xml
+  s_77747cac3913fd::t_df07dbc4c853ac 67
+  s_77747cac3913fd::t_bea8a10efb7f4b 69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "0064366de5df666dfa826a1956551d1b6acf4791",
+  "prompts": {},
+  "humans": {
+    "h_e4426412f316a5": {
+      "author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  },
+  "sessions": {
+    "s_77747cac3913fd": {
+      "agent_id": {
+        "tool": "github-copilot-jetbrains",
+        "id": "1783363141278",
+        "model": "unknown"
+      },
+      "human_author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  }
+}
