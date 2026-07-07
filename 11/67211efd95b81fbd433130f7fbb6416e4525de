@@ -1,0 +1,14 @@
+app/src/main/res/layout/point_smartapp_demo_app_activity_payment_launcher.xml
+  h_e4426412f316a5 71
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "1167211efd95b81fbd433130f7fbb6416e4525de",
+  "prompts": {},
+  "humans": {
+    "h_e4426412f316a5": {
+      "author": "fabian <fabian.rojasmolina@mercadolibre.com.co>"
+    }
+  }
+}
