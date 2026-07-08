@@ -5,8 +5,10 @@
     <string name="point_smartapp_demo_app_title">Point SmartApp Demo</string>
     <string name="point_smartapp_demo_app_lab_payment_amount">Amount</string>
     <string name="point_smartapp_demo_app_lab_payment_description">Description</string>
+    <string name="point_smartapp_demo_app_lab_payment_external_reference">External Reference</string>
     <string name="point_smartapp_demo_app_lab_tax">Tax</string>
     <string name="point_smartapp_demo_app_go_to_payment">Go to payment</string>
+    <string name="point_smartapp_demo_app_go_to_payment_legacy">Go to payment Legacy</string>
     <string name="point_smartapp_demo_app_payment_success">The payment has been successful</string>
     <string name="point_smartapp_demo_app_lab_reference">Reference</string>
     <string name="point_smartapp_demo_app_payment_error">The payment failed</string>

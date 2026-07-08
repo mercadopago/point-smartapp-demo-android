@@ -11,6 +11,7 @@ import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.printer.Pr
 import com.mercadopago.android.point_smartapp_demo.app.view.camera.LaunchScannerActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.info.SmartInfoActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherActivity
+import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherLegacyActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.PaymentStatusApprovedActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterBitmapActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterCustomTagActivity
@@ -19,6 +20,14 @@ import com.mercadopago.android.point_smartapp_demo.app.view.refunds.RefundsActiv
 object ActionsProviderImpl : ActionsProvider {
     override fun getActions(context: Context): List<ActionModel> {
         return listOf(
+            ActionModel(
+                title = context.getString(R.string.point_smartapp_demo_app_go_to_payment_legacy),
+                icon = AppCompatResources.getDrawable(
+                    context,
+                    R.drawable.point_smartapp_demo_app_ic_payments
+                ),
+                action = HomeActions.LaunchActivity(PaymentLauncherLegacyActivity::class.java)
+            ),
             ActionModel(
                 title = context.getString(R.string.point_smartapp_demo_app_go_to_payment),
                 icon = AppCompatResources.getDrawable(
