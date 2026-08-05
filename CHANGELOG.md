@@ -1,3 +1,7 @@
+# v7.2.0
+## Added
+- Update integration SDK to 7.2.0 for Integrator ID support
+
 # v7.1.0
 ## Added
 - [ISPI-2644] New Activity with new payment flow that use payment methods as strings
