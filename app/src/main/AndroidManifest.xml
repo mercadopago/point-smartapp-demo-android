@@ -67,7 +67,7 @@
             android:value="dev-main-test-app-demo" />
 
         <meta-data android:name="com.mercadolibre.android.sdk.INTEGRATOR_ID"
-            android:value="dev_5dbd211b0be311f0b3db1252bde8bb2c" />
+            android:value="dev_5b6136c6910011f1aad83ea9c60851a2" />
 
         <meta-data
             android:name="com.mercadolibre.android.sdk.CLIENT_ID"
