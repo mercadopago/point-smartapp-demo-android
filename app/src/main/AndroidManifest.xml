@@ -66,9 +66,13 @@
         <meta-data android:name="com.mercadolibre.android.sdk.PLATFORM_ID"
             android:value="dev-main-test-app-demo" />
 
+        <meta-data android:name="com.mercadolibre.android.sdk.INTEGRATOR_ID"
+            android:value="dev_5b6136c6910011f1aad83ea9c60851a2" />
+
         <meta-data
             android:name="com.mercadolibre.android.sdk.CLIENT_ID"
             android:value="193213529837179L" />
+
         <meta-data
             android:name="com.mercadolibre.android.sdk.OAUTH_ENABLED"
             android:value="true" />
