@@ -12,7 +12,7 @@ import com.mercadopago.android.point_smartapp_demo.app.view.camera.LaunchScanner
 import com.mercadopago.android.point_smartapp_demo.app.view.info.SmartInfoActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherLegacyActivity
-import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.PaymentStatusApprovedActivity
+import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.PaymentStatusActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterBitmapActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterCustomTagActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.refunds.RefundsActivity
@@ -42,7 +42,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
-                action = HomeActions.LaunchActivity(PaymentStatusApprovedActivity::class.java)
+                action = HomeActions.LaunchActivity(PaymentStatusActivity::class.java)
             ),
             ActionModel(
                 title = context.getString(R.string.point_smartapp_demo_app_button_bluetooth_tools),

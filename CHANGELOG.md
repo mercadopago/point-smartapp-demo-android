@@ -1,3 +1,6 @@
+## Added
+- Added an example of the public online payment status API, which retrieves current payment information by external reference and exposes its status, amounts, installments, payment method, and dates.
+
 # v7.2.0
 ## Added
 - Update integration SDK to 7.2.0 for Integrator ID support
@@ -37,7 +40,6 @@
 ## 5.0.4
 - Changed sub-merchant var to val to avoid payment flow & traceability inconsistencies
 
-# Unreleased
 ## Added
 - [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace
 
