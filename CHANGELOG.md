@@ -1,4 +1,3 @@
-# Unreleased
 ## Added
 - Added an example of the public online payment status API, which retrieves current payment information by external reference and exposes its status, amounts, installments, payment method, and dates.
 - [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace
