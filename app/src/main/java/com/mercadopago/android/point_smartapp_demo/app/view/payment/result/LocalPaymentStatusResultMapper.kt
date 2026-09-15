@@ -1,5 +1,3 @@
-@file:Suppress("DEPRECATION")
-
 package com.mercadopago.android.point_smartapp_demo.app.view.payment.result
 
 import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.PaymentResponse
