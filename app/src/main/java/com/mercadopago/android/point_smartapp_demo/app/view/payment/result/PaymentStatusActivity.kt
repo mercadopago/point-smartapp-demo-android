@@ -184,18 +184,25 @@ class PaymentStatusActivity : AppCompatActivity() {
             ?: getString(R.string.point_smartapp_demo_app_payment_status_not_available)
 
     private companion object {
+        const val ERROR_INVALID_EXTERNAL_REFERENCE = "invalid_external_reference"
         const val ERROR_LOCAL_PAYMENT_NOT_FOUND = "local_payment_not_found"
+        const val ERROR_INVALID_LOCAL_PAYMENT_ID = "invalid_local_payment_id"
+        const val ERROR_UNAUTHORIZED = "unauthorized"
         const val ERROR_PAYMENT_NOT_FOUND = "payment_not_found"
+        const val ERROR_NO_INTERNET = "no_internet"
+        const val ERROR_UNSUPPORTED_PAYMENT_STATUS = "unsupported_payment_status"
+        const val ERROR_REQUEST_IN_PROGRESS = "request_in_progress"
+        const val ERROR_UNEXPECTED = "unexpected_error"
         val KNOWN_ERROR_CODES = setOf(
-            "invalid_external_reference",
+            ERROR_INVALID_EXTERNAL_REFERENCE,
             ERROR_LOCAL_PAYMENT_NOT_FOUND,
-            "invalid_local_payment_id",
-            "unauthorized",
+            ERROR_INVALID_LOCAL_PAYMENT_ID,
+            ERROR_UNAUTHORIZED,
             ERROR_PAYMENT_NOT_FOUND,
-            "no_internet",
-            "unsupported_payment_status",
-            "request_in_progress",
-            "unexpected_error",
+            ERROR_NO_INTERNET,
+            ERROR_UNSUPPORTED_PAYMENT_STATUS,
+            ERROR_REQUEST_IN_PROGRESS,
+            ERROR_UNEXPECTED,
         )
     }
 }
