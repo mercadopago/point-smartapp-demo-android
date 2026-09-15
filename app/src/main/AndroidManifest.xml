@@ -14,8 +14,9 @@
             android:name=".view.camera.LaunchScannerActivity"
             android:exported="false" />
         <activity
-            android:name=".view.payment.result.PaymentStatusApprovedActivity"
-            android:exported="false" />
+            android:name=".view.payment.result.PaymentStatusActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.payment.launcher.PaymentFlowInstallmentsActivity"
             android:exported="false" />

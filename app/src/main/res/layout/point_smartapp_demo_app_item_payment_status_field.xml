@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:minHeight="@dimen/ui_5m"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/ui_050m"
+    android:paddingBottom="@dimen/ui_050m">
+
+    <TextView
+        android:id="@+id/text_payment_status_field_label"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textColor="@color/grayLight"
+        android:textSize="@dimen/ui_body_size"
+        tools:text="Payment ID" />
+
+    <TextView
+        android:id="@+id/text_payment_status_field_value"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/ui_2m"
+        android:layout_weight="1"
+        android:gravity="end"
+        android:textColor="@color/primaryTextColor"
+        android:textIsSelectable="true"
+        android:textSize="@dimen/ui_body_size"
+        tools:text="177747690500" />
+
+</LinearLayout>
