@@ -96,4 +96,11 @@
     <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_brand_name">brand name:</string>
     <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_installment">installment:</string>
     <string name="point_smartapp_demo_app_lab_text_go_to_payment_status_payment_tip_amount">Tip amount:</string>
+    <!-- Single Sign-On -->
+    <string name="point_smartapp_demo_app_sso_title">Single Sign-On</string>
+    <string name="point_smartapp_demo_app_sso_request">Request identity token</string>
+    <string name="point_smartapp_demo_app_sso_processing">Processing request…</string>
+    <string name="point_smartapp_demo_app_sso_waiting">Waiting for authorization in Mercado Pago…</string>
+    <string name="point_smartapp_demo_app_sso_success">Identity token received</string>
+    <string name="point_smartapp_demo_app_sso_error">SSO failed (code: %1$d): %2$s</string>
 </resources>

@@ -16,6 +16,7 @@ import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.Payme
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterBitmapActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterCustomTagActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.refunds.RefundsActivity
+import com.mercadopago.android.point_smartapp_demo.app.view.sso.SingleSignOnActivity
 
 object ActionsProviderImpl : ActionsProvider {
     override fun getActions(context: Context): List<ActionModel> {
@@ -43,6 +44,14 @@ object ActionsProviderImpl : ActionsProvider {
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
                 action = HomeActions.LaunchActivity(PaymentStatusApprovedActivity::class.java)
+            ),
+            ActionModel(
+                title = context.getString(R.string.point_smartapp_demo_app_sso_title),
+                icon = AppCompatResources.getDrawable(
+                    context,
+                    R.drawable.point_smartapp_demo_app_ic_done
+                ),
+                action = HomeActions.LaunchActivity(SingleSignOnActivity::class.java)
             ),
             ActionModel(
                 title = context.getString(R.string.point_smartapp_demo_app_button_bluetooth_tools),

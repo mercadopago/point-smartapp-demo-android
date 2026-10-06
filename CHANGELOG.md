@@ -1,3 +1,7 @@
+# v7.3.0 (experimental)
+## Added
+- Single Sign-On example with progress callbacks using SDK EXPERIMENTAL-7.3.0-20261006142626.
+
 # v7.2.0
 ## Added
 - Update integration SDK to 7.2.0 for Integrator ID support
