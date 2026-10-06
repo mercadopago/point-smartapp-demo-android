@@ -22,14 +22,6 @@ object ActionsProviderImpl : ActionsProvider {
     override fun getActions(context: Context): List<ActionModel> {
         return listOf(
             ActionModel(
-                title = context.getString(R.string.point_smartapp_demo_app_sso_title),
-                icon = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.point_smartapp_demo_app_ic_done
-                ),
-                action = HomeActions.LaunchActivity(SingleSignOnActivity::class.java)
-            ),
-            ActionModel(
                 title = context.getString(R.string.point_smartapp_demo_app_go_to_payment_legacy),
                 icon = AppCompatResources.getDrawable(
                     context,
@@ -52,6 +44,14 @@ object ActionsProviderImpl : ActionsProvider {
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
                 action = HomeActions.LaunchActivity(PaymentStatusApprovedActivity::class.java)
+            ),
+            ActionModel(
+                title = context.getString(R.string.point_smartapp_demo_app_sso_title),
+                icon = AppCompatResources.getDrawable(
+                    context,
+                    R.drawable.point_smartapp_demo_app_ic_done
+                ),
+                action = HomeActions.LaunchActivity(SingleSignOnActivity::class.java)
             ),
             ActionModel(
                 title = context.getString(R.string.point_smartapp_demo_app_button_bluetooth_tools),
