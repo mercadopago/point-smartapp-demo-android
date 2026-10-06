@@ -12,6 +12,14 @@
 
 This repository contains a demo application that utilizes the Third-Party Integration Kit to establish connections between a third-party application and the MercadoPago Payments ecosystem. This integration facilitates the utilization of specific hardware capabilities such as camera for barcode reading, embedded printers, Bluetooth, and more.
 
+## Single Sign-On example
+
+The **Single Sign-On** home action opens `SingleSignOnActivity`. Select **Request identity token** to call `MPManager.singleSignOnTools.requestIdentityToken` with a fresh UUID nonce. The loader and status text follow `onProgress`; `onSuccess` and `onError` hide the loader and enable the button for another request. Errors display their numeric code (`GenericErrorCode` / `SsoErrorCode`), including unrecognized host codes.
+
+This example uses `nativesdk-EXPERIMENTAL-7.3.0-20261006142626.aar`, built from SDK master `25aabbe3`, and configures `withSingleSignOnTools()` before initializing `MPManager`. A compatible Point host and an authenticated Mercado Pago session are required; an unsupported host returns `NOT_SUPPORTED`.
+
+The demo confirms token delivery only: it does not display, log, decode or persist the token or nonce, or create an integrator session. A real integration must establish the expected nonce with its trusted backend and send the token there to validate its signature, claims, and nonce binding and prevent replay. Screen recreation does not resume a pending request; the SDK rejects a second request while one is still running.
+
 ## How to download the Third-Apps Integration Kit?
 
 To download the **Third-Apps Integration Kit**, navigate to the [Releases](https://github.com/mercadopago/point-smartapp-demo-android/releases) section. Choose the latest available version and access the assets to locate the *Third-Apps-integration-kit.zip*.

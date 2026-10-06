@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/point_smartapp_demo_appTheme.main">
         <activity
+            android:name=".view.sso.SingleSignOnActivity"
+            android:exported="false" />
+        <activity
             android:name=".view.camera.LaunchScannerActivity"
             android:exported="false" />
         <activity
