@@ -49,7 +49,10 @@ class SingleSignOnActivity : AppCompatActivity() {
 
                 override fun onError(error: SDKException) {
                     // Classify errors by code (GenericErrorCode / SsoErrorCode), never by message.
-                    showStatus(getString(R.string.point_smartapp_demo_app_sso_error, error.code), isLoading = false)
+                    showStatus(
+                        getString(R.string.point_smartapp_demo_app_sso_error, error.code, error.message.orEmpty()),
+                        isLoading = false
+                    )
                 }
             }
         )

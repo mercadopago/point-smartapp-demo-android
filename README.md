@@ -14,7 +14,7 @@ This repository contains a demo application that utilizes the Third-Party Integr
 
 ## Single Sign-On example
 
-The **Single Sign-On** home action opens `SingleSignOnActivity`. Select **Request identity token** to call `MPManager.singleSignOnTools.requestIdentityToken` with a fresh UUID nonce. The loader and status text follow `onProgress`; `onSuccess` and `onError` hide the loader and enable the button for another request. Errors display their numeric code (`GenericErrorCode` / `SsoErrorCode`), including unrecognized host codes.
+The **Single Sign-On** home action opens `SingleSignOnActivity`. Select **Request identity token** to call `MPManager.singleSignOnTools.requestIdentityToken` with a fresh UUID nonce. The loader and status text follow `onProgress`; `onSuccess` and `onError` hide the loader and enable the button for another request. Errors display their numeric code (`GenericErrorCode` / `SsoErrorCode`) and the SDK public message, including unrecognized host codes.
 
 Configure `withSingleSignOnTools()` before initializing `MPManager`. A compatible Point host and an authenticated Mercado Pago session are required; an unsupported host returns `NOT_SUPPORTED`.
 

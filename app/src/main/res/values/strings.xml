@@ -102,5 +102,5 @@
     <string name="point_smartapp_demo_app_sso_processing">Processing request…</string>
     <string name="point_smartapp_demo_app_sso_waiting">Waiting for authorization in Mercado Pago…</string>
     <string name="point_smartapp_demo_app_sso_success">Identity token received</string>
-    <string name="point_smartapp_demo_app_sso_error">SSO failed (code: %1$d)</string>
+    <string name="point_smartapp_demo_app_sso_error">SSO failed (code: %1$d): %2$s</string>
 </resources>
