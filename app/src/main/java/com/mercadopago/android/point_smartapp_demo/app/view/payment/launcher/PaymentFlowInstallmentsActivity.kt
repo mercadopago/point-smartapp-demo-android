@@ -3,58 +3,73 @@ package com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.snackbar.Snackbar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.Text
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
-import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPaymentFlowInstallmetsBinding
-import com.mercadopago.android.point_smartapp_demo.app.util.gone
-import com.mercadopago.android.point_smartapp_demo.app.util.visible
-import com.mercadopago.android.point_smartapp_demo.app.view.payment.adapter.PaymentInstallmentAdapter
+import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.InstallmentAmount
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedback
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedbackBanner
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoProgress
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 
 class PaymentFlowInstallmentsActivity : AppCompatActivity() {
 
-    private val binding: PointSmartappDemoAppActivityPaymentFlowInstallmetsBinding by lazy {
-        PointSmartappDemoAppActivityPaymentFlowInstallmetsBinding.inflate(layoutInflater)
-    }
-
     private val amount by lazy { intent.getStringExtra(AMOUNT) }
+    private var installments by mutableStateOf<List<InstallmentAmount>>(emptyList())
+    private var isLoading by mutableStateOf(false)
+    private var feedback by mutableStateOf<DemoFeedback?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
+        val screenTitle = "Installments"
+        val totalAmountLabel = TOTAL_AMOUNT
+        val progressLabel = "Loading installments"
 
-        setView()
-        val adapter = PaymentInstallmentAdapter { installmentAmount ->
-            installmentAmount.installment?.let { installments ->
-                returnInstallmentsResult(installments)
-            } ?: run {
-                setResult(RESULT_CANCELED)
-                finish()
+        setDemoContent {
+            DemoScreen(title = screenTitle) {
+                Text(text = amount.orEmpty())
+                Text(text = totalAmountLabel)
+                if (isLoading) DemoProgress(label = progressLabel)
+                installments.forEach { installment ->
+                    OutlinedCard(
+                        modifier = Modifier.fillMaxWidth(),
+                        onClick = {
+                            installment.installment?.let(::returnInstallmentsResult) ?: run {
+                                setResult(RESULT_CANCELED)
+                                finish()
+                            }
+                        },
+                    ) {
+                        Text(
+                            text = "${installment.installment}X ${installment.amount}",
+                            modifier = Modifier.padding(16.dp),
+                        )
+                    }
+                }
+                DemoFeedbackBanner(feedback) { cancelAfterError() }
             }
         }
-        getRecyclerView(adapter)
+        getInstallments()
     }
 
-    private fun setView() {
-        binding.apply {
-            textAmount.text = amount.orEmpty()
-            textAmountTotal.text = TOTAL_AMOUNT
-        }
-    }
-
-    private fun getRecyclerView(adapter: PaymentInstallmentAdapter) {
+    private fun getInstallments() {
         amount?.let { amountValue ->
-            binding.progressBar.visible()
-            MPManager.paymentInstallmentTools.getInstallmentsAmount({ mpResponse ->
-                binding.progressBar.gone()
-                mpResponse.doIfSuccess { installments ->
-                    if (installments.isNotEmpty()) {
-                        adapter.submitList(installments)
-                        setRecyclerView(adapter)
+            isLoading = true
+            MPManager.paymentInstallmentTools.getInstallmentsAmount({ response ->
+                isLoading = false
+                response.doIfSuccess { result ->
+                    if (result.isNotEmpty()) {
+                        installments = result
                     } else {
                         showErrorAndReturnCancelled(ERROR_NO_INSTALLMENTS)
                     }
@@ -62,20 +77,7 @@ class PaymentFlowInstallmentsActivity : AppCompatActivity() {
                     showErrorAndReturnCancelled(error.message ?: ERROR_NO_INSTALLMENTS)
                 }
             }, amountValue)
-        } ?: run {
-            showErrorAndReturnCancelled(ERROR_INVALID_AMOUNT)
-        }
-    }
-
-    private fun setRecyclerView(adapter: PaymentInstallmentAdapter) {
-        binding.rvListInstallments.apply {
-            layoutManager = LinearLayoutManager(
-                this@PaymentFlowInstallmentsActivity,
-                RecyclerView.VERTICAL,
-                false
-            )
-            this.adapter = adapter
-        }
+        } ?: showErrorAndReturnCancelled(ERROR_INVALID_AMOUNT)
     }
 
     private fun returnInstallmentsResult(installments: Int) {
@@ -87,18 +89,12 @@ class PaymentFlowInstallmentsActivity : AppCompatActivity() {
     }
 
     private fun showErrorAndReturnCancelled(errorMessage: String) {
-        Snackbar.make(
-            binding.root,
-            errorMessage,
-            Snackbar.LENGTH_LONG
-        ).setBackgroundTint(getColor(R.color.design_default_color_error))
-            .addCallback(object : Snackbar.Callback() {
-                override fun onDismissed(transientBottomBar: Snackbar?, event: Int) {
-                    setResult(RESULT_CANCELED)
-                    finish()
-                }
-            })
-            .show()
+        feedback = DemoFeedback(errorMessage, isError = true)
+    }
+
+    private fun cancelAfterError() {
+        setResult(RESULT_CANCELED)
+        finish()
     }
 
     companion object {

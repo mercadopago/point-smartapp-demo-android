@@ -38,6 +38,12 @@
 - Changed sub-merchant var to val to avoid payment flow & traceability inconsistencies
 
 # Unreleased
+## Changed
+- Migrate demo screens to Jetpack Compose while retaining the existing Point integration SDK.
+- Group Home actions by capability, combine Point printer options, and add a circular device image.
+- Add Compose dependencies with Kotlin 1.8.10 and compile SDK 34, retaining AGP 7.4.0, Gradle 7.5, and Java 8 bytecode targets.
+- Remove the credential-protected internal Maven repository from the public demo build.
+
 ## Added
 - [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace
 

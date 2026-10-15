@@ -7,4 +7,5 @@ data class ActionModel(
     val title: String,
     val icon: Drawable?,
     val action: HomeActions,
+    val iconRes: Int = 0,
 )

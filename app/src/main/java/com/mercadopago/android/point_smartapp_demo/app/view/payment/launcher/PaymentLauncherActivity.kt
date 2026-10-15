@@ -4,9 +4,10 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.textfield.MaterialAutoCompleteTextView
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.text.input.KeyboardType
 import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
 import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
@@ -17,116 +18,147 @@ import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.data.Pay
 import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.domain.model.PaymentResponseData
 import com.mercadolibre.android.point_integration_sdk.nativesdk.payment.provider.PaymentFlowCallback
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPaymentLauncherBinding
-import com.mercadopago.android.point_smartapp_demo.app.util.gone
 import com.mercadopago.android.point_smartapp_demo.app.util.hideKeyboard
-import com.mercadopago.android.point_smartapp_demo.app.util.toast
-import com.mercadopago.android.point_smartapp_demo.app.util.visible
-import com.mercadopago.android.point_smartapp_demo.app.view.payment.adapter.PaymentMethodAdapter
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoCheckbox
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoDropdown
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedback
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedbackBanner
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoField
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoPrimaryButton
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoProgress
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoRadioOption
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoSecondaryButton
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoSectionTitle
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentFlowInstallmentsActivity.Companion.AMOUNT
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentFlowInstallmentsActivity.Companion.EXTRA_INSTALLMENTS_RESULT
-import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.PayerConditionString
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.PaymentMethodModel
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.models.toTaxes
 
 class PaymentLauncherActivity : AppCompatActivity() {
 
-    lateinit var binding: PointSmartappDemoAppActivityPaymentLauncherBinding
     private val paymentFlow = MPManager.paymentFlow
     private val paymentTool = MPManager.paymentMethodsTools
-    private var lastPaymentMethodSelected: String? = null
-    private var clearPaymentMethodList: Boolean = true
-    private var isPrintOnTerminal: Boolean = true
-    private val paymentMethodAdapter by lazy {
-        PaymentMethodAdapter {
-            lastPaymentMethodSelected = it
-        }
-    }
+    private var lastPaymentMethodSelected by mutableStateOf<String?>(null)
+    private var clearPaymentMethodList by mutableStateOf(true)
+    private var isPrintOnTerminal by mutableStateOf(true)
+    private var amount by mutableStateOf("")
+    private var description by mutableStateOf("")
+    private var externalReference by mutableStateOf("")
+    private var payerCondition by mutableStateOf(NO_TAX)
+    private var paymentMethods by mutableStateOf<List<PaymentMethodModel>>(emptyList())
+    private var paymentMethodActionLabel by mutableStateOf("")
+    private var amountError by mutableStateOf<String?>(null)
+    private var isLoading by mutableStateOf(false)
+    private var feedback by mutableStateOf<DemoFeedback?>(null)
     private var pendingPaymentAmount: String? = null
     private var pendingPaymentDescription: String? = null
     private var pendingExternalReference: String? = null
+
     private val installmentsLauncher = registerForActivityResult(
-        ActivityResultContracts.StartActivityForResult()
-    ) { result ->
-        handleInstallmentsResult(result.resultCode, result.data)
-    }
+        ActivityResultContracts.StartActivityForResult(),
+    ) { result -> handleInstallmentsResult(result.resultCode, result.data) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = PointSmartappDemoAppActivityPaymentLauncherBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        val title = getString(R.string.point_smartapp_demo_app_go_to_payment)
+        val amountLabel = getString(R.string.point_smartapp_demo_app_lab_payment_amount)
+        val descriptionLabel = getString(R.string.point_smartapp_demo_app_lab_payment_description)
+        val externalReferenceLabel = getString(R.string.point_smartapp_demo_app_lab_payment_external_reference)
+        val taxLabel = getString(R.string.point_smartapp_demo_app_lab_tax)
+        val automaticPrintingLabel = getString(R.string.point_smartapp_demo_app_description_is_automatic_printing)
+        val sendPaymentLabel = getString(R.string.point_smartapp_demo_app_lab_send_payment_action)
+        val loadPaymentMethodsLabel = getString(R.string.point_smartapp_demo_app_lab_get_payment_method_action)
+        val paymentMethodTitle = "Payment method"
+        val progressLabel = "Processing payment"
+        paymentMethodActionLabel = loadPaymentMethodsLabel
+        val payerConditions = listOf(NO_TAX) + PayerCondition.values().map { it.name }
 
-        binding.recyclerviewPaymentMethod.apply {
-            layoutManager = LinearLayoutManager(
-                this@PaymentLauncherActivity, LinearLayoutManager.VERTICAL, false
-            )
-            adapter = paymentMethodAdapter
-        }
-
-        configPaymentButton()
-        configPayerConditionDropDown()
-        isAutomaticPrintOnTerminal()
-    }
-
-    private fun configPayerConditionDropDown() {
-        binding.payerCondition.setText(NO_TAX)
-        val finalList = listOf(NO_TAX) + PayerCondition.values().map { it.name }
-        binding.payerCondition.setSimpleItems(finalList.toTypedArray())
-    }
-
-    private fun isAutomaticPrintOnTerminal() =
-        binding.checkboxIsAutomaticPrinting.setOnCheckedChangeListener { _, isChecked ->
-            isPrintOnTerminal = isChecked
-        }
-
-    private fun configPaymentButton() {
-
-        binding.apply {
-            getPaymentMethodActionButton.setOnClickListener {
-                hideKeyboard()
-                clearPaymentMethodList = clearPaymentMethodList.not()
-                if (clearPaymentMethodList) {
-                    getPaymentMethodActionButton.text =
-                        getString(R.string.point_smartapp_demo_app_lab_get_payment_method_action)
-                    lastPaymentMethodSelected = null
-                    paymentMethodAdapter.clear()
-                } else {
-                    getPaymentMethodActionButton.text =
-                        getString(R.string.point_smartapp_demo_app_clear_label)
-                    configPaymentMethodList()
+        setDemoContent {
+            DemoScreen(title = title) {
+                DemoField(
+                    label = amountLabel,
+                    value = amount,
+                    onValueChange = { amount = it },
+                    keyboardType = KeyboardType.Decimal,
+                    errorMessage = amountError,
+                )
+                DemoField(
+                    label = descriptionLabel,
+                    value = description,
+                    onValueChange = { description = it },
+                )
+                DemoField(
+                    label = externalReferenceLabel,
+                    value = externalReference,
+                    onValueChange = { externalReference = it },
+                )
+                DemoDropdown(
+                    label = taxLabel,
+                    selected = payerCondition,
+                    options = payerConditions,
+                    onSelected = { payerCondition = it },
+                )
+                DemoCheckbox(
+                    label = automaticPrintingLabel,
+                    checked = isPrintOnTerminal,
+                    onCheckedChange = { isPrintOnTerminal = it },
+                )
+                DemoSectionTitle(text = paymentMethodTitle)
+                paymentMethods.forEach { method ->
+                    DemoRadioOption(
+                        text = method.name,
+                        selected = lastPaymentMethodSelected == method.name,
+                        onClick = { lastPaymentMethodSelected = method.name },
+                    )
                 }
-            }
-            sendPaymentActionButton.setOnClickListener {
-                val amount = amountEditText.text?.toString()
-                val description = binding.descriptionEditText.text?.toString()
-                val externalReference = binding.externalReferenceEditText.text?.toString()
-                launchPaymentFlow(
-                    amount = amount,
-                    description = description,
-                    externalReference = externalReference,
+                DemoSecondaryButton(
+                    text = paymentMethodActionLabel,
+                    onClick = ::togglePaymentMethodList,
+                )
+                if (isLoading) DemoProgress(label = progressLabel)
+                DemoFeedbackBanner(feedback) { feedback = null }
+                DemoPrimaryButton(
+                    text = sendPaymentLabel,
+                    onClick = {
+                        hideKeyboard()
+                        launchPaymentFlow(amount, description, externalReference)
+                    },
                 )
             }
         }
     }
 
-    private fun launchPaymentFlow(amount: String?, description: String?, externalReference: String?) = when {
-        amount.isNullOrEmpty() -> ERROR_INVALID_AMOUNT.setLayoutError()
+    private fun togglePaymentMethodList() {
+        hideKeyboard()
+        clearPaymentMethodList = clearPaymentMethodList.not()
+        if (clearPaymentMethodList) {
+            paymentMethodActionLabel = getString(R.string.point_smartapp_demo_app_lab_get_payment_method_action)
+            lastPaymentMethodSelected = null
+            paymentMethods = emptyList()
+        } else {
+            paymentMethodActionLabel = getString(R.string.point_smartapp_demo_app_clear_label)
+            configPaymentMethodList()
+        }
+    }
 
-        isCreditCard() -> checkInstallmentsAndProceed(amount, description, externalReference)
-
-        else -> launchPaymentFlowIntent(
-            amount = amount,
-            description = description,
-            installments = null,
-            externalReference = externalReference
-        )
+    private fun launchPaymentFlow(amount: String?, description: String?, externalReference: String?) {
+        when {
+            amount.isNullOrEmpty() -> amountError = ERROR_INVALID_AMOUNT
+            isCreditCard() -> checkInstallmentsAndProceed(amount, description, externalReference)
+            else -> {
+                amountError = null
+                launchPaymentFlowIntent(amount, description, installments = null, externalReference = externalReference)
+            }
+        }
     }
 
     private fun checkInstallmentsAndProceed(amount: String, description: String?, externalReference: String?) {
-        binding.paymentProgressBar.visible()
-        MPManager.paymentInstallmentTools.getInstallmentsAmount({ mpResponse ->
-            binding.paymentProgressBar.gone()
-            mpResponse.doIfSuccess { installments ->
+        isLoading = true
+        MPManager.paymentInstallmentTools.getInstallmentsAmount({ response ->
+            isLoading = false
+            response.doIfSuccess { installments ->
                 if (installments.isNotEmpty()) {
                     launchInstallmentsSelection(amount, description, externalReference)
                 } else {
@@ -153,10 +185,9 @@ class PaymentLauncherActivity : AppCompatActivity() {
     private fun configPaymentMethodList() {
         paymentTool.getPaymentMethodsList { response ->
             response.doIfSuccess { result ->
-                val paymentMethodList = result.map { PaymentMethodModel(name = it) }
-                paymentMethodAdapter.submitList(paymentMethodList)
-            }.doIfError { error ->
-                toast(error.message.orEmpty())
+                paymentMethods = result.map { PaymentMethodModel(name = it) }
+            }.doIfError {
+                showFeedback(getString(R.string.point_smartapp_demo_app_payment_methods_load_error), isError = true)
             }
         }
     }
@@ -165,20 +196,24 @@ class PaymentLauncherActivity : AppCompatActivity() {
         amount: String,
         description: String?,
         installments: Int? = null,
-        externalReference: String? = null
+        externalReference: String? = null,
     ) {
         val parsedAmount = amount.toBigDecimalOrNull()
-            ?: return ERROR_INVALID_AMOUNT.setLayoutError()
+        if (parsedAmount == null) {
+            amountError = ERROR_INVALID_AMOUNT
+            return
+        }
+        amountError = null
         val paymentRequestData = PaymentRequestData.builder(parsedAmount)
             .setDescription(description)
             .setPaymentMethod(lastPaymentMethodSelected)
             .setInstallments(installments)
             .setPrintOnTerminal(isPrintOnTerminal)
-            .setTaxes(binding.payerCondition.getSelectedValue()?.toTaxes())
+            .setTaxes(payerCondition.takeIf { it != NO_TAX }?.toTaxes())
             .setPaymentTransactionMetadata(
                 externalReference?.takeIf { it.isNotEmpty() }?.let {
                     PaymentTransactionMetadata(externalReference = it)
-                }
+                },
             )
             .build()
 
@@ -186,33 +221,31 @@ class PaymentLauncherActivity : AppCompatActivity() {
             paymentRequestData = paymentRequestData,
             callback = object : PaymentFlowCallback {
                 override fun onProgress() {
-                    binding.paymentProgressBar.visible()
+                    isLoading = true
                 }
 
                 override fun onSuccess(data: PaymentResponseData) {
-                    binding.paymentProgressBar.gone()
-                    showSnackBar(MESSAGE_PAYMENT_SUCCESS.format(data.paymentReference))
+                    isLoading = false
+                    showFeedback(MESSAGE_PAYMENT_SUCCESS.format(data.paymentReference))
                 }
 
                 override fun onError(error: SDKException) {
-                    binding.paymentProgressBar.gone()
-                    error.message?.let { message ->
-                        showSnackBar(MESSAGE_PAYMENT_CANCELED.format(message), true)
-                    }
+                    isLoading = false
+                    error.message?.let { message -> showFeedback(MESSAGE_PAYMENT_CANCELED.format(message), true) }
                 }
-            }
+            },
         )
     }
 
     private fun handleInstallmentsResult(resultCode: Int, data: Intent?) {
         if (resultCode == RESULT_OK) {
             val selectedInstallments = data?.getIntExtra(EXTRA_INSTALLMENTS_RESULT, 0)
-            pendingPaymentAmount?.let { amount ->
+            pendingPaymentAmount?.let { amountValue ->
                 launchPaymentFlowIntent(
-                    amount = amount,
+                    amount = amountValue,
                     description = pendingPaymentDescription,
                     installments = selectedInstallments,
-                    externalReference = pendingExternalReference
+                    externalReference = pendingExternalReference,
                 )
             }
         }
@@ -221,39 +254,9 @@ class PaymentLauncherActivity : AppCompatActivity() {
         pendingExternalReference = null
     }
 
-    private fun String?.setLayoutError() {
-
-        binding.amountInputLayout.apply {
-            isCounterEnabled = true
-            error = this@setLayoutError
-        }
-
-        listenerIconError()
+    private fun showFeedback(message: String, isError: Boolean = false) {
+        feedback = DemoFeedback(message, isError)
     }
-
-    private fun listenerIconError() {
-
-        binding.amountInputLayout.apply {
-            setErrorIconOnClickListener {
-                isErrorEnabled = false
-            }
-        }
-    }
-
-    private fun showSnackBar(message: String, isCanceled: Boolean = false) {
-        Snackbar.make(
-            binding.root, message, Snackbar.ANIMATION_MODE_SLIDE
-        ).setBackgroundTint(getBackgroundColorSnackBar(isCanceled)).show()
-    }
-
-    private fun getBackgroundColorSnackBar(canceled: Boolean): Int = if (canceled) {
-        getColor(R.color.design_default_color_error)
-    } else {
-        getColor(R.color.doneColor)
-    }
-
-    private fun MaterialAutoCompleteTextView.getSelectedValue(): PayerConditionString? =
-        text.toString().takeIf { it != NO_TAX }
 
     private companion object {
         const val ERROR_INVALID_AMOUNT = "Amount is null or empty"
