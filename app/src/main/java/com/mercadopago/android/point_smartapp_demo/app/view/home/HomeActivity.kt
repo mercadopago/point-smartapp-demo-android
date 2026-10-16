@@ -2,59 +2,33 @@ package com.mercadopago.android.point_smartapp_demo.app.view.home
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.background
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
-import androidx.compose.ui.semantics.semantics
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.Popup
-import androidx.compose.ui.window.PopupProperties
 import com.mercadopago.android.point_smartapp_demo.app.ActionsProviderImpl
 import com.mercadopago.android.point_smartapp_demo.app.BuildConfig
 import com.mercadopago.android.point_smartapp_demo.app.R
 import com.mercadopago.android.point_smartapp_demo.app.actions.contract.HomeActions
 import com.mercadopago.android.point_smartapp_demo.app.actions.model.ActionModel
 import com.mercadopago.android.point_smartapp_demo.app.util.launchActivity
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoSectionTitle
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoSecondaryButton
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.BluetoothTestActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.printer.PrinterTestActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.camera.LaunchScannerActivity
@@ -65,6 +39,9 @@ import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.Payme
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterBitmapActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterCustomTagActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.refunds.RefundsActivity
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoSecondaryButton
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 
 class HomeActivity : AppCompatActivity() {
 
@@ -231,135 +208,6 @@ class HomeActivity : AppCompatActivity() {
             is HomeActions.LaunchActivity -> launchActivity(action.activity)
             is HomeActions.LaunchBtUi -> action.actionManager.bluetoothUiSettings.launch(this@HomeActivity)
             HomeActions.OpenPointPrinterOptions -> showPrinterOptions = true
-        }
-    }
-}
-
-private data class HomeSection(
-    val title: String,
-    val tiles: List<HomeTile>,
-)
-
-private data class HomeTile(
-    val title: String,
-    val iconRes: Int,
-    val action: HomeActions,
-)
-
-@Composable
-private fun HomeActionSection(
-    section: HomeSection,
-    onActionClick: (HomeActions) -> Unit,
-) {
-    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-        DemoSectionTitle(text = section.title)
-        section.tiles.chunked(2).forEach { rowTiles ->
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
-            ) {
-                rowTiles.forEach { tile ->
-                    HomeActionTile(
-                        tile = tile,
-                        modifier = Modifier.weight(1f),
-                        onActionClick = onActionClick,
-                    )
-                }
-                if (rowTiles.size == 1) {
-                    Spacer(modifier = Modifier.weight(1f))
-                }
-            }
-        }
-    }
-}
-
-@Composable
-private fun HomeGroupDivider() {
-    Box(
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(vertical = 1.dp)
-            .height(1.dp)
-            .background(Color(0xFFD9DDE8)),
-    )
-}
-
-@Composable
-private fun HomeActionTile(
-    tile: HomeTile,
-    modifier: Modifier,
-    onActionClick: (HomeActions) -> Unit,
-) {
-    val shape = RoundedCornerShape(12.dp)
-    Row(
-        modifier = modifier
-            .heightIn(min = 48.dp)
-            .clip(shape)
-            .background(MaterialTheme.colorScheme.surface)
-            .border(1.dp, Color(0xFFD9DDE8), shape)
-            .clickable(role = Role.Button) { onActionClick(tile.action) }
-            .padding(horizontal = 10.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-    ) {
-        Icon(
-            modifier = Modifier.size(20.dp),
-            painter = painterResource(tile.iconRes),
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.primary,
-        )
-        Text(
-            modifier = Modifier.weight(1f),
-            text = tile.title,
-            fontWeight = FontWeight.Medium,
-        )
-    }
-}
-
-@Composable
-private fun HomeVersionTooltip(versionText: String) {
-    var isVisible by remember { mutableStateOf(false) }
-    val tooltipOffsetY = with(LocalDensity.current) { 44.dp.roundToPx() }
-    val versionAccessibilityDescription = stringResource(
-        R.string.point_smartapp_demo_app_home_version_accessibility,
-    )
-
-    Box {
-        IconButton(
-            onClick = { isVisible = !isVisible },
-            modifier = Modifier.semantics {
-                contentDescription = versionAccessibilityDescription
-            },
-        )
-        {
-            Text(
-                text = "i",
-                color = MaterialTheme.colorScheme.primary,
-                fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
-            )
-        }
-        if (isVisible) {
-            Popup(
-                alignment = Alignment.TopEnd,
-                offset = IntOffset(x = 0, y = tooltipOffsetY),
-                onDismissRequest = { isVisible = false },
-                properties = PopupProperties(focusable = true),
-            ) {
-                val tooltipShape = RoundedCornerShape(8.dp)
-                Text(
-                    modifier = Modifier
-                        .shadow(4.dp, tooltipShape)
-                        .clip(tooltipShape)
-                        .background(MaterialTheme.colorScheme.surface)
-                        .border(1.dp, Color(0xFFD9DDE8), tooltipShape)
-                        .padding(horizontal = 12.dp, vertical = 8.dp),
-                    text = versionText,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                    fontSize = 11.sp,
-                    fontWeight = FontWeight.Normal,
-                )
-            }
         }
     }
 }
