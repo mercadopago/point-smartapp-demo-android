@@ -1,100 +1,97 @@
 package com.mercadopago.android.point_smartapp_demo.app.view.camera
 
 import android.os.Bundle
-import android.widget.AdapterView
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import com.mercadolibre.android.point_integration_sdk.nativesdk.camera.provider.entities.CameraScannerStatus
 import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
 import com.mercadolibre.android.point_integration_sdk.nativesdk.camera.domain.ScanType
 import com.mercadolibre.android.point_integration_sdk.nativesdk.camera.provider.data.ScannerFlowRequestData
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfError
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.doIfSuccess
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityLaunchScannerBinding
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoDropdown
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedback
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedbackBanner
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoPrimaryButton
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoSwitch
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 
 class LaunchScannerActivity : AppCompatActivity() {
 
-    private val binding: PointSmartappDemoAppActivityLaunchScannerBinding by lazy {
-        PointSmartappDemoAppActivityLaunchScannerBinding.inflate(layoutInflater)
-    }
-
     private var scannerRequestBuilder = ScannerFlowRequestData(
         initialOrientation = ORIENTATION_PORTRAIT,
-        isLanternOn = false
+        isLanternOn = false,
     )
+    private var flashlightOn by mutableStateOf(false)
+    private var selectedOrientation by mutableStateOf(ORIENTATION_NONE)
+    private var feedback by mutableStateOf<DemoFeedback?>(null)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        setupViews()
-    }
+        val title = getString(R.string.point_smartapp_demo_app_cammera_scanner_main_title)
+        val orientations = resources.getStringArray(
+            R.array.point_smartapp_demo_app_camera_scanner_orientation,
+        ).toList()
+        val flashlightLabel = "Do you want to turn on the flashlight?"
+        val orientationLabel = "Select the screen orientation you want"
+        val qrLabel = getString(R.string.point_smartapp_demo_app_cammera_scanner_new_start_qr_callback_title)
+        val barcodeLabel = getString(R.string.point_smartapp_demo_app_cammera_scanner_new_start_barcode_callback_title)
 
-    private fun setupViews() {
-        setupScanButtons()
-        setupLanternSwitch()
-        setupOrientationSpinner()
-        initializeViewsWithCurrentState()
-    }
-
-    private fun initializeViewsWithCurrentState() {
-        binding.apply {
-            switchTurnOn.isChecked = false
-            valueInitialOrientation.setText(ORIENTATION_NONE)
-            valueInitialOrientation.setSimpleItems(
-                resources.getStringArray(R.array.point_smartapp_demo_app_camera_scanner_orientation)
-            )
-        }
-    }
-
-    private fun setupScanButtons() {
-        binding.apply {
-            pointSmartappDemoAppCameraQrScannerNewInitBtn.setOnClickListener {
-                launchScanner(ScanType.CAMERA_SCANNER_QR)
-            }
-            pointSmartappDemoAppNewCameraBarcodeScannerInitBtn.setOnClickListener {
-                launchScanner(ScanType.CAMERA_SCANNER_BARCODE)
-            }
-        }
-    }
-
-    private fun setupLanternSwitch() {
-        binding.switchTurnOn.apply {
-            setOnCheckedChangeListener { _, isChecked ->
-                if (isChecked) {
-                    thumbTintList = getColorStateList(R.color.primaryColor)
-                    trackTintList = getColorStateList(R.color.primaryColor)
-                } else {
-                    thumbTintList = getColorStateList(R.color.grayDark)
-                    trackTintList = getColorStateList(R.color.grayDark)
-                }
-                scannerRequestBuilder = scannerRequestBuilder.copy(
-                    isLanternOn = isChecked
+        setDemoContent {
+            DemoScreen(title = title) {
+                DemoSwitch(
+                    label = flashlightLabel,
+                    selected = flashlightOn,
+                    onSelectedChange = { isOn ->
+                        flashlightOn = isOn
+                        scannerRequestBuilder = scannerRequestBuilder.copy(isLanternOn = isOn)
+                    },
                 )
-            }
-        }
-    }
-
-    private fun setupOrientationSpinner() {
-        binding.valueInitialOrientation.apply {
-            onItemClickListener = AdapterView.OnItemClickListener { _, view, position, _ ->
-                val selectedOrientation = when (position) {
-                    1 -> ORIENTATION_LANDSCAPE
-                    else -> ORIENTATION_PORTRAIT
-                }
-                scannerRequestBuilder = scannerRequestBuilder.copy(
-                    initialOrientation = selectedOrientation
+                DemoDropdown(
+                    label = orientationLabel,
+                    selected = selectedOrientation,
+                    options = orientations,
+                    onSelected = { orientation ->
+                        selectedOrientation = orientation
+                        val position = orientations.indexOf(orientation)
+                        val selectedValue = if (position == 1) {
+                            ORIENTATION_LANDSCAPE
+                        } else {
+                            ORIENTATION_PORTRAIT
+                        }
+                        scannerRequestBuilder = scannerRequestBuilder.copy(
+                            initialOrientation = selectedValue,
+                        )
+                    },
                 )
+                DemoPrimaryButton(
+                    text = qrLabel,
+                    onClick = { launchScanner(ScanType.CAMERA_SCANNER_QR) },
+                )
+                DemoPrimaryButton(
+                    text = barcodeLabel,
+                    onClick = { launchScanner(ScanType.CAMERA_SCANNER_BARCODE) },
+                )
+                DemoFeedbackBanner(feedback) { feedback = null }
             }
         }
     }
-
 
     private fun launchScanner(scanType: ScanType) {
         try {
-            val requestData = scannerRequestBuilder
-            MPManager.cameraScanner.launchScanner(scanType, requestData) { response ->
+            MPManager.cameraScanner.launchScanner(scanType, scannerRequestBuilder) { response ->
                 response
-                    .doIfSuccess { result -> showFeedback(result.message.toString()) }
+                    .doIfSuccess { result ->
+                        val isError = result.status != CameraScannerStatus.Ok
+                        val message = result.message
+                            ?.takeIf { it.isNotBlank() }
+                            ?: getString(R.string.point_smartapp_demo_app_scanner_result_error)
+                        showFeedback(message, isError)
+                    }
                     .doIfError { error -> showFeedback(error.message.toString(), isError = true) }
             }
         } catch (e: Exception) {
@@ -103,15 +100,7 @@ class LaunchScannerActivity : AppCompatActivity() {
     }
 
     private fun showFeedback(message: String, isError: Boolean = false) {
-        val backgroundColor = if (isError) {
-            getColor(R.color.design_default_color_error)
-        } else {
-            getColor(R.color.doneColor)
-        }
-
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
-            .setBackgroundTint(backgroundColor)
-            .show()
+        feedback = DemoFeedback(message, isError)
     }
 
     companion object {

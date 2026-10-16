@@ -4,6 +4,9 @@
 # Misc libs
 ##################################################################################
 appCompat = "1.2.0"
+composeBoM = "2024.05.00"
+lifecycle = "2.6.1"
+activityCompose = "1.8.2"
 
 ##################################################################################
 # Test libs
@@ -17,3 +20,15 @@ testing = "13.+"
 # Misc libs
 ##################################################################################
 misc-appCompat = { module ="androidx.appcompat:appcompat", version.ref = "appCompat" }
+misc-composeBoM = { module = "androidx.compose:compose-bom", version.ref = "composeBoM" }
+misc-composeBoM-foundation = { module = "androidx.compose.foundation:foundation" }
+misc-composeBoM-ui = { module = "androidx.compose.ui:ui" }
+misc-composeBoM-material3 = { module = "androidx.compose.material3:material3" }
+misc-composeBoM-runtime = { module = "androidx.compose.runtime:runtime" }
+misc-composeBoM-uiToolingPreview = { module = "androidx.compose.ui:ui-tooling-preview" }
+misc-composeBoM-uiTooling = { module = "androidx.compose.ui:ui-tooling" }
+misc-composeBoM-uiTestManifest = { module = "androidx.compose.ui:ui-test-manifest" }
+misc-composeBoM-uiTestJunit4 = { module = "androidx.compose.ui:ui-test-junit4" }
+misc-compose-lifecycleRuntime = { module = "androidx.lifecycle:lifecycle-runtime-compose", version.ref = "lifecycle" }
+misc-compose-lifecycleViewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-compose", version.ref = "lifecycle" }
+misc-compose-activity = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }

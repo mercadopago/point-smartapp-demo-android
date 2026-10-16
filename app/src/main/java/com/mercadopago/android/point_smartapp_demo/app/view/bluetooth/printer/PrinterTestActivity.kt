@@ -1,78 +1,127 @@
 package com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.printer
 
 import android.os.Bundle
-import android.view.View
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.isVisible
-import com.google.android.material.snackbar.Snackbar
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.unit.sp
+import com.mercadolibre.android.point_integration_sdk.nativesdk.bluetoothclient.provider.contracts.states.BluetoothPrinterResult
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.databinding.PointSmartappDemoAppActivityPrinterTestBinding
 import com.mercadopago.android.point_smartapp_demo.app.util.hideKeyboard
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedback
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedbackBanner
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoCheckbox
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoField
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoPrimaryButton
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoProgress
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
+import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.contracts.PrinterEvents
 import com.mercadopago.android.point_smartapp_demo.app.view.bluetooth.viewmodels.BluetoothPrinterViewModel
 
 class PrinterTestActivity : AppCompatActivity(), PrinterSelectorCallback {
 
-    private val binding: PointSmartappDemoAppActivityPrinterTestBinding by lazy {
-        PointSmartappDemoAppActivityPrinterTestBinding.inflate(
-            layoutInflater
-        )
-    }
-
     private val viewModel by viewModels<BluetoothPrinterViewModel>()
+    private var dataToPrint by mutableStateOf("")
+    private var isLoading by mutableStateOf(false)
+    private var feedback by mutableStateOf<DemoFeedback?>(null)
+    private var isLongSampleEnabled by mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(binding.root)
-        setObserver()
-        onClicksListener()
-    }
+        val title = getString(R.string.point_smartapp_demo_app_home_print_label)
+        val longSampleLabel = getString(R.string.point_smartapp_demo_app_printer_use_long_sample)
+        val inputLabel = getString(R.string.point_smartapp_demo_app_to_print_label)
+        val printLabel = getString(R.string.point_smartapp_demo_app_make_print_label)
+        val progressLabel = printLabel
 
-    private fun onClicksListener() {
-        binding.apply {
-            buttonLoremImsup.setOnClickListener {
-                viewModel.isPasteLargeText = viewModel.isPasteLargeText.not()
-                if (viewModel.isPasteLargeText) {
-                    buttonLoremImsup.text = getString(R.string.point_smartapp_demo_app_clear_label)
-                    textFieldDataToPrint.setText(LARGE_STRING)
-                } else {
-                    buttonLoremImsup.text = getString(R.string.point_smartapp_demo_app_make_print_label_large_text)
-                    textFieldDataToPrint.setText("")
-                }
-            }
-
-            buttonMakePrint.setOnClickListener {
-                viewModel.makePrint(textFieldDataToPrint.text.toString())
-                hideKeyboard()
+        setDemoContent {
+            DemoScreen(title = title) {
+                if (isLoading) DemoProgress(label = progressLabel)
+                DemoField(
+                    label = inputLabel,
+                    value = dataToPrint,
+                    onValueChange = {
+                        dataToPrint = it
+                        isLongSampleEnabled = false
+                    },
+                    singleLine = false,
+                    textFontSize = 12.sp,
+                )
+                DemoCheckbox(
+                    label = longSampleLabel,
+                    checked = isLongSampleEnabled,
+                    onCheckedChange = { enabled ->
+                        isLongSampleEnabled = enabled
+                        dataToPrint = if (enabled) LARGE_STRING else ""
+                    },
+                )
+                DemoPrimaryButton(
+                    text = printLabel,
+                    onClick = {
+                        viewModel.makePrint(dataToPrint)
+                        hideKeyboard()
+                    },
+                )
+                DemoFeedbackBanner(feedback) { feedback = null }
             }
         }
+        setObserver()
     }
 
     private fun setObserver() {
         viewModel.printerEventLiveDataLiveData.observe(this) { event ->
             when (event) {
-                is PrinterEvents.IsLoading -> binding.progressIndicator.isVisible = event.isVisible
+                is PrinterEvents.IsLoading -> isLoading = event.isVisible
                 is PrinterEvents.LaunchPrinterSelector -> PrinterSelectorDialog.newInstance(event.printerList)
                     .show(supportFragmentManager, PrinterSelectorDialog::class.simpleName)
-
-                is PrinterEvents.OutputResult -> makeSnackBar(event.resultMessage)
-                is PrinterEvents.DataEmpty -> makeSnackBar(getString(R.string.point_smartapp_demo_app_error_msg_data_empty))
-                is PrinterEvents.Error -> event.error.message?.let { message -> makeSnackBar(message) }
+                is PrinterEvents.OutputResult -> showPrinterResult(event.result)
+                is PrinterEvents.DataEmpty -> showFeedback(
+                    getString(R.string.point_smartapp_demo_app_error_msg_data_empty),
+                    isError = true,
+                )
+                is PrinterEvents.Error -> event.error.message?.let { message -> showFeedback(message, isError = true) }
             }
         }
     }
 
-    private fun makeSnackBar(message: String) {
-        binding.progressIndicator.visibility = View.GONE
-        Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG)
-            .setBackgroundTint(getColor(R.color.primaryColor))
-            .setTextColor(getColor(R.color.secondaryTextColor))
-            .show()
+    private fun showFeedback(message: String, isError: Boolean = false) {
+        isLoading = false
+        feedback = DemoFeedback(message, isError)
+    }
+
+    private fun showPrinterResult(result: BluetoothPrinterResult) {
+        when (result) {
+            BluetoothPrinterResult.SUCCESS -> showFeedback(
+                getString(R.string.point_smartapp_demo_app_printer_result_success),
+            )
+            BluetoothPrinterResult.ERROR_PRINTER_NOT_FOUND -> showFeedback(
+                getString(R.string.point_smartapp_demo_app_printer_result_not_found),
+                isError = true,
+            )
+            BluetoothPrinterResult.CONNECTION_FAILED -> showFeedback(
+                getString(R.string.point_smartapp_demo_app_printer_result_connection_failed),
+                isError = true,
+            )
+            BluetoothPrinterResult.ERROR_DATA_TO_PRINT_NULL -> showFeedback(
+                getString(R.string.point_smartapp_demo_app_error_msg_data_empty),
+                isError = true,
+            )
+            BluetoothPrinterResult.ERROR_UNDEFINED -> showFeedback(
+                getString(R.string.point_smartapp_demo_app_printer_result_unknown_error),
+                isError = true,
+            )
+            BluetoothPrinterResult.NEED_SELECTION_DEVICE -> showFeedback(
+                getString(R.string.point_smartapp_demo_app_printer_result_select_device),
+                isError = true,
+            )
+        }
     }
 
     override fun onListenerOptionPrinter(address: String) {
-        viewModel.makePrint(binding.textFieldDataToPrint.text.toString(), address)
+        viewModel.makePrint(dataToPrint, address)
     }
 
     companion object {

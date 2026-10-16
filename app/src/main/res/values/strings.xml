@@ -3,18 +3,40 @@
     <string name="point_smartapp_demo_app_lab_send_payment_action">Launch Payment</string>
     <string name="point_smartapp_demo_app_lab_get_payment_method_action">Get Payment method</string>
     <string name="point_smartapp_demo_app_title">Point SmartApp Demo</string>
+    <string name="point_smartapp_demo_app_home_group_payments">Payments</string>
+    <string name="point_smartapp_demo_app_home_group_printing">Printing</string>
+    <string name="point_smartapp_demo_app_home_group_bluetooth">Bluetooth</string>
+    <string name="point_smartapp_demo_app_home_tile_legacy">Legacy</string>
+    <string name="point_smartapp_demo_app_home_tile_payment">Latest</string>
+    <string name="point_smartapp_demo_app_home_tile_status">Status</string>
+    <string name="point_smartapp_demo_app_home_tile_refunds">Refunds</string>
+    <string name="point_smartapp_demo_app_home_tile_bluetooth_printer">Bluetooth printer</string>
+    <string name="point_smartapp_demo_app_home_tile_point_printer">Point printer</string>
+    <string name="point_smartapp_demo_app_printer_option_image">Image</string>
+    <string name="point_smartapp_demo_app_printer_option_custom_tags">Custom Tags</string>
+    <string name="point_smartapp_demo_app_printer_options_description">Choose a format to print with Point printer.</string>
+    <string name="point_smartapp_demo_app_home_tile_bluetooth_tools">Bluetooth Tools</string>
+    <string name="point_smartapp_demo_app_home_tile_bluetooth_settings">Bluetooth Settings</string>
+    <string name="point_smartapp_demo_app_home_tile_camera_scanner">Camera Scanner</string>
+    <string name="point_smartapp_demo_app_home_tile_smart_info">Smart Info</string>
+    <string name="point_smartapp_demo_app_home_version_accessibility">Show app version</string>
     <string name="point_smartapp_demo_app_lab_payment_amount">Amount</string>
     <string name="point_smartapp_demo_app_lab_payment_description">Description</string>
     <string name="point_smartapp_demo_app_lab_payment_external_reference">External Reference</string>
     <string name="point_smartapp_demo_app_lab_tax">Tax</string>
-    <string name="point_smartapp_demo_app_go_to_payment">Go to payment</string>
-    <string name="point_smartapp_demo_app_go_to_payment_legacy">Go to payment Legacy</string>
+    <string name="point_smartapp_demo_app_go_to_payment">Go to payment (Latest)</string>
+    <string name="point_smartapp_demo_app_go_to_payment_legacy">Go to payment (Legacy)</string>
     <string name="point_smartapp_demo_app_payment_success">The payment has been successful</string>
     <string name="point_smartapp_demo_app_lab_reference">Reference</string>
     <string name="point_smartapp_demo_app_payment_error">The payment failed</string>
     <string name="point_smartapp_demo_app_lab_error_reference">Error </string>
     <string name="point_smartapp_demo_app_lab_back_to_home_action">Back to home</string>
     <string name="point_smartapp_demo_app_lab_done_copy">Done</string>
+    <string name="point_smartapp_demo_app_accessibility_back">Back</string>
+    <string name="point_smartapp_demo_app_accessibility_dismiss_message">Dismiss message</string>
+    <string name="point_smartapp_demo_app_payment_method_dialog_title">Payment method</string>
+    <string name="point_smartapp_demo_app_printer_selector_title">Select a printer</string>
+    <string name="point_smartapp_demo_app_payment_methods_load_error">Could not load payment methods. Try again.</string>
 
     <!-- Bluetooth -->
     <string name="point_smartapp_demo_app_button_bluetooth_tools">Bluetooth Tools</string>
@@ -31,6 +53,13 @@
     <string name="point_smartapp_demo_app_make_print_label_large_text">print large text</string>
     <string name="point_smartapp_demo_app_clear_label">clear</string>
     <string name="point_smartapp_demo_app_error_msg_data_empty">Data to print is required</string>
+    <string name="point_smartapp_demo_app_printer_use_long_sample">Use long text example</string>
+    <string name="point_smartapp_demo_app_printer_result_success">Print completed successfully.</string>
+    <string name="point_smartapp_demo_app_printer_result_not_found">Printer not found.</string>
+    <string name="point_smartapp_demo_app_printer_result_connection_failed">Printer connection failed.</string>
+    <string name="point_smartapp_demo_app_printer_result_unknown_error">Printing failed due to an unexpected error.</string>
+    <string name="point_smartapp_demo_app_printer_result_select_device">Select a printer before printing.</string>
+    <string name="point_smartapp_demo_app_bluetooth_operation_failed">Bluetooth operation failed. Check the connection and try again.</string>
 
 
     <!-- Refunds -->
@@ -41,20 +70,25 @@
     <string name="point_smartapp_demo_app_lab_refund_payment_id">Payment id</string>
     <string name="point_smartapp_demo_app_lab_send_refund_action">Refund</string>
     <string name="point_smartapp_demo_app_lab_refund_result_text">Payment %1$s refunded</string>
+    <string name="point_smartapp_demo_app_refund_invalid_payment_id">Enter a valid positive payment ID.</string>
+    <string name="point_smartapp_demo_app_refund_access_token_required">Enter the OAuth access token.</string>
+    <string name="point_smartapp_demo_app_refund_failed_connection">Could not complete the refund. Check your connection and try again.</string>
+    <string name="point_smartapp_demo_app_refund_failed_http">Refund failed (HTTP %1$d). Check the payment ID and OAuth permissions.</string>
 
     <!-- Print   -->
-    <string name="point_smartapp_demo_app_home_printer_bitmap">Embedded printer test</string>
-    <string name="point_smartapp_demo_app_home_descption_printer_bitmap">To print a test bitmap image go to the print image button</string>
+    <string name="point_smartapp_demo_app_home_printer_bitmap">Point printer · Image</string>
+    <string name="point_smartapp_demo_app_home_descption_printer_bitmap">Print a test image with Point printer.</string>
     <string name="point_smartapp_demo_app_home_result_successful_description_printer_bitmap">%s printing</string>
     <string name="point_smartapp_demo_app_home_result_failure_description_printer_bitmap">Printing failed for this reason: %s</string>
     <string name="point_smartapp_demo_app_text_button_printer_bitmap">Print image</string>
 
     <!-- custom tag -->
-    <string name="point_smartapp_demo_app_home_printer_custom_tag">Custom tag test</string>
-    <string name="point_smartapp_demo_app_text_button_printer_custom_tag">Print custom tag</string>
-    <string name="point_smartapp_demo_app_home_descption_printer_custom_tag">To print a custom tag. You can paste custom tag or DTE using scrcpy Only chile</string>
+    <string name="point_smartapp_demo_app_home_printer_custom_tag">Point printer · Custom Tags</string>
+    <string name="point_smartapp_demo_app_text_button_printer_custom_tag">Print custom tags</string>
+    <string name="point_smartapp_demo_app_home_descption_printer_custom_tag">Enter custom tags or paste DTE content with scrcpy (Chile only).</string>
     <string name="point_smartapp_demo_app_home_print_pdf417_in_boleta_custom_tag">If you want to print a PDF417 in Boleta check here</string>
     <string name="point_smartapp_demo_app_home_print_payment_method_selected_custom_tag">Payment Method selected: %s</string>
+    <string name="point_smartapp_demo_app_custom_tag_sample_text">{br}--------------------------------{br}{center}{w}COMPROBANTE DE ENTREGA{/w}{br}{br}{s}Nro pedido: 12345{/s}{br}{s}Tienda: Tienda de prueba{/s}{br}--------------------------------{br}{center}{s}ITEM(S) DESPACHO{/s}{br}{br}{s}SKU: 4065432630504{/s}{br}{s}ARTICULO: BALON FUTBOL{/s}{br}{s}          WUCL LGE EHV240424{/s}{br}{s}CANTIDAD: 1{/s}{br}{br}{s}ENTREGAR: 06/06/2024{/s}{br}{s}DIRECCION: METROPOLITANA{/s}{br}{s}RECIBE: John{/s}{br}{s}entrega a cliente en{/s}{br}{s}horario am{/s}{br}--------------------------------{br}</string>
 
     <!-- Camera Scanner -->
     <string name="point_smartapp_demo_app_cammera_scanner_main_title">Camera Scanner</string>
@@ -79,6 +113,8 @@
     <string name="point_smartapp_demo_app_sdk_version_text">SDK version: %s</string>
     <string name="point_smartapp_demo_app_payment_module_version_text">Payment module version: %s</string>
     <string name="point_smartapp_demo_app_smart_info_title">Smart info</string>
+    <string name="point_smartapp_demo_app_smart_info_load_error">Could not load Smart Info. Try again.</string>
+    <string name="point_smartapp_demo_app_scanner_result_error">Scanner returned an error. Try again.</string>
     <string name="point_smartapp_demo_app_btn_go_back">Go back</string>
     <string name="point_smartapp_demo_app_version_name">Version app: %s</string>
 

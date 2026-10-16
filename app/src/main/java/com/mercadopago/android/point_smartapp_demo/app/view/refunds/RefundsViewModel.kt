@@ -14,18 +14,18 @@ class RefundsViewModel : ViewModel() {
     private val _successResult = MutableLiveData<String>()
     val successResult: LiveData<String> get() = _successResult
 
-    private val _errorResult = MutableLiveData<String>()
-    val errorResult: LiveData<String> get() = _errorResult
+    private val _errorResult = MutableLiveData<Int>()
+    val errorResult: LiveData<Int> get() = _errorResult
 
     fun performRefund(paymentId: Long, accessToken: String) {
         viewModelScope.launch(Dispatchers.IO) {
             RefundsManager().refundPayment(paymentId, accessToken.appendBearer())
-                .catch { _errorResult.postValue(it.message.toString()) }
+                .catch { _errorResult.postValue(0) }
                 .collect {
-                    if (it.body()?.paymentId != null) {
+                    if (it.isSuccessful && it.body()?.paymentId != null) {
                         _successResult.postValue(it.body()?.paymentId?.toString())
                     } else {
-                        _errorResult.postValue(it.errorBody()?.string() ?: "Unknown Error")
+                        _errorResult.postValue(if (it.isSuccessful) 0 else it.code())
                     }
                 }
         }

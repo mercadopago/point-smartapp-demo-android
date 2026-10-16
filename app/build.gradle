@@ -9,6 +9,7 @@ def keystorePropertiesFile = file("keystore.properties")
 def keystoreProperties = new Properties()
 
 android {
+    namespace 'com.mercadopago.android.point_smartapp_demo.app'
     compileSdk project.compileSdkVersion.toInteger()
 
     signingConfigs {
@@ -94,6 +95,18 @@ android {
     viewBinding {
         enabled = true
     }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.4.3"
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
 }
 
 dependencies {
@@ -107,6 +120,20 @@ dependencies {
     implementation "androidx.core:core-ktx:$ktxVersion"
     implementation "androidx.fragment:fragment-ktx:$ktxFragmentVersion"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$ktxVersion"
+
+    // Jetpack Compose UI
+    implementation platform(libs.misc.composeBoM)
+    implementation libs.misc.composeBoM.foundation
+    implementation libs.misc.composeBoM.runtime
+    implementation libs.misc.composeBoM.ui
+    implementation libs.misc.composeBoM.material3
+    implementation libs.misc.composeBoM.uiToolingPreview
+    implementation libs.misc.compose.lifecycleRuntime
+    implementation libs.misc.compose.lifecycleViewmodel
+    implementation libs.misc.compose.activity
+    debugImplementation libs.misc.composeBoM.uiTooling
+    debugImplementation libs.misc.composeBoM.uiTestManifest
+    testImplementation libs.misc.composeBoM.uiTestJunit4
 
     // Lifecycle extension
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
