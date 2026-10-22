@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.mercadopago.android.point_smartapp_demo.app">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -9,6 +9,7 @@
         android:icon="@mipmap/point_smartapp_demo_app_ic_launcher"
         android:label="@string/point_smartapp_demo_app_name"
         android:supportsRtl="true"
+        tools:replace="android:theme"
         android:theme="@style/point_smartapp_demo_appTheme.main">
         <activity
             android:name=".view.camera.LaunchScannerActivity"

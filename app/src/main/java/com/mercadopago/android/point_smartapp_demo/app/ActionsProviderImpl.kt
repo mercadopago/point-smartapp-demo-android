@@ -13,8 +13,6 @@ import com.mercadopago.android.point_smartapp_demo.app.view.info.SmartInfoActivi
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherLegacyActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.PaymentStatusApprovedActivity
-import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterBitmapActivity
-import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterCustomTagActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.refunds.RefundsActivity
 
 object ActionsProviderImpl : ActionsProvider {
@@ -26,6 +24,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_payments,
                 action = HomeActions.LaunchActivity(PaymentLauncherLegacyActivity::class.java)
             ),
             ActionModel(
@@ -34,6 +33,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_payments,
                 action = HomeActions.LaunchActivity(PaymentLauncherActivity::class.java)
             ),
             ActionModel(
@@ -42,6 +42,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_payments,
                 action = HomeActions.LaunchActivity(PaymentStatusApprovedActivity::class.java)
             ),
             ActionModel(
@@ -50,6 +51,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_bluetooth
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_bluetooth,
                 action = HomeActions.LaunchActivity(BluetoothTestActivity::class.java)
             ),
             ActionModel(
@@ -58,6 +60,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_bluetooth
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_bluetooth,
                 action = HomeActions.LaunchBtUi(MPManager)
             ),
             ActionModel(
@@ -66,6 +69,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_payments,
                 action = HomeActions.LaunchActivity(RefundsActivity::class.java)
             ),
             ActionModel(
@@ -74,23 +78,17 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_black_ic_print
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_black_ic_print,
                 action = HomeActions.LaunchActivity(PrinterTestActivity::class.java)
             ),
             ActionModel(
-                title = context.getString(R.string.point_smartapp_demo_app_home_printer_bitmap),
+                title = context.getString(R.string.point_smartapp_demo_app_home_tile_point_printer),
                 icon = AppCompatResources.getDrawable(
                     context,
                     R.drawable.point_smartapp_demo_app_black_ic_print
                 ),
-                action = HomeActions.LaunchActivity(PrinterBitmapActivity::class.java)
-            ),
-            ActionModel(
-                title = context.getString(R.string.point_smartapp_demo_app_home_printer_custom_tag),
-                icon = AppCompatResources.getDrawable(
-                    context,
-                    R.drawable.point_smartapp_demo_app_black_ic_print
-                ),
-                action = HomeActions.LaunchActivity(PrinterCustomTagActivity::class.java)
+                iconRes = R.drawable.point_smartapp_demo_app_black_ic_print,
+                action = HomeActions.OpenPointPrinterOptions
             ),
             ActionModel(
                 title = context.getString(R.string.point_smartapp_demo_app_cammera_scanner_main_title),
@@ -98,6 +96,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_qr_code
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_qr_code,
                 action = HomeActions.LaunchActivity(LaunchScannerActivity::class.java)
             ),
             ActionModel(
@@ -106,6 +105,7 @@ object ActionsProviderImpl : ActionsProvider {
                     context,
                     R.drawable.point_smartapp_demo_app_ic_info
                 ),
+                iconRes = R.drawable.point_smartapp_demo_app_ic_info,
                 action = HomeActions.LaunchActivity(SmartInfoActivity::class.java)
             ),
         )
