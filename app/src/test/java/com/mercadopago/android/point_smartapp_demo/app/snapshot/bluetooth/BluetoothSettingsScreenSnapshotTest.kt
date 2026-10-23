@@ -48,7 +48,7 @@ class BluetoothSettingsScreenSnapshotTest {
         }
     }
 
-    private fun devicesState() = BluetoothSettingsState(enabled = true, hasSearched = true).discovered(
+    private fun devicesState() = BluetoothSettingsState(enabled = true, discovering = true, hasSearched = true).discovered(
         BluetoothDeviceModel(
             id = AVAILABLE_ADDRESS,
             address = AVAILABLE_ADDRESS,

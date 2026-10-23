@@ -131,7 +131,44 @@ class BluetoothSettingsStateTest {
         assertEquals(pending.pendingOperation, pending.pairedDevicesChanged(emptyList()).pendingOperation)
     }
 
-    private fun enabled() = BluetoothSettingsState(enabled = true)
+    @Test
+    fun endingDiscoveryRemovesFoundDevicesAndKeepsPairedDevices() {
+        val available = device()
+        val paired = device(OTHER_ADDRESS).copy(boundState = BluetoothDevice.BOND_BONDED)
+        val state = enabled().discovered(available).pairedDevicesChanged(listOf(paired)).endDiscovery()
+
+        assertFalse(state.discovering)
+        assertTrue(state.availableDevices.isEmpty())
+        assertEquals(listOf(paired), state.pairedDevices)
+        assertEquals(state, state.beginOperation(ADDRESS, BluetoothDeviceAction.PAIR))
+        assertEquals(state, state.discovered(available))
+    }
+
+    @Test
+    fun unpairedConnectionEventsDoNotRepopulateFoundDevices() {
+        val state = BluetoothSettingsState(enabled = true)
+
+        assertEquals(state, state.connectionChanged(device(), connected = false))
+    }
+
+    @Test
+    fun endingDiscoveryKeepsTheDeviceBeingPaired() {
+        val state = enabled().discovered(device()).discovered(device(OTHER_ADDRESS))
+            .beginOperation(ADDRESS, BluetoothDeviceAction.PAIR).endDiscovery()
+
+        assertEquals(setOf(ADDRESS), state.devices.keys)
+        assertEquals(ADDRESS, state.pendingOperation?.address)
+    }
+
+    @Test
+    fun failingAnOperationRemovesTheStaleDevice() {
+        val state = enabled().discovered(device()).beginOperation(ADDRESS, BluetoothDeviceAction.PAIR).failed()
+
+        assertTrue(state.availableDevices.isEmpty())
+        assertFalse(state.busy)
+    }
+
+    private fun enabled() = BluetoothSettingsState(enabled = true, discovering = true)
 
     private fun device(address: String = ADDRESS) = BluetoothDeviceModel(
         id = address,

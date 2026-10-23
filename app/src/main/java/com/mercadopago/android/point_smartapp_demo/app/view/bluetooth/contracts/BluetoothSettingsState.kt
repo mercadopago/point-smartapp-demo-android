@@ -29,7 +29,7 @@ internal data class BluetoothSettingsState(
         if (enabled) copy(enabled = true, changingPower = false) else BluetoothSettingsState()
 
     fun discovered(device: BluetoothDeviceModel): BluetoothSettingsState {
-        if (!enabled || device.address.isBlank()) return this
+        if (!enabled || !discovering || device.address.isBlank()) return this
         if (devices[device.address]?.boundState == BluetoothDevice.BOND_BONDED) return this
         return copy(devices = devices + (device.address to device))
     }
@@ -38,7 +38,9 @@ internal data class BluetoothSettingsState(
         if (!enabled) return this
         val pairedByAddress = paired.filter { it.address.isNotBlank() && it.boundState == BluetoothDevice.BOND_BONDED }.associateBy { it.address }
         val updated = copy(
-            devices = devices.filterValues { it.boundState != BluetoothDevice.BOND_BONDED } + pairedByAddress,
+            devices = devices.filterValues {
+                it.boundState != BluetoothDevice.BOND_BONDED && (discovering || it.address == pendingOperation?.address)
+            } + pairedByAddress,
             forgetConfirmationAddress = forgetConfirmationAddress?.takeIf { it in pairedByAddress },
         )
         val operation = pendingOperation ?: return updated
@@ -53,6 +55,7 @@ internal data class BluetoothSettingsState(
 
     fun connectionChanged(device: BluetoothDeviceModel, connected: Boolean): BluetoothSettingsState {
         if (!enabled || device.address.isBlank()) return this
+        if (device.address !in devices && device.boundState != BluetoothDevice.BOND_BONDED) return this
         val current = devices[device.address] ?: device
         return copy(devices = devices + (device.address to current.copy(isConnected = connected)))
     }
@@ -60,10 +63,12 @@ internal data class BluetoothSettingsState(
     fun beginOperation(address: String, action: BluetoothDeviceAction): BluetoothSettingsState {
         if (!enabled || busy) return this
         val device = devices[address] ?: return this
+        if (action == BluetoothDeviceAction.PAIR && !discovering) return this
         if ((device.boundState == BluetoothDevice.BOND_BONDED) != (action == BluetoothDeviceAction.FORGET)) return this
         return copy(
             discovering = false,
             pendingOperation = BluetoothDeviceOperation(address, action),
+            devices = devices.filterValues { it.boundState == BluetoothDevice.BOND_BONDED || it.address == address },
             forgetConfirmationAddress = null,
             message = null,
             isError = false,
@@ -102,10 +107,18 @@ internal data class BluetoothSettingsState(
         )
     }
 
+    fun endDiscovery() = copy(
+        discovering = false,
+        devices = devices.filterValues {
+            it.boundState == BluetoothDevice.BOND_BONDED || it.address == pendingOperation?.address
+        },
+    )
+
     fun failed(@StringRes message: Int = R.string.point_smartapp_demo_app_bluetooth_operation_failed) = copy(
         changingPower = false,
         discovering = false,
         pendingOperation = null,
+        devices = devices.filterValues { it.boundState == BluetoothDevice.BOND_BONDED },
         forgetConfirmationAddress = null,
         message = message,
         isError = true,

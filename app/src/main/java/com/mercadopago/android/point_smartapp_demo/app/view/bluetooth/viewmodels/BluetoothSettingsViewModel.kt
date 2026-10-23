@@ -29,18 +29,26 @@ internal class BluetoothSettingsViewModel : ViewModel() {
     private var operationTimeout: Job? = null
 
     fun start() {
-        if (started) return
-        started = true
-        bluetooth.connectObserver.registerObserver { response ->
-            viewModelScope.launch {
-                response.doIfSuccess { (device, connection) ->
-                    if (connection != BluetoothConnectionState.UNDEFINED) {
-                        _state.update { it.connectionChanged(device, connection == BluetoothConnectionState.CONNECTED) }
+        if (!started) {
+            started = true
+            bluetooth.connectObserver.registerObserver { response ->
+                viewModelScope.launch {
+                    response.doIfSuccess { (device, connection) ->
+                        if (connection != BluetoothConnectionState.UNDEFINED) {
+                            _state.update { it.connectionChanged(device, connection == BluetoothConnectionState.CONNECTED) }
+                        }
                     }
                 }
             }
         }
-        readPower()
+        if (!_state.value.busy) {
+            _state.update { it.endDiscovery() }
+            readPower()
+        }
+    }
+
+    fun stop() {
+        _state.update { it.endDiscovery() }
     }
 
     fun changePower(enabled: Boolean) {
@@ -75,13 +83,14 @@ internal class BluetoothSettingsViewModel : ViewModel() {
             isError = false,
         ) }
         refreshPairedDevices {
+            if (!_state.value.discovering || _state.value.busy) return@refreshPairedDevices
             bluetooth.discover.startDiscovery { response ->
                 viewModelScope.launch {
                     if (_state.value.enabled && _state.value.discovering) {
                         response.doIfSuccess { discovery ->
                             when (discovery.type) {
                                 BluetoothDiscoveryState.Type.STARTED -> Unit
-                                BluetoothDiscoveryState.Type.ENDED -> _state.update { it.copy(discovering = false) }
+                                BluetoothDiscoveryState.Type.ENDED -> _state.update { it.endDiscovery() }
                                 BluetoothDiscoveryState.Type.DEVICE_FOUND,
                                 BluetoothDiscoveryState.Type.DEVICE_CHANGE -> discovery.device?.let { device ->
                                     _state.update { it.discovered(device) }
@@ -117,14 +126,14 @@ internal class BluetoothSettingsViewModel : ViewModel() {
             delay(DEVICE_STATUS_CHECK_DELAY_MS)
             refreshPairedDevices()
             delay(DEVICE_OPERATION_TIMEOUT_MS - DEVICE_STATUS_CHECK_DELAY_MS)
-            if (_state.value.pendingOperation == operation) {
+            if (_state.value.pendingOperation === operation) {
                 _state.update { it.failed(R.string.point_smartapp_demo_app_bluetooth_operation_timeout) }
                 refreshPairedDevices()
             }
         }
         val callback: (MPResponse<Pair<BluetoothBondState, BluetoothDeviceModel>>) -> Unit = { response ->
             viewModelScope.launch {
-                if (_state.value.pendingOperation == operation) {
+                if (_state.value.pendingOperation === operation) {
                     response.doIfSuccess { (bond, device) ->
                         _state.update { it.bondChanged(bond, device) }
                     }.doIfError { _state.update { it.failed() } }
@@ -159,6 +168,6 @@ internal class BluetoothSettingsViewModel : ViewModel() {
 
     private companion object {
         const val DEVICE_STATUS_CHECK_DELAY_MS = 5_000L
-        const val DEVICE_OPERATION_TIMEOUT_MS = 60_000L
+        const val DEVICE_OPERATION_TIMEOUT_MS = 30_000L
     }
 }

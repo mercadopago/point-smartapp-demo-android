@@ -26,6 +26,15 @@ class BluetoothTestActivity : AppCompatActivity() {
                 onDismissMessage = viewModel::dismissMessage,
             )
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
         viewModel.start()
+    }
+
+    override fun onStop() {
+        viewModel.stop()
+        super.onStop()
     }
 }

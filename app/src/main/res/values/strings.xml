@@ -191,7 +191,7 @@
     <string name="point_smartapp_demo_app_bluetooth_pairing">Pairing…</string>
     <string name="point_smartapp_demo_app_bluetooth_forgetting">Forgetting…</string>
     <string name="point_smartapp_demo_app_bluetooth_paired_label">Paired</string>
-    <string name="point_smartapp_demo_app_bluetooth_available_label">Available</string>
+    <string name="point_smartapp_demo_app_bluetooth_available_label">Found</string>
     <string name="point_smartapp_demo_app_bluetooth_paired">Device paired.</string>
     <string name="point_smartapp_demo_app_bluetooth_forgotten">Device forgotten. Search again to pair it.</string>
     <string name="point_smartapp_demo_app_bluetooth_pairing_failed">Pairing was cancelled or failed. Search again to retry.</string>
@@ -199,6 +199,6 @@
     <string name="point_smartapp_demo_app_bluetooth_forget_title">Forget device?</string>
     <string name="point_smartapp_demo_app_bluetooth_forget_description">Remove %1$s from paired devices? You will need to pair it again to use it.</string>
     <string name="point_smartapp_demo_app_bluetooth_no_paired">No paired devices.</string>
-    <string name="point_smartapp_demo_app_bluetooth_no_available">No nearby devices found. Make the device discoverable and search again.</string>
+    <string name="point_smartapp_demo_app_bluetooth_no_available">Put the device in pairing mode and search for nearby devices.</string>
     <string name="point_smartapp_demo_app_bluetooth_disabled">Turn on Bluetooth to find and pair devices.</string>
 </resources>
