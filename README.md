@@ -20,6 +20,14 @@ The demo bundles the stable Integration SDK `7.3.1` AAR. Configure `withSingleSi
 
 The demo displays the full returned identity token (JWT) as selectable text on the SSO screen for inspection and screenshots. It clears the displayed token when a new request starts and does not log, decode or persist it, or create an integrator session. The SSO screen allows screenshots and screen recording. A real integration must establish the expected nonce with its trusted backend and send the token there to validate its signature, claims, and nonce binding and prevent replay. Screen recreation does not resume a pending request; the SDK rejects a second request while one is still running.
 
+## Payment status example
+
+The **Status** home action opens local and online queries side by side. Online queries use
+SDK 7.3.1's `OnlinePaymentStatusCallback`: `onSuccess` displays the public payment data,
+and `onError` handles `OnlinePaymentStatusErrorCode` values or displays the numeric code
+for other errors. Local queries retain the SDK's legacy response callback. Both flows
+allow another query after completion and permit screenshots.
+
 ## How to download the Third-Apps Integration Kit?
 
 To download the **Third-Apps Integration Kit**, navigate to the [Releases](https://github.com/mercadopago/point-smartapp-demo-android/releases) section. Choose the latest available version and access the assets to locate the *Third-Apps-integration-kit.zip*.
@@ -32,9 +40,10 @@ For additional details, check [the MainApp playbook](https://www.mercadopago.com
 
 ## Screenshot previews
 
-Paparazzi renders the production SSO screen without a device or backend. The five
-reference images cover initial, processing, waiting for authorization, JWT returned,
-and network error states using the N950 layout. Paparazzi saves the reference PNGs
+Paparazzi renders the production SSO and payment status screens without a device
+or backend. SSO covers initial, processing, waiting for authorization, JWT returned,
+and network error states. Payment status covers initial, loading, error, local result,
+and online result states. Both use the N950 layout. Paparazzi saves the reference PNGs
 at its default size of 500 × 1000 px.
 
 Requires Java 17 and Android SDK 34, using the existing project wrapper and SDK
