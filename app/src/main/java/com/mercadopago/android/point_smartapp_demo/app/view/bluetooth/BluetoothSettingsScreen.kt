@@ -3,9 +3,12 @@ package com.mercadopago.android.point_smartapp_demo.app.view.bluetooth
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
@@ -14,7 +17,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.key
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -43,36 +46,48 @@ internal fun BluetoothSettingsScreen(
     onCancelForget: () -> Unit,
     onDismissMessage: () -> Unit,
 ) {
-    DemoScreen(title = stringResource(R.string.point_smartapp_demo_app_bluetooth_title)) {
-        DemoSwitch(
-            label = stringResource(R.string.point_smartapp_demo_app_bluetooth),
-            selected = state.enabled,
-            onSelectedChange = onPowerChange,
-            enabled = !state.busy,
-        )
-        if (state.changingPower) DemoProgress(stringResource(R.string.point_smartapp_demo_app_bluetooth_changing_power))
-        state.message?.let { DemoMessage(stringResource(it), state.isError, onDismissMessage) }
-        if (state.enabled) {
-            DemoSecondaryButton(
-                text = stringResource(R.string.point_smartapp_demo_app_bluetooth_search),
-                onClick = onSearch,
-                enabled = !state.busy && !state.discovering,
-            )
-            if (state.discovering) DemoProgress(stringResource(R.string.point_smartapp_demo_app_bluetooth_searching))
-            DemoSectionTitle(stringResource(R.string.point_smartapp_demo_app_bluetooth_pair_devices_label))
-            if (state.pairedDevices.isEmpty()) Text(stringResource(R.string.point_smartapp_demo_app_bluetooth_no_paired))
-            state.pairedDevices.forEach { device ->
-                key(device.address) { BluetoothDeviceRow(device, state, paired = true, onAction = onForget) }
+    val pairedDevices = remember(state.devices) { state.pairedDevices }
+    val availableDevices = remember(state.devices) { state.availableDevices }
+    DemoScreen(title = stringResource(R.string.point_smartapp_demo_app_bluetooth_title), scrollable = false) {
+        LazyColumn(modifier = Modifier.fillMaxSize(), verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            item {
+                DemoSwitch(
+                    label = stringResource(R.string.point_smartapp_demo_app_bluetooth),
+                    selected = state.enabled,
+                    onSelectedChange = onPowerChange,
+                    enabled = !state.busy,
+                )
             }
-            DemoSectionTitle(stringResource(R.string.point_smartapp_demo_app_bluetooth_discovery_devices_label))
-            if (state.availableDevices.isEmpty() && state.hasSearched && !state.discovering) {
-                Text(stringResource(R.string.point_smartapp_demo_app_bluetooth_no_available))
+            if (state.changingPower) item {
+                DemoProgress(stringResource(R.string.point_smartapp_demo_app_bluetooth_changing_power))
             }
-            state.availableDevices.forEach { device ->
-                key(device.address) { BluetoothDeviceRow(device, state, paired = false, onAction = onPair) }
+            state.message?.let { message -> item { DemoMessage(stringResource(message), state.isError, onDismissMessage) } }
+            if (state.enabled) {
+                item {
+                    DemoSecondaryButton(
+                        text = stringResource(R.string.point_smartapp_demo_app_bluetooth_search),
+                        onClick = onSearch,
+                        enabled = !state.busy && !state.discovering,
+                    )
+                }
+                if (state.discovering) item {
+                    DemoProgress(stringResource(R.string.point_smartapp_demo_app_bluetooth_searching))
+                }
+                item { DemoSectionTitle(stringResource(R.string.point_smartapp_demo_app_bluetooth_pair_devices_label)) }
+                if (pairedDevices.isEmpty()) item { Text(stringResource(R.string.point_smartapp_demo_app_bluetooth_no_paired)) }
+                items(pairedDevices, key = { it.address }) { device ->
+                    BluetoothDeviceRow(device, state, paired = true, onAction = onForget)
+                }
+                item { DemoSectionTitle(stringResource(R.string.point_smartapp_demo_app_bluetooth_discovery_devices_label)) }
+                if (availableDevices.isEmpty() && state.hasSearched && !state.discovering) item {
+                    Text(stringResource(R.string.point_smartapp_demo_app_bluetooth_no_available))
+                }
+                items(availableDevices, key = { it.address }) { device ->
+                    BluetoothDeviceRow(device, state, paired = false, onAction = onPair)
+                }
+            } else if (!state.changingPower) item {
+                Text(stringResource(R.string.point_smartapp_demo_app_bluetooth_disabled))
             }
-        } else if (!state.changingPower) {
-            Text(stringResource(R.string.point_smartapp_demo_app_bluetooth_disabled))
         }
     }
     state.forgetConfirmationAddress?.let { address ->

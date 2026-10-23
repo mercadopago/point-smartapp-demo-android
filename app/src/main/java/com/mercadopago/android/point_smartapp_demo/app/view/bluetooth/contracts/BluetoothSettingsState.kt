@@ -37,10 +37,18 @@ internal data class BluetoothSettingsState(
     fun pairedDevicesChanged(paired: List<BluetoothDeviceModel>): BluetoothSettingsState {
         if (!enabled) return this
         val pairedByAddress = paired.filter { it.address.isNotBlank() && it.boundState == BluetoothDevice.BOND_BONDED }.associateBy { it.address }
-        return copy(
+        val updated = copy(
             devices = devices.filterValues { it.boundState != BluetoothDevice.BOND_BONDED } + pairedByAddress,
             forgetConfirmationAddress = forgetConfirmationAddress?.takeIf { it in pairedByAddress },
         )
+        val operation = pendingOperation ?: return updated
+        val pairedNow = operation.address in pairedByAddress
+        return when {
+            operation.action == BluetoothDeviceAction.PAIR && pairedNow -> updated.operationFinished(true)
+            operation.action == BluetoothDeviceAction.FORGET && !pairedNow ->
+                updated.copy(devices = updated.devices - operation.address).operationFinished(true)
+            else -> updated
+        }
     }
 
     fun connectionChanged(device: BluetoothDeviceModel, connected: Boolean): BluetoothSettingsState {

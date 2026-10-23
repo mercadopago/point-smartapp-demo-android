@@ -100,6 +100,37 @@ class BluetoothSettingsStateTest {
         assertEquals(BluetoothSettingsState(), BluetoothSettingsState().discovered(device()))
     }
 
+    @Test
+    fun pairedSnapshotFinishesPairingWhenTheFinalEventIsMissing() {
+        val device = device()
+        val state = enabled().discovered(device).beginOperation(ADDRESS, BluetoothDeviceAction.PAIR)
+            .pairedDevicesChanged(listOf(device.copy(boundState = BluetoothDevice.BOND_BONDED)))
+
+        assertNull(state.pendingOperation)
+        assertFalse(state.isError)
+        assertTrue(state.availableDevices.isEmpty())
+        assertEquals(ADDRESS, state.pairedDevices.single().address)
+        assertEquals(R.string.point_smartapp_demo_app_bluetooth_paired, state.message)
+    }
+
+    @Test
+    fun pairedSnapshotFinishesForgettingWhenTheFinalEventIsMissing() {
+        val paired = device().copy(boundState = BluetoothDevice.BOND_BONDED)
+        val state = enabled().pairedDevicesChanged(listOf(paired)).beginOperation(ADDRESS, BluetoothDeviceAction.FORGET)
+            .pairedDevicesChanged(emptyList())
+
+        assertNull(state.pendingOperation)
+        assertTrue(state.devices.isEmpty())
+        assertEquals(R.string.point_smartapp_demo_app_bluetooth_forgotten, state.message)
+    }
+
+    @Test
+    fun pairedSnapshotKeepsWaitingWhenPairingIsNotConfirmed() {
+        val pending = enabled().discovered(device()).beginOperation(ADDRESS, BluetoothDeviceAction.PAIR)
+
+        assertEquals(pending.pendingOperation, pending.pairedDevicesChanged(emptyList()).pendingOperation)
+    }
+
     private fun enabled() = BluetoothSettingsState(enabled = true)
 
     private fun device(address: String = ADDRESS) = BluetoothDeviceModel(

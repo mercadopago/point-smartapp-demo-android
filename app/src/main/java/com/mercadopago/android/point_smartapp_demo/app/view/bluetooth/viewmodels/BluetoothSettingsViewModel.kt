@@ -54,7 +54,7 @@ internal class BluetoothSettingsViewModel : ViewModel() {
             viewModelScope.launch {
                 response.doIfSuccess { enabled ->
                     _state.update { it.powerChanged(enabled) }
-                    if (enabled) search()
+                    if (enabled) refreshPairedDevices()
                 }.doIfError { _state.update { it.failed() } }
             }
         }
@@ -114,7 +114,9 @@ internal class BluetoothSettingsViewModel : ViewModel() {
         _state.update { it.beginOperation(address, action) }
         val operation = _state.value.pendingOperation ?: return
         operationTimeout = viewModelScope.launch {
-            delay(DEVICE_OPERATION_TIMEOUT_MS)
+            delay(DEVICE_STATUS_CHECK_DELAY_MS)
+            refreshPairedDevices()
+            delay(DEVICE_OPERATION_TIMEOUT_MS - DEVICE_STATUS_CHECK_DELAY_MS)
             if (_state.value.pendingOperation == operation) {
                 _state.update { it.failed(R.string.point_smartapp_demo_app_bluetooth_operation_timeout) }
                 refreshPairedDevices()
@@ -143,6 +145,7 @@ internal class BluetoothSettingsViewModel : ViewModel() {
                 if (_state.value.enabled && !_state.value.changingPower) {
                     response.doIfSuccess { devices ->
                         _state.update { it.pairedDevicesChanged(devices) }
+                        if (_state.value.pendingOperation == null) operationTimeout?.cancel()
                         onSuccess()
                     }.doIfError { _state.update { it.failed() } }
                 }
@@ -155,6 +158,7 @@ internal class BluetoothSettingsViewModel : ViewModel() {
     }
 
     private companion object {
+        const val DEVICE_STATUS_CHECK_DELAY_MS = 5_000L
         const val DEVICE_OPERATION_TIMEOUT_MS = 60_000L
     }
 }
