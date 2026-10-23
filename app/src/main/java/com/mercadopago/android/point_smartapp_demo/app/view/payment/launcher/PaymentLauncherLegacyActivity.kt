@@ -74,7 +74,10 @@ class PaymentLauncherLegacyActivity : AppCompatActivity() {
                 DemoField(
                     label = amountLabel,
                     value = amount,
-                    onValueChange = { amount = it },
+                    onValueChange = {
+                        amount = it
+                        amountError = null
+                    },
                     keyboardType = KeyboardType.Decimal,
                     errorMessage = amountError,
                 )
@@ -133,6 +136,8 @@ class PaymentLauncherLegacyActivity : AppCompatActivity() {
     }
 
     private fun launchPaymentFlow(amount: String?, description: String?) {
+        amountError = null
+        feedback = null
         when {
             amount.isNullOrEmpty() -> amountError = ERROR_INVALID_AMOUNT
             isCreditCard() -> checkInstallmentsAndProceed(amount, description)
