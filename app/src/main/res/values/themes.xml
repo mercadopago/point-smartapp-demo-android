@@ -1,6 +1,8 @@
 <resources>
+    <style name="point_smartapp_demo_appTheme.main" parent="point_smartapp_demo_appTheme.base" />
+
     <!-- Base application theme. -->
-    <style name="point_smartapp_demo_appTheme.main" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="point_smartapp_demo_appTheme.base" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
@@ -12,8 +14,7 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor">@android:color/white</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@android:color/white</item>
-        <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:navigationBarColor">@android:color/black</item>
         <!-- Customize your theme here. -->
         <item name="android:textColor">@color/primaryTextColor</item>
 
