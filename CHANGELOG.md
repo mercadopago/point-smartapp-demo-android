@@ -8,6 +8,10 @@
 ## Added
 - [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace
 
+# v7.3.1
+## Added
+- Update SDK to 7.3.1 and add the SSO demo.
+
 # v7.2.0
 ## Added
 - Update integration SDK to 7.2.0 for Integrator ID support

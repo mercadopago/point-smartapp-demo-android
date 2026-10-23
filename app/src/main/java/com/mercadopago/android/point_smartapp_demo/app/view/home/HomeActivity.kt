@@ -39,6 +39,7 @@ import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.Payme
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterBitmapActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.printer.PrinterCustomTagActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.refunds.RefundsActivity
+import com.mercadopago.android.point_smartapp_demo.app.view.sso.SingleSignOnActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
 import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoSecondaryButton
 import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
@@ -137,6 +138,10 @@ class HomeActivity : AppCompatActivity() {
         ).filter { it.tiles.isNotEmpty() }
 
         val standaloneTiles = listOfNotNull(
+            tile(
+                R.string.point_smartapp_demo_app_sso_title,
+                actionsByActivity[SingleSignOnActivity::class.java],
+            ),
             tile(
                 R.string.point_smartapp_demo_app_home_tile_camera_scanner,
                 actionsByActivity[LaunchScannerActivity::class.java],
