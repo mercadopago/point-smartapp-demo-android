@@ -12,7 +12,7 @@ import com.mercadopago.android.point_smartapp_demo.app.view.camera.LaunchScanner
 import com.mercadopago.android.point_smartapp_demo.app.view.info.SmartInfoActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.payment.launcher.PaymentLauncherLegacyActivity
-import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.PaymentStatusApprovedActivity
+import com.mercadopago.android.point_smartapp_demo.app.view.payment.result.PaymentStatusActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.refunds.RefundsActivity
 import com.mercadopago.android.point_smartapp_demo.app.view.sso.SingleSignOnActivity
 
@@ -44,7 +44,7 @@ object ActionsProviderImpl : ActionsProvider {
                     R.drawable.point_smartapp_demo_app_ic_payments
                 ),
                 iconRes = R.drawable.point_smartapp_demo_app_ic_payments,
-                action = HomeActions.LaunchActivity(PaymentStatusApprovedActivity::class.java)
+                action = HomeActions.LaunchActivity(PaymentStatusActivity::class.java)
             ),
             ActionModel(
                 title = context.getString(R.string.point_smartapp_demo_app_sso_title),

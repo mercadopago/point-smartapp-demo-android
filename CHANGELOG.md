@@ -11,7 +11,11 @@
 
 # v7.3.1
 ## Added
+- [ISPI-3971] Add local and online payment status queries.
 - Update SDK to 7.3.1 and add the SSO demo.
+
+# v7.3.0
+- Version not generated.
 
 # v7.2.0
 ## Added
