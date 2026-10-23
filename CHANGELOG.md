@@ -6,6 +6,7 @@
 - Remove the credential-protected internal Maven repository from the public demo build.
 
 ## Added
+- Add Paparazzi previews for the SSO screen.
 - [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace
 
 # v7.3.1

@@ -2,7 +2,6 @@ package com.mercadopago.android.point_smartapp_demo.app.view.sso
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -12,10 +11,6 @@ import com.mercadolibre.android.point_integration_sdk.nativesdk.sso.provider.Ide
 import com.mercadolibre.android.point_integration_sdk.nativesdk.sso.provider.SingleSignOnCallback
 import com.mercadolibre.android.point_integration_sdk.nativesdk.sso.provider.SingleSignOnStatus
 import com.mercadopago.android.point_smartapp_demo.app.R
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoInfoRow
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoMessage
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoPrimaryButton
-import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoScreen
 import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 import java.util.UUID
 
@@ -29,22 +24,13 @@ class SingleSignOnActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setDemoContent {
-            DemoScreen(title = getString(R.string.point_smartapp_demo_app_sso_title)) {
-                DemoPrimaryButton(
-                    text = getString(R.string.point_smartapp_demo_app_sso_request),
-                    onClick = ::requestIdentityToken,
-                    loading = loading,
-                )
-                statusMessage?.let { DemoMessage(message = it, isError = statusIsError) }
-                identityToken?.let { token ->
-                    SelectionContainer {
-                        DemoInfoRow(
-                            label = getString(R.string.point_smartapp_demo_app_sso_identity_token),
-                            value = token,
-                        )
-                    }
-                }
-            }
+            SingleSignOnScreen(
+                loading = loading,
+                statusMessage = statusMessage,
+                statusIsError = statusIsError,
+                identityToken = identityToken,
+                onRequestIdentityToken = ::requestIdentityToken,
+            )
         }
     }
 

@@ -29,3 +29,35 @@ Upon unzipping the file, you'll find the following files:
 - **demo-mainapp-X.X.X.apk** : A demo application enabling testing of all SDK functionalities.
 
 For additional details, check [the MainApp playbook](https://www.mercadopago.com.br/developers/es/docs/main-apps/landing)
+
+## Screenshot previews
+
+Paparazzi renders the production SSO screen without a device or backend. The five
+reference images cover initial, processing, waiting for authorization, JWT returned,
+and network error states using the N950 layout. Paparazzi saves the reference PNGs
+at its default size of 500 × 1000 px.
+
+Requires Java 17 and Android SDK 34, using the existing project wrapper and SDK
+configuration (`ANDROID_HOME` or `sdk.dir` in the root `local.properties`).
+
+```bash
+./gradlew recordSnapshots  # Generate or update reference PNGs after an intentional UI change
+./gradlew verifySnapshots  # Compare the current UI with the committed PNGs
+```
+
+- Reference PNGs: `app/src/test/snapshots/images/`.
+- HTML report: `app/build/reports/paparazzi/index.html`.
+- Visual differences: `app/build/paparazzi/failures/`.
+
+`./gradlew test` and `./gradlew check` also verify the screenshots. A difference
+fails verification; these tasks never accept changes to the reference PNGs.
+Generating a PR does not run these commands automatically.
+
+The tests live in `app/src/test/java/.../snapshot/`. `SnapshotConfiguration` shares
+the device dimensions and theme for future screens. Only `mainappDebug` runs the
+snapshots because both app flavors share the same UI. All added build dependencies
+resolve from public repositories; no internal repositories or credentials are needed.
+
+The JWT fixture is synthetic and has an invalid signature. Never replace it with a
+real token. These tests check appearance only; they do not exercise SDK requests or
+host authentication.

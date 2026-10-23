@@ -1,0 +1,27 @@
+apply plugin: 'app.cash.paparazzi'
+
+def snapshotVariant = 'MainappDebug'
+def snapshotTestTask = "test${snapshotVariant}UnitTest"
+
+tasks.register('recordSnapshots') {
+    group = 'verification'
+    description = 'Generate demo screenshot PNGs.'
+    dependsOn "recordPaparazzi${snapshotVariant}"
+}
+
+tasks.register('verifySnapshots') {
+    group = 'verification'
+    description = 'Compare demo screenshots with the saved PNGs.'
+    dependsOn "verifyPaparazzi${snapshotVariant}"
+}
+
+tasks.matching { it.name == 'test' || it.name == 'check' }.configureEach {
+    dependsOn 'verifySnapshots'
+}
+
+tasks.withType(Test).configureEach {
+    if (name != snapshotTestTask) {
+        filter.excludeTestsMatching('*.snapshot.*')
+        filter.failOnNoMatchingTests = false
+    }
+}
