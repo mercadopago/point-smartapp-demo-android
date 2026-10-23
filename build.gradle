@@ -1,6 +1,11 @@
 buildscript {
     dependencies {
         classpath "org.jacoco:org.jacoco.core:$jacocoVersion"
+        classpath("app.cash.paparazzi:paparazzi-gradle-plugin:$paparazziVersion") {
+            exclude group: 'com.android.tools.build'
+            exclude group: 'com.android.tools'
+            exclude group: 'org.jetbrains.kotlin'
+        }
     }
 }
 plugins {

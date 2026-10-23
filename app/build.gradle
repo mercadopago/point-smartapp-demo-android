@@ -3,6 +3,7 @@ apply from: "$rootDir/gradle/android-app.gradle"
 apply from: "$rootDir/gradle/dexcount.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'jacoco'
+apply from: rootProject.file('gradle/paparazzi.gradle')
 apply from: rootProject.file('jacoco.gradle')
 
 def keystorePropertiesFile = file("keystore.properties")
