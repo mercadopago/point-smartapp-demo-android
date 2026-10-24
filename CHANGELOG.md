@@ -1,4 +1,7 @@
 # Unreleased
+## Fixed
+- Fix Bluetooth device lists, pairing feedback, and stale payment errors.
+
 ## Changed
 - Migrate demo screens to Jetpack Compose while retaining the existing Point integration SDK.
 - Group Home actions by capability, combine Point printer options, and add a circular device image.

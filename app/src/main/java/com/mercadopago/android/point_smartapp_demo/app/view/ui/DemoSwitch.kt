@@ -16,15 +16,16 @@ internal fun DemoSwitch(
     label: String,
     selected: Boolean,
     onSelectedChange: (Boolean) -> Unit,
+    enabled: Boolean = true,
 ) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .toggleable(value = selected, role = Role.Switch, onValueChange = onSelectedChange),
+            .toggleable(value = selected, enabled = enabled, role = Role.Switch, onValueChange = onSelectedChange),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Text(text = label, modifier = Modifier.weight(1f))
-        Switch(checked = selected, onCheckedChange = null)
+        Switch(checked = selected, enabled = enabled, onCheckedChange = null)
     }
 }

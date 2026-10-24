@@ -80,7 +80,10 @@ class PaymentLauncherActivity : AppCompatActivity() {
                 DemoField(
                     label = amountLabel,
                     value = amount,
-                    onValueChange = { amount = it },
+                    onValueChange = {
+                        amount = it
+                        amountError = null
+                    },
                     keyboardType = KeyboardType.Decimal,
                     errorMessage = amountError,
                 )
@@ -144,13 +147,12 @@ class PaymentLauncherActivity : AppCompatActivity() {
     }
 
     private fun launchPaymentFlow(amount: String?, description: String?, externalReference: String?) {
+        amountError = null
+        feedback = null
         when {
             amount.isNullOrEmpty() -> amountError = ERROR_INVALID_AMOUNT
             isCreditCard() -> checkInstallmentsAndProceed(amount, description, externalReference)
-            else -> {
-                amountError = null
-                launchPaymentFlowIntent(amount, description, installments = null, externalReference = externalReference)
-            }
+            else -> launchPaymentFlowIntent(amount, description, installments = null, externalReference = externalReference)
         }
     }
 

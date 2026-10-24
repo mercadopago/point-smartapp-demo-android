@@ -182,4 +182,23 @@
     <string name="point_smartapp_demo_app_sso_identity_token">Identity token (JWT)</string>
     <string name="point_smartapp_demo_app_sso_success">Identity token received</string>
     <string name="point_smartapp_demo_app_sso_error">SSO failed (code: %1$d): %2$s</string>
+    <string name="point_smartapp_demo_app_bluetooth_search">Search for devices</string>
+    <string name="point_smartapp_demo_app_bluetooth_searching">Searching for nearby devices</string>
+    <string name="point_smartapp_demo_app_bluetooth_changing_power">Updating Bluetooth</string>
+    <string name="point_smartapp_demo_app_bluetooth_pair">Pair</string>
+    <string name="point_smartapp_demo_app_bluetooth_forget">Forget</string>
+    <string name="point_smartapp_demo_app_bluetooth_cancel">Cancel</string>
+    <string name="point_smartapp_demo_app_bluetooth_pairing">Pairing…</string>
+    <string name="point_smartapp_demo_app_bluetooth_forgetting">Forgetting…</string>
+    <string name="point_smartapp_demo_app_bluetooth_paired_label">Paired</string>
+    <string name="point_smartapp_demo_app_bluetooth_available_label">Found</string>
+    <string name="point_smartapp_demo_app_bluetooth_paired">Device paired.</string>
+    <string name="point_smartapp_demo_app_bluetooth_forgotten">Device forgotten. Search again to pair it.</string>
+    <string name="point_smartapp_demo_app_bluetooth_pairing_failed">Pairing was cancelled or failed. Search again to retry.</string>
+    <string name="point_smartapp_demo_app_bluetooth_operation_timeout">The operation timed out. Check Bluetooth and try again.</string>
+    <string name="point_smartapp_demo_app_bluetooth_forget_title">Forget device?</string>
+    <string name="point_smartapp_demo_app_bluetooth_forget_description">Remove %1$s from paired devices? You will need to pair it again to use it.</string>
+    <string name="point_smartapp_demo_app_bluetooth_no_paired">No paired devices.</string>
+    <string name="point_smartapp_demo_app_bluetooth_no_available">Put the device in pairing mode and search for nearby devices.</string>
+    <string name="point_smartapp_demo_app_bluetooth_disabled">Turn on Bluetooth to find and pair devices.</string>
 </resources>
