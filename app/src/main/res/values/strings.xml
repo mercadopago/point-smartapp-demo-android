@@ -77,10 +77,11 @@
 
     <!-- Print   -->
     <string name="point_smartapp_demo_app_home_printer_bitmap">Point printer · Image</string>
-    <string name="point_smartapp_demo_app_home_descption_printer_bitmap">Print a test image with Point printer.</string>
+    <string name="point_smartapp_demo_app_home_descption_printer_bitmap">Print a demo receipt with an image and text.</string>
     <string name="point_smartapp_demo_app_home_result_successful_description_printer_bitmap">%s printing</string>
     <string name="point_smartapp_demo_app_home_result_failure_description_printer_bitmap">Printing failed for this reason: %s</string>
-    <string name="point_smartapp_demo_app_text_button_printer_bitmap">Print image</string>
+    <string name="point_smartapp_demo_app_text_button_printer_bitmap">Print receipt</string>
+    <string name="point_smartapp_demo_app_receipt_load_failed">Could not load the demo receipt.</string>
 
     <!-- custom tag -->
     <string name="point_smartapp_demo_app_home_printer_custom_tag">Point printer · Custom Tags</string>

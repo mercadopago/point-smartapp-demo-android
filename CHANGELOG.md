@@ -1,28 +1,25 @@
 # Unreleased
-## Fixed
-- Fix Bluetooth device lists, pairing feedback, and stale payment errors.
-
-## Changed
-- Migrate demo screens to Jetpack Compose while retaining the existing Point integration SDK.
-- Group Home actions by capability, combine Point printer options, and add a circular device image.
-- Add Compose dependencies with Kotlin 1.8.10 and compile SDK 34, retaining AGP 7.4.0, Gradle 7.5, and Java 8 bytecode targets.
-- Remove the credential-protected internal Maven repository from the public demo build.
-
-## Added
-- Add Paparazzi previews for the SSO screen.
-- [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace
 
 # v7.3.1
 ## Added
-- [ISPI-3971] Add local and online payment status queries.
 - Update SDK to 7.3.1 and add the SSO demo.
+- [ISPI-3971] Add local and online payment status queries.
+- Add Paparazzi previews for the SSO screen.
+
+## Changed
+- Migrate demo screens to Compose, reorganize Home, and remove the internal Maven repository.
+- Update the demo client ID and bitmap receipt.
+
+## Fixed
+- Fix Bluetooth device lists, pairing feedback, and stale payment errors.
 
 # v7.3.0
 - Version not generated.
 
 # v7.2.0
 ## Added
-- Update integration SDK to 7.2.0 for Integrator ID support
+- Update integration SDK to 7.2.0 for Integrator ID support.
+- [ISPI-3067] Migrate point-mainapp-demo to point-smartapp-demo under MercadoPago namespace.
 
 # v7.1.0
 ## Added
