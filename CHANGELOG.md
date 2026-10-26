@@ -3,6 +3,7 @@
 - Fix Bluetooth device lists, pairing feedback, and stale payment errors.
 
 ## Changed
+- Update the demo client ID and bitmap receipt.
 - Migrate demo screens to Jetpack Compose while retaining the existing Point integration SDK.
 - Group Home actions by capability, combine Point printer options, and add a circular device image.
 - Add Compose dependencies with Kotlin 1.8.10 and compile SDK 34, retaining AGP 7.4.0, Gradle 7.5, and Java 8 bytecode targets.
