@@ -11,11 +11,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
-import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.MPResponse
 import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.ResponseStatus
-import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundRequest
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundResponse
+import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
+import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.GenericErrorCode
 import com.mercadopago.android.point_smartapp_demo.app.R
 import com.mercadopago.android.point_smartapp_demo.app.util.hideKeyboard
 import com.mercadopago.android.point_smartapp_demo.app.view.ui.DemoFeedback
@@ -28,7 +28,6 @@ import com.mercadopago.android.point_smartapp_demo.app.view.ui.setDemoContent
 class RefundsActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<RefundsViewModel>()
-    private val sdkRefunds by lazy { MPManager.refunds }
     private var selectedTab by mutableStateOf(0)
 
     // Existing public-API example.
@@ -158,17 +157,21 @@ class RefundsActivity : AppCompatActivity() {
                 hideKeyboard()
                 sdkFeedback = null
                 sdkLoading = true
-                sdkRefunds.refund(input.request) { response -> runOnUiThread { renderSdkResponse(response) } }
+                viewModel.performSdkRefund(input.request)
             }
         }
     }
 
     private fun renderSdkResponse(response: MPResponse<RefundResponse>) {
         if (isFinishing || isDestroyed) return
-        sdkLoading = false
         val result = response.data
         if (response.status != ResponseStatus.SUCCESS || result == null) {
-            sdkFeedback = DemoFeedback(getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error), true)
+            val message = if ((response.error as? SDKException)?.code == GenericErrorCode.NOT_SUPPORTED) {
+                getString(R.string.point_smartapp_demo_app_refund_sdk_not_supported)
+            } else {
+                getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error)
+            }
+            sdkFeedback = DemoFeedback(message, true)
             return
         }
         sdkFeedback = DemoFeedback(
@@ -185,6 +188,8 @@ class RefundsActivity : AppCompatActivity() {
     }
 
     private fun setupObservers() {
+        viewModel.sdkLoading.observe(this) { sdkLoading = it }
+        viewModel.sdkResult.observe(this) { response -> response?.let(::renderSdkResponse) }
         viewModel.successResult.observe(this) { result ->
             feedback = DemoFeedback(getString(R.string.point_smartapp_demo_app_lab_refund_result_text, result))
         }
