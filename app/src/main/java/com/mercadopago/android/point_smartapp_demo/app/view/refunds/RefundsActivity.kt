@@ -11,8 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
-import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.MPResponse
-import com.mercadolibre.android.point_integration_sdk.nativesdk.message.utils.ResponseStatus
+import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundException
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundResponse
 import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
 import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.GenericErrorCode
@@ -162,18 +161,30 @@ class RefundsActivity : AppCompatActivity() {
         }
     }
 
-    private fun renderSdkResponse(response: MPResponse<RefundResponse>) {
+    private fun renderSdkEvent(event: SdkRefundEvent) {
         if (isFinishing || isDestroyed) return
-        val result = response.data
-        if (response.status != ResponseStatus.SUCCESS || result == null) {
-            val message = if ((response.error as? SDKException)?.code == GenericErrorCode.NOT_SUPPORTED) {
-                getString(R.string.point_smartapp_demo_app_refund_sdk_not_supported)
-            } else {
-                getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error)
+        when (event) {
+            is SdkRefundEvent.Progress -> {
+                sdkFeedback = DemoFeedback(getString(R.string.point_smartapp_demo_app_refund_sdk_processing))
             }
-            sdkFeedback = DemoFeedback(message, true)
-            return
+            is SdkRefundEvent.Success -> renderSdkResponse(event.response, isError = false)
+            is SdkRefundEvent.Error -> {
+                val refundResponse = (event.error as? RefundException)?.response
+                if (refundResponse != null) {
+                    renderSdkResponse(refundResponse, isError = true)
+                } else {
+                    val message = if (event.error.code == GenericErrorCode.NOT_SUPPORTED) {
+                        getString(R.string.point_smartapp_demo_app_refund_sdk_not_supported)
+                    } else {
+                        getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error)
+                    }
+                    sdkFeedback = DemoFeedback(message, isError = true)
+                }
+            }
         }
+    }
+
+    private fun renderSdkResponse(result: RefundResponse, isError: Boolean) {
         sdkFeedback = DemoFeedback(
             getString(
                 R.string.point_smartapp_demo_app_refund_sdk_result,
@@ -183,13 +194,13 @@ class RefundsActivity : AppCompatActivity() {
                 result.idempotencyKey ?: getString(R.string.point_smartapp_demo_app_payment_status_not_available),
                 result.errorCode ?: getString(R.string.point_smartapp_demo_app_payment_status_not_available),
             ),
-            isError = result.status != com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundStatus.APPROVED,
+            isError = isError,
         )
     }
 
     private fun setupObservers() {
         viewModel.sdkLoading.observe(this) { sdkLoading = it }
-        viewModel.sdkResult.observe(this) { response -> response?.let(::renderSdkResponse) }
+        viewModel.sdkResult.observe(this) { response -> response?.let(::renderSdkEvent) }
         viewModel.successResult.observe(this) { result ->
             feedback = DemoFeedback(getString(R.string.point_smartapp_demo_app_lab_refund_result_text, result))
         }

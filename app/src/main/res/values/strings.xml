@@ -64,7 +64,7 @@
 
     <!-- Refunds -->
     <string name="point_smartapp_demo_app_refund_tab_api">Public API</string>
-    <string name="point_smartapp_demo_app_refund_tab_sdk">Integration SDK</string>
+    <string name="point_smartapp_demo_app_refund_tab_sdk">Refund SDK</string>
     <string name="point_smartapp_demo_app_refund_sdk_description">Leave amount blank for a total refund, or enter an amount for a partial refund. The idempotency key is optional.</string>
     <string name="point_smartapp_demo_app_refund_sdk_amount">Amount (optional)</string>
     <string name="point_smartapp_demo_app_refund_sdk_key">Idempotency key (optional)</string>
@@ -72,6 +72,7 @@
     <string name="point_smartapp_demo_app_refund_sdk_invalid_amount">Enter a positive amount, or leave the field blank for a total refund.</string>
     <string name="point_smartapp_demo_app_refund_sdk_invalid_key">The idempotency key cannot contain only spaces.</string>
     <string name="point_smartapp_demo_app_refund_sdk_not_supported">La versión instalada de Point no admite devoluciones mediante el SDK.</string>
+    <string name="point_smartapp_demo_app_refund_sdk_processing">Procesando devolución…</string>
     <string name="point_smartapp_demo_app_refund_sdk_transport_error">The SDK could not obtain a refund response.</string>
     <string name="point_smartapp_demo_app_refund_sdk_result">Status: %1$s\nRefund ID: %2$s\nAmount: %3$s\nIdempotency key: %4$s\nError code: %5$s</string>
     <string name="point_smartapp_demo_app_button_refunds">Refunds UI</string>
