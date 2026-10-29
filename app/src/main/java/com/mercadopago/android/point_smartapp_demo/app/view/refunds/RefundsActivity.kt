@@ -11,6 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
+import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundErrorCode
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundException
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundResponse
 import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
@@ -172,11 +173,18 @@ class RefundsActivity : AppCompatActivity() {
                 val refundResponse = (event.error as? RefundException)?.response
                 if (refundResponse != null) {
                     renderSdkResponse(refundResponse, isError = true)
+                    if (event.error.code == RefundErrorCode.RESULT_TIMEOUT) {
+                        sdkFeedback = DemoFeedback(
+                            sdkFeedback?.message.orEmpty() + "\n" +
+                                getString(R.string.point_smartapp_demo_app_refund_sdk_result_timeout),
+                            isError = true,
+                        )
+                    }
                 } else {
-                    val message = if (event.error.code == GenericErrorCode.NOT_SUPPORTED) {
-                        getString(R.string.point_smartapp_demo_app_refund_sdk_not_supported)
-                    } else {
-                        getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error)
+                    val message = when (event.error.code) {
+                        GenericErrorCode.NOT_SUPPORTED -> getString(R.string.point_smartapp_demo_app_refund_sdk_not_supported)
+                        RefundErrorCode.RESULT_TIMEOUT -> getString(R.string.point_smartapp_demo_app_refund_sdk_result_timeout)
+                        else -> getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error)
                     }
                     sdkFeedback = DemoFeedback(message, isError = true)
                 }

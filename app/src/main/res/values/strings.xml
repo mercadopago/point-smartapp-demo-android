@@ -73,6 +73,7 @@
     <string name="point_smartapp_demo_app_refund_sdk_invalid_key">The idempotency key cannot contain only spaces.</string>
     <string name="point_smartapp_demo_app_refund_sdk_not_supported">La versión instalada de Point no admite devoluciones mediante el SDK.</string>
     <string name="point_smartapp_demo_app_refund_sdk_processing">Procesando devolución…</string>
+    <string name="point_smartapp_demo_app_refund_sdk_result_timeout">Resultado desconocido. Consulta la devolución antes de reintentar y usa la misma clave de idempotencia si la tienes.</string>
     <string name="point_smartapp_demo_app_refund_sdk_transport_error">The SDK could not obtain a refund response.</string>
     <string name="point_smartapp_demo_app_refund_sdk_result">Status: %1$s\nRefund ID: %2$s\nAmount: %3$s\nIdempotency key: %4$s\nError code: %5$s</string>
     <string name="point_smartapp_demo_app_button_refunds">Refunds UI</string>
