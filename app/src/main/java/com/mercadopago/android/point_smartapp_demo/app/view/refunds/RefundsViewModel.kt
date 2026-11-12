@@ -2,7 +2,7 @@ package com.mercadopago.android.point_smartapp_demo.app.view.refunds
 
 import androidx.lifecycle.LiveData
 import com.mercadolibre.android.point_integration_sdk.nativesdk.MPManager
-import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
+import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundError
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundCallback
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundProgressStatus
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundRequest
@@ -44,7 +44,7 @@ class RefundsViewModel : ViewModel() {
                 }
             }
 
-            override fun onError(error: SDKException) {
+            override fun onError(error: RefundError) {
                 owner.get()?.let { viewModel ->
                     viewModel._sdkLoading.postValue(false)
                     viewModel._sdkResult.postValue(SdkRefundEvent.Error(error))

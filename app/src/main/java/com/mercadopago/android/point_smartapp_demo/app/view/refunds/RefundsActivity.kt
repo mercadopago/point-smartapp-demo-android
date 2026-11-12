@@ -12,9 +12,9 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.text.input.KeyboardType
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundErrorCode
-import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundException
+import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundError
+import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundStatus
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundResponse
-import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
 import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.GenericErrorCode
 import com.mercadopago.android.point_smartapp_demo.app.R
 import com.mercadopago.android.point_smartapp_demo.app.util.hideKeyboard
@@ -168,42 +168,50 @@ class RefundsActivity : AppCompatActivity() {
             is SdkRefundEvent.Progress -> {
                 sdkFeedback = DemoFeedback(getString(R.string.point_smartapp_demo_app_refund_sdk_processing))
             }
-            is SdkRefundEvent.Success -> renderSdkResponse(event.response, isError = false)
-            is SdkRefundEvent.Error -> {
-                val refundResponse = (event.error as? RefundException)?.response
-                if (refundResponse != null) {
-                    renderSdkResponse(refundResponse, isError = true)
-                    if (event.error.code == RefundErrorCode.RESULT_TIMEOUT) {
-                        sdkFeedback = DemoFeedback(
-                            sdkFeedback?.message.orEmpty() + "\n" +
-                                getString(R.string.point_smartapp_demo_app_refund_sdk_result_timeout),
-                            isError = true,
-                        )
-                    }
-                } else {
-                    val message = when (event.error.code) {
-                        GenericErrorCode.NOT_SUPPORTED -> getString(R.string.point_smartapp_demo_app_refund_sdk_not_supported)
-                        RefundErrorCode.RESULT_TIMEOUT -> getString(R.string.point_smartapp_demo_app_refund_sdk_result_timeout)
-                        else -> getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error)
-                    }
-                    sdkFeedback = DemoFeedback(message, isError = true)
-                }
-            }
+            is SdkRefundEvent.Success -> renderSdkResponse(event.response)
+            is SdkRefundEvent.Error -> renderSdkError(event.error)
         }
     }
 
-    private fun renderSdkResponse(result: RefundResponse, isError: Boolean) {
+    private fun renderSdkResponse(result: RefundResponse) {
+        val unavailable = getString(R.string.point_smartapp_demo_app_payment_status_not_available)
         sdkFeedback = DemoFeedback(
             getString(
                 R.string.point_smartapp_demo_app_refund_sdk_result,
-                result.status.name,
-                result.refundId ?: getString(R.string.point_smartapp_demo_app_payment_status_not_available),
-                result.amount?.toPlainString() ?: getString(R.string.point_smartapp_demo_app_payment_status_not_available),
-                result.idempotencyKey ?: getString(R.string.point_smartapp_demo_app_payment_status_not_available),
-                result.errorCode ?: getString(R.string.point_smartapp_demo_app_payment_status_not_available),
+                RefundStatus.APPROVED.name,
+                result.refundId ?: unavailable,
+                result.amount?.toPlainString() ?: unavailable,
+                result.idempotencyKey ?: unavailable,
+                unavailable,
             ),
-            isError = isError,
         )
+    }
+
+    private fun renderSdkError(error: RefundError) {
+        val unavailable = getString(R.string.point_smartapp_demo_app_payment_status_not_available)
+        val hostStatus = error.status
+        val message = if (hostStatus != null) {
+            getString(
+                R.string.point_smartapp_demo_app_refund_sdk_result,
+                hostStatus.name,
+                error.refundId ?: unavailable,
+                unavailable,
+                error.idempotencyKey ?: unavailable,
+                error.hostErrorCode ?: unavailable,
+            )
+        } else {
+            when (error.code) {
+                GenericErrorCode.NOT_SUPPORTED -> getString(R.string.point_smartapp_demo_app_refund_sdk_not_supported)
+                RefundErrorCode.RESULT_TIMEOUT -> getString(R.string.point_smartapp_demo_app_refund_sdk_result_timeout)
+                else -> getString(R.string.point_smartapp_demo_app_refund_sdk_transport_error)
+            }
+        }
+        val displayMessage = if (hostStatus != null && error.code == RefundErrorCode.RESULT_TIMEOUT) {
+            message + "\n" + getString(R.string.point_smartapp_demo_app_refund_sdk_result_timeout)
+        } else {
+            message
+        }
+        sdkFeedback = DemoFeedback(displayMessage, isError = true)
     }
 
     private fun setupObservers() {

@@ -3,7 +3,7 @@ package com.mercadopago.android.point_smartapp_demo.app.view.refunds
 import androidx.arch.core.executor.ArchTaskExecutor
 import androidx.arch.core.executor.TaskExecutor
 import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.GenericErrorCode
-import com.mercadolibre.android.point_integration_sdk.nativesdk.exception.SDKException
+import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundError
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundErrorCode
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundCallback
 import com.mercadolibre.android.point_integration_sdk.nativesdk.refund.provider.RefundProgressStatus
@@ -40,7 +40,7 @@ class RefundsViewModelTest {
     @Test
     fun refundEmitsProgressAndSuccessAndRestoresAvailability() {
         val request = RefundRequest("123")
-        val response = RefundResponse(RefundStatus.APPROVED, refundId = "456")
+        val response = RefundResponse(refundId = "456")
         viewModel.performSdkRefund(request)
         assertTrue(viewModel.sdkLoading.value == true)
         refunds.callback.onProgress(RefundProgressStatus.PROCESSING)
@@ -52,7 +52,7 @@ class RefundsViewModelTest {
 
     @Test
     fun unsupportedHostIsSurfacedAsError() {
-        val error = SDKException(GenericErrorCode.NOT_SUPPORTED, "not supported")
+        val error = RefundError(GenericErrorCode.NOT_SUPPORTED, "not supported")
         viewModel.performSdkRefund(RefundRequest("123"))
         refunds.callback.onError(error)
         assertFalse(viewModel.sdkLoading.value == true)
@@ -61,13 +61,32 @@ class RefundsViewModelTest {
 
     @Test
     fun timeoutIsSurfacedAsUnknownOutcome() {
-        val error = SDKException(RefundErrorCode.RESULT_TIMEOUT, "outcome unknown")
+        val error = RefundError(RefundErrorCode.RESULT_TIMEOUT, "outcome unknown")
         viewModel.performSdkRefund(RefundRequest("123"))
 
         refunds.callback.onError(error)
 
         assertFalse(viewModel.sdkLoading.value == true)
         assertEquals(RefundErrorCode.RESULT_TIMEOUT, (viewModel.sdkResult.value as SdkRefundEvent.Error).error.code)
+    }
+
+    @Test
+    fun hostErrorPreservesGeneratedKey() {
+        val error = RefundError(
+            code = RefundErrorCode.RESULT_TIMEOUT,
+            message = "outcome unknown",
+            status = RefundStatus.ERROR,
+            idempotencyKey = "host-generated-key",
+            hostErrorCode = "RESULT_TIMEOUT",
+        )
+        viewModel.performSdkRefund(RefundRequest("123"))
+
+        refunds.callback.onError(error)
+
+        val result = (viewModel.sdkResult.value as SdkRefundEvent.Error).error
+        assertEquals("host-generated-key", result.idempotencyKey)
+        assertEquals(RefundStatus.ERROR, result.status)
+        assertFalse(viewModel.sdkLoading.value == true)
     }
 
     @Test
