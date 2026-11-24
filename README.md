@@ -19,7 +19,14 @@ If you use coding agents in your app repository, pin the release URL, tag, assoc
 
 ## Find the kit and its contents
 
-Start with the selected release’s notes and **Assets**. Follow the published links for the kit and use its guide or manifest, when provided, to locate each component. A release may package components together, publish them as separate assets, or link to them from the release notes. If you cannot identify the SDK, documentation, or demo for the selected release, verify the reference before proceeding.
+In the selected release’s **Assets**, download and extract `Third-Apps-integration-kit-<version>.zip`. To download it with the GitHub CLI, replace `<release-tag>` with the tag you selected.
+
+```bash
+gh release download '<release-tag>' --repo mercadopago/point-smartapp-demo-android \
+  --pattern 'Third-Apps-integration-kit-*.zip'
+```
+
+Use the release notes and any guide or manifest included in the kit to locate each component. The kit contents and installation steps depend on the selected release. If you cannot identify its SDK, documentation, or demo, verify the reference before proceeding.
 
 | Component | How to use it |
 | --- | --- |
