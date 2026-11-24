@@ -1,6 +1,6 @@
 # Point SmartApp Android Demo
 
-This Android project shows how MainApp and MiniApp integrations use the Point Smart SDK to work with Mercado Pago Point. The demo includes payment and status flows, printing, QR and barcode scanning, Bluetooth, and terminal information. Start with the published kit to run the demo or build your first integration.
+This Android project shows how MainApp and MiniApp integrations use the Point Smart SDK to work with Mercado Pago Point. Start with the published kit to run the demo and find the examples available for your SDK version.
 
 ## Find the published SDK and its release branch
 
@@ -53,10 +53,10 @@ If the kit includes Smart Sandbox, follow the steps below. For a kit without San
    ```
 
 3. Open **Smart Sandbox**, go to **Settings**, select the site, and tap **Save**.
-4. Open the demo from Android's app launcher. Start a payment from the demo. Use a site, amount, and payment method supported by the bundled Sandbox guide. When Sandbox opens, choose an approved result, review it, and send it back to the demo.
-5. Check that the demo receives the result and regains control. Repeat with a rejection and a cancellation. To test payment status, query from the same demo APK that created the payment and use the reference required by the SDK API.
+4. Open the demo from Android’s app launcher. Choose a flow documented in the bundled Sandbox guide and follow the setup for that flow. Trigger the operation from the demo and return the simulated result from Sandbox.
+5. Verify that the demo receives and handles the result. Repeat for the error and cancellation cases documented for the operation.
 
-Sandbox simulates payments and supported device responses. Test physical card acceptance, Bluetooth, the integrated printer, and camera behavior on a compatible Point terminal in the approved test environment before releasing your integration.
+Test any behavior that depends on physical hardware or terminal services on a compatible Point device in the approved test environment.
 
 ## Build your integration with the SDK
 
@@ -69,65 +69,12 @@ Sandbox simulates payments and supported device responses. Test physical card ac
    }
    ```
 
-3. Build the configuration with `MPConfigBuilder` and your integration's client ID. Call `MPManager.initialize` from your `Application.onCreate` and enable the capabilities required by your flow with the options documented for the AAR. Look for `MPManager.initialize` in the demo source at the selected tag.
-4. Start with one operation. In the demo source at the selected tag, look for `MPManager.paymentFlow` to see how the demo builds and submits the payment request. Use the public callbacks to handle approval, rejection, and cancellation and return control to your app. Use the demo menu and the bundled SDK reference to find examples for other capabilities.
-5. Repeat the first flow with your app in the test environment for the selected release. Check the callback and the data that your app receives. Use the SDK documentation from the same release to verify the request fields, types, and results you depend on.
+3. Use the SDK documentation and the demo source at the selected tag to configure and initialize the SDK with your app’s assigned credentials.
+4. Start with one operation your integration needs. Find its example in the demo at the selected tag and confirm its public request types, callbacks, and error handling in the SDK documentation from the kit.
+5. Repeat the first flow with your app in the test environment for the selected release. Verify that your app receives and handles the documented results.
 
-**Required for integrators and coding agents.** Every Point operation must go through the released SDK's documented public API. Direct calls to Mercado Pago or Point app deep links, explicit intents targeting their components, private endpoints, and other SDK bypasses are prohibited in integration code and tests. Use the Android launcher to open the demo, then trigger operations from the demo or your app through the SDK. If the released SDK lacks a required capability, report the gap and confirm the supported path with the Point integration team. Skip any demo example that calls a Point service directly, including legacy refund examples that use HTTP outside the SDK.
+**Required for integrators and coding agents.** Every Point operation must go through the released SDK's documented public API. Direct calls to Mercado Pago or Point app deep links, explicit intents targeting their components, private endpoints, and other SDK bypasses are prohibited in integration code and tests. Use the Android launcher to open the demo, then trigger operations from the demo or your app through the SDK. If the released SDK lacks a required capability, report the gap and confirm the supported path with the Point integration team. Skip any demo example that calls a Point service outside the public SDK.
 
 ## Record the release reference in integration PRs
 
 In the PR description, link the published release and record its `release/*` branch, tag, SDK version, and the demo or Sandbox version used for validation. Use that release as the demo reference regardless of the PR's target branch. List the flows you verified and any pending checks.
-
-## Demo maintenance on master
-
-This section is for maintainers working on the demo's Single Sign-On, payment status, and screenshot tests on `master`. If you're integrating Point, use the demo and SDK documentation from your [published release](#find-the-published-sdk-and-its-release-branch).
-
-### Single Sign-On example
-
-The **Single Sign-On** home action opens `SingleSignOnActivity`. Select **Request identity token** to call `MPManager.singleSignOnTools.requestIdentityToken` with a fresh UUID nonce. The loader and status text follow `onProgress`; `onSuccess` and `onError` hide the loader and enable the button for another request. Errors display their numeric code (`GenericErrorCode` / `SsoErrorCode`) and the SDK public message, including unrecognized host codes.
-
-The demo bundles the stable Integration SDK `7.3.1` AAR. Configure `withSingleSignOnTools()` before initializing `MPManager`. A compatible Point host and an authenticated Mercado Pago session are required; an unsupported host returns `NOT_SUPPORTED`.
-
-The demo displays the full returned identity token (JWT) as selectable text on the SSO screen for inspection and screenshots. It clears the displayed token when a new request starts and does not log, decode or persist it, or create an integrator session. The SSO screen allows screenshots and screen recording. A real integration must establish the expected nonce with its trusted backend and send the token there to validate its signature, claims, and nonce binding and prevent replay. Screen recreation does not resume a pending request; the SDK rejects a second request while one is still running.
-
-## Payment status example
-
-The **Status** home action opens local and online queries side by side. Online queries use
-SDK 7.3.1's `OnlinePaymentStatusCallback`: `onSuccess` displays the public payment data,
-and `onError` handles `OnlinePaymentStatusErrorCode` values or displays the numeric code
-for other errors. Local queries retain the SDK's legacy response callback. Both flows
-allow another query after completion and permit screenshots.
-
-### Screenshot previews
-
-Paparazzi renders the production SSO and payment status screens without a device
-or backend. SSO covers initial, processing, waiting for authorization, JWT returned,
-and network error states. Payment status covers initial, loading, error, local result,
-and online result states. Both use the N950 layout. Paparazzi saves the reference PNGs
-at its default size of 500 × 1000 px.
-
-Requires Java 17 and Android SDK 34, using the existing project wrapper and SDK
-configuration (`ANDROID_HOME` or `sdk.dir` in the root `local.properties`).
-
-```bash
-./gradlew recordSnapshots  # Generate or update reference PNGs after an intentional UI change
-./gradlew verifySnapshots  # Compare the current UI with the committed PNGs
-```
-
-- Reference PNGs: `app/src/test/snapshots/images/`.
-- HTML report: `app/build/reports/paparazzi/index.html`.
-- Visual differences: `app/build/paparazzi/failures/`.
-
-`./gradlew test` and `./gradlew check` also verify the screenshots. A difference
-fails verification; these tasks never accept changes to the reference PNGs.
-Generating a PR does not run these commands automatically.
-
-The tests live in `app/src/test/java/.../snapshot/`. `SnapshotConfiguration` shares
-the device dimensions and theme for future screens. Only `mainappDebug` runs the
-snapshots because both app flavors share the same UI. All added build dependencies
-resolve from public repositories; no internal repositories or credentials are needed.
-
-The JWT fixture is synthetic and has an invalid signature. Never replace it with a
-real token. These tests check appearance only; they do not exercise SDK requests or
-host authentication.
