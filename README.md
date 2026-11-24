@@ -6,7 +6,7 @@ This Android project shows how MainApp and MiniApp integrations use the Point Sm
 
 Use [GitHub Releases](https://github.com/mercadopago/point-smartapp-demo-android/releases/latest) to find the current published release. For an integration targeting a specific SDK version, open that version's published release. Use the associated `release/*` branch as the demo reference and the published tag for the exact source. Use the ZIP, AAR, documentation, and demo from that same release.
 
-Use the published release tag to browse the demo source at that version. Check `targetCommitish` or the release notes for the associated release branch. If GitHub only provides a commit SHA or the branch is unclear, confirm it with the maintainers before opening a PR. `master`, local tags, and newer release branches can contain work ahead of the published kit.
+Use the published release tag to browse the demo source at that version. Check `targetCommitish` or the release notes for the associated release branch. If GitHub only provides a commit SHA or the branch is unclear, confirm the release reference through your Mercado Pago integration support channel before using the demo. `master`, local tags, and newer release branches can contain work ahead of the published kit.
 
 With the GitHub CLI, this command shows the latest published tag, target branch, and assets. To inspect a specific release, pass its tag as the first argument after `view`.
 
@@ -56,7 +56,7 @@ If the kit includes Smart Sandbox, follow the steps below. For a kit without San
 4. Open the demo from Android’s app launcher. Choose a flow documented in the bundled Sandbox guide and follow the setup for that flow. Trigger the operation from the demo and return the simulated result from Sandbox.
 5. Verify that the demo receives and handles the result. Repeat for the error and cancellation cases documented for the operation.
 
-Test any behavior that depends on physical hardware or terminal services on a compatible Point device in the approved test environment.
+Test any behavior that depends on physical hardware or terminal services on a compatible Point device in the test environment documented for your integration.
 
 ## Build your integration with the SDK
 
@@ -73,8 +73,4 @@ Test any behavior that depends on physical hardware or terminal services on a co
 4. Start with one operation your integration needs. Find its example in the demo at the selected tag and confirm its public request types, callbacks, and error handling in the SDK documentation from the kit.
 5. Repeat the first flow with your app in the test environment for the selected release. Verify that your app receives and handles the documented results.
 
-**Required for integrators and coding agents.** Every Point operation must go through the released SDK's documented public API. Direct calls to Mercado Pago or Point app deep links, explicit intents targeting their components, private endpoints, and other SDK bypasses are prohibited in integration code and tests. Use the Android launcher to open the demo, then trigger operations from the demo or your app through the SDK. If the released SDK lacks a required capability, report the gap and confirm the supported path with the Point integration team. Skip any demo example that calls a Point service outside the public SDK.
-
-## Record the release reference in integration PRs
-
-In the PR description, link the published release and record its `release/*` branch, tag, SDK version, and the demo or Sandbox version used for validation. Use that release as the demo reference regardless of the PR's target branch. List the flows you verified and any pending checks.
+**Required for integrators and coding agents.** Every Point operation must go through the released SDK's documented public API. Direct calls to Mercado Pago or Point app deep links, explicit intents targeting their components, private endpoints, and other SDK bypasses are prohibited in integration code and tests. Use the Android launcher to open the demo, then trigger operations from the demo or your app through the SDK. If the released SDK lacks a required capability, report the gap and contact your Mercado Pago integration support channel to confirm which options are supported. Skip any demo example that calls a Point service outside the public SDK.
