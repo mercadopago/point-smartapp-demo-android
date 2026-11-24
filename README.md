@@ -79,9 +79,9 @@ Sandbox simulates payments and supported device responses. Test physical card ac
 
 In the PR description, link the published release and record its `release/*` branch, tag, SDK version, and the demo or Sandbox version used for validation. Use that release as the demo reference regardless of the PR's target branch. List the flows you verified and any pending checks.
 
-## Development examples in this checkout
+## Demo maintenance on master
 
-The examples below describe development in this checkout with SDK 7.3.1. Consult the published kit and its tagged source for the capabilities available to your integration.
+This section is for maintainers working on the demo's Single Sign-On, payment status, and screenshot tests on `master`. If you're integrating Point, use the demo and SDK documentation from your [published release](#find-the-published-sdk-and-its-release-branch).
 
 ### Single Sign-On example
 
