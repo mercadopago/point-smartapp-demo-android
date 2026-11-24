@@ -15,6 +15,8 @@ gh release view --repo mercadopago/point-smartapp-demo-android \
   --json tagName,targetCommitish,assets,url
 ```
 
+If you use coding agents in your app repository, pin the release URL, tag, associated release branch, and SDK artifact version in that repository's `AGENTS.md` or equivalent instructions. Keep that reference until you intentionally upgrade the SDK. Follow this repository's [agent instructions](AGENTS.md) when using the demo as a reference.
+
 ## Download and unpack the integration kit
 
 Open the selected release's **Assets**, download the Third-Apps Integration Kit ZIP, and extract it. Use the exact filenames from the archive. If you use the GitHub CLI, copy the tag from the release lookup above and run:
