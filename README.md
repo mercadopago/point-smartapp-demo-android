@@ -4,7 +4,7 @@ This Android project shows how MainApp and MiniApp integrations use the Point Sm
 
 ## Find the published SDK and its release branch
 
-Use [GitHub Releases](https://github.com/mercadopago/point-smartapp-demo-android/releases/latest) to find the current published release. For an integration targeting a specific SDK version, open that version's published release. Use the associated `release/*` branch as the demo reference and the published tag for the exact source. Use the ZIP, AAR, documentation, and demo from that same release.
+For an integration with a pinned SDK version, open that version’s published release. For a new integration, choose the latest published release that provides an integration kit. Use the associated `release/*` branch as the demo reference and the published tag for the exact source. Use the SDK, documentation, and demo identified by that same release. [GitHub Releases](https://github.com/mercadopago/point-smartapp-demo-android/releases)
 
 Use the published release tag to browse the demo source at that version. Check `targetCommitish` or the release notes for the associated release branch. If GitHub only provides a commit SHA or the branch is unclear, confirm the release reference through your Mercado Pago integration support channel before using the demo. `master`, local tags, and newer release branches can contain work ahead of the published kit.
 
@@ -17,60 +17,29 @@ gh release view --repo mercadopago/point-smartapp-demo-android \
 
 If you use coding agents in your app repository, pin the release URL, tag, associated release branch, and SDK artifact version in that repository's `AGENTS.md` or equivalent instructions. Keep that reference until you intentionally upgrade the SDK. Follow this repository's [agent instructions](AGENTS.md) when using the demo as a reference.
 
-## Download and unpack the integration kit
+## Find the kit and its contents
 
-Open the selected release's **Assets**, download the Third-Apps Integration Kit ZIP, and extract it. Use the exact filenames from the archive. If you use the GitHub CLI, copy the tag from the release lookup above and run:
+Start with the selected release’s notes and **Assets**. Follow the published links for the kit and use its guide or manifest, when provided, to locate each component. A release may package components together, publish them as separate assets, or link to them from the release notes. If you cannot identify the SDK, documentation, or demo for the selected release, verify the reference before proceeding.
 
-```bash
-gh release download '<release-tag>' --repo mercadopago/point-smartapp-demo-android \
-  --pattern 'Third-Apps-integration-kit*.zip'
-```
-
-The table shows how to identify each artifact. Consult the release notes and the extracted kit for the contents shipped with your version.
-
-| File | How to use it |
+| Component | How to use it |
 | --- | --- |
-| `nativesdk-<sdk-version>.aar` | Add this Android library to your app module to call the Point Smart SDK. |
-| `documentation-mainapp-SDK-<sdk-version>.zip` | Extract this second ZIP and open the extracted documentation’s `index.html` for the API, types, and callbacks for this AAR. |
-| `demo-mainapp-<demo-version>.apk` | Install this demo for a MainApp integration. |
-| `demo-miniapp-<demo-version>.apk` | Install this demo for a MiniApp integration. Choose the APK that matches your integration. |
-| Smart Sandbox APK, when included | Install Smart Sandbox on the same Android emulator as the demo or your app. It simulates supported SDK operations. Sandbox and the SDK have separate version numbers. |
-| README bundled with Smart Sandbox | Follow this guide for emulator setup, supported operations, test scenarios, and troubleshooting. |
-
-You can ignore any macOS archive metadata, such as `__MACOSX/`, `._*`, or `.DS_Store`.
+| SDK dependency | Add the exact Android dependency identified by the release using its installation instructions. |
+| SDK documentation | Use the reference for that version to check setup, supported operations, request types, and results. |
+| Demo | Use the demo artifact or build instructions identified by the release. If the kit offers separate demos, choose the one for your integration type. |
+| Test tools and instructions | Follow the release’s guide for installing and configuring any tools it provides, such as Smart Sandbox. |
 
 ## Run your first demo flow
 
-If the kit includes Smart Sandbox, follow the steps below. For a kit without Sandbox, follow the published instructions for testing on a compatible Point terminal.
-
-1. Start a dedicated Android emulator using the image recommended by the bundled Sandbox guide. Use an emulator free of Point payment modules so the SDK discovers Sandbox.
-2. Install the Sandbox APK and the demo APK for your integration type on that emulator. You can drag them into the emulator window or run the following from the extracted kit directory. Replace the placeholders with the serial returned by `adb devices -l` and the paths to the extracted APKs.
-
-   ```bash
-   adb devices -l
-   adb -s "<emulator-serial>" install -r "<path-to-sandbox-apk>"
-   adb -s "<emulator-serial>" install -r "<path-to-demo-apk>"
-   ```
-
-3. Open **Smart Sandbox**, go to **Settings**, select the site, and tap **Save**.
-4. Open the demo from Android’s app launcher. Choose a flow documented in the bundled Sandbox guide and follow the setup for that flow. Trigger the operation from the demo and return the simulated result from Sandbox.
-5. Verify that the demo receives and handles the result. Repeat for the error and cancellation cases documented for the operation.
-
-Test any behavior that depends on physical hardware or terminal services on a compatible Point device in the test environment documented for your integration.
+1. Follow the selected release’s instructions to prepare the test environment and install or build the demo. Use Smart Sandbox when the release provides it for the flow you want to test. Follow the terminal setup in the published guide for flows that require Point hardware.
+2. Open the demo as described in the guide and trigger a documented operation through the SDK. If you are using a simulator, return the result as directed by its guide.
+3. Verify that the demo receives and handles the result. Repeat for the error and cancellation cases documented for the operation.
 
 ## Build your integration with the SDK
 
 1. Follow the onboarding for your integration type and use your assigned application credentials. The [Mercado Pago MainApp playbook](https://www.mercadopago.com.br/developers/es/docs/main-apps/landing) covers MainApp onboarding.
-2. Copy the released AAR to your app module's `libs/` directory and add it as a dependency. In `app/build.gradle`, replace `<sdk-version>` with the version in the extracted AAR filename:
-
-   ```groovy
-   dependencies {
-       implementation files('libs/nativesdk-<sdk-version>.aar')
-   }
-   ```
-
+2. Add the SDK dependency using the installation method and exact version documented in the selected release. If the SDK is supplied as a local Android library, use the actual file from the kit and check the demo’s build configuration at the published tag for an example.
 3. Use the SDK documentation and the demo source at the selected tag to configure and initialize the SDK with your app’s assigned credentials.
 4. Start with one operation your integration needs. Find its example in the demo at the selected tag and confirm its public request types, callbacks, and error handling in the SDK documentation from the kit.
 5. Repeat the first flow with your app in the test environment for the selected release. Verify that your app receives and handles the documented results.
 
-**Required for integrators and coding agents.** Every Point operation must go through the released SDK's documented public API. Direct calls to Mercado Pago or Point app deep links, explicit intents targeting their components, private endpoints, and other SDK bypasses are prohibited in integration code and tests. Use the Android launcher to open the demo, then trigger operations from the demo or your app through the SDK. If the released SDK lacks a required capability, report the gap and contact your Mercado Pago integration support channel to confirm which options are supported. Skip any demo example that calls a Point service outside the public SDK.
+**Required for integrators and coding agents.** Every Point operation must go through the released SDK's documented public API. Direct calls to Mercado Pago or Point app deep links, explicit intents targeting their components, private endpoints, and other SDK bypasses are prohibited in integration code and tests. Follow the release’s instructions to open the demo, then trigger operations from the demo or your app through the SDK. If the released SDK lacks a required capability, report the gap and contact your Mercado Pago integration support channel to confirm which options are supported. Skip any demo example that calls a Point service outside the public SDK.
