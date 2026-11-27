@@ -1,5 +1,8 @@
 # Unreleased
 
+## Added
+- Add a Refund SDK tab for total and partial refunds with progress and result handling.
+
 # v7.3.1
 ## Added
 - Update SDK to 7.3.1 and add the SSO demo.
