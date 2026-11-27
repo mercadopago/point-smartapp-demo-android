@@ -67,6 +67,7 @@
     <string name="point_smartapp_demo_app_refund_tab_sdk">Refund SDK</string>
     <string name="point_smartapp_demo_app_refund_sdk_description">Leave amount blank for a total refund, or enter an amount for a partial refund. The idempotency key is optional.</string>
     <string name="point_smartapp_demo_app_refund_sdk_amount">Amount (optional)</string>
+    <string name="point_smartapp_demo_app_refund_sdk_partial_sites">Partial refunds are available only in Mexico (MLM) and Chile (MLC). Total refunds are available in all sites.</string>
     <string name="point_smartapp_demo_app_refund_sdk_key">Idempotency key (optional)</string>
     <string name="point_smartapp_demo_app_refund_sdk_send">Send refund with SDK</string>
     <string name="point_smartapp_demo_app_refund_sdk_invalid_amount">Enter a positive amount, or leave the field blank for a total refund.</string>

@@ -124,6 +124,7 @@ class RefundsActivity : AppCompatActivity() {
             keyboardType = KeyboardType.Decimal,
             enabled = !sdkLoading,
         )
+        Text(text = getString(R.string.point_smartapp_demo_app_refund_sdk_partial_sites))
         DemoField(
             label = getString(R.string.point_smartapp_demo_app_refund_sdk_key),
             value = sdkIdempotencyKey,
